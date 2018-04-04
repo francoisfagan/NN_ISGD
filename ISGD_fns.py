@@ -28,6 +28,16 @@ def alpha(s, d, c, sigma):
         raise ValueError('sigma must be in {linear, relu}')
 
 
+def calc_grad_input(input, weight, bias, output, grad_output, sigma):
+    """Returns the gradient of the input for the activation function sigma for ISGD
+    """
+    # return None
+        return grad_output.mm(weight)
+    elif sigma == 'relu':
+        sgn_output = (output >= 0).type(torch.FloatTensor)
+        return (grad_output.mul(sgn_output)).mm(weight)
+
+
 class IsgdUpdate:
     """Wrapper around alpha update with learning rate and regularization constant"""
 
@@ -35,28 +45,36 @@ class IsgdUpdate:
     mu = 0.0  # L-2 regularization constant
 
     @classmethod
+    def set_lr(cls, lr):
+        cls.lr = lr
+
+    @classmethod
+    def set_regularization(cls, mu):
+        cls.mu = mu
+
+    @classmethod
     def isgd_update(cls, saved_tensors, grad_output, sigma):
         input, weight, bias, output = saved_tensors
-        grad_input = grad_weight = grad_bias = None
 
+        # Calculate alpha
         s = torch.sign(grad_output)
         z_norm = math.sqrt((torch.norm(input) ** 2 + 1.0))
         d = z_norm * math.sqrt(cls.lr / (1.0 + cls.lr * cls.mu)) * torch.sqrt(torch.abs(grad_output))
         c = output / (1.0 + cls.lr * cls.mu)
         a = alpha(s, d, c, sigma)
 
+        # Calculate theta = (weight, bias) gradients
         new_weight = weight / (1.0 + cls.lr * cls.mu) + (a.mul(d)).t().mm(input) / z_norm ** 2
         grad_weight = (weight - new_weight) / cls.lr
 
         new_bias = bias / (1.0 + cls.lr * cls.mu) + a.mul(d).squeeze() / z_norm ** 2
         grad_bias = (bias - new_bias) / cls.lr
 
+        # Calculate input gradient
+        grad_input = calc_grad_input(input, weight, bias, output, grad_output, sigma)
+
+        # Return gradients
         return grad_input, grad_weight, grad_bias
-
-
-def alpha_linear(s, d, c):
-    """Returns optimal alpha in ISGD for the linear activation function"""
-    return -s.mul(d)
 
 
 class IsgdLinearFunction(torch.autograd.Function):
@@ -99,25 +117,6 @@ class IsgdLinear(nn.Module):
         return IsgdLinearFunction.apply(input, self.weight, self.bias)
 
 
-def alpha_relu(s, d, c):
-    """Returns optimal alpha in ISGD for the relu activation function"""
-    #     cond1 = (s == 1).mul(c <= 0).type(torch.FloatTensor)
-    cond2 = (s == 1).mul(c > 0).mul(c <= d ** 2).type(torch.FloatTensor)
-    cond3 = (s == 1).mul(c > d ** 2).type(torch.FloatTensor)
-    #     cond4 = (s == -1).mul(c <= -d**2/2.0).type(torch.FloatTensor)
-    cond5 = (s == -1).mul(c > -d ** 2 / 2.0).type(torch.FloatTensor)
-
-    alpha = (0.0
-             #              + 0.0 * cond1
-             - (c.div(d)).mul(cond2)
-             - d.mul(cond3)
-             #             + 0.0 * cond4
-             + d.mul(cond5)
-             )
-
-    return alpha
-
-
 class IsgdReluFunction(torch.autograd.Function):
 
     # Note that both forward and backward are @staticmethods
@@ -135,24 +134,7 @@ class IsgdReluFunction(torch.autograd.Function):
     @staticmethod
     @once_differentiable
     def backward(ctx, grad_output):
-        input, weight, bias, output = ctx.saved_tensors
-        grad_input = grad_weight = grad_bias = None
-        lr = 0.001
-        mu = 0.0
-
-        s = torch.sign(grad_output)
-        z_norm = math.sqrt((torch.norm(input) ** 2 + 1.0))
-        d = z_norm * math.sqrt(lr / (1.0 + lr * mu)) * torch.sqrt(torch.abs(grad_output))
-        c = output / (1.0 + lr * mu)
-        a = alpha(s, d, c, 'relu')
-
-        new_weight = weight / (1.0 + lr * mu) + (a.mul(d)).t().mm(input) / z_norm ** 2
-        grad_weight = (weight - new_weight) / lr
-
-        new_bias = bias / (1.0 + lr * mu) + a.mul(d).squeeze() / z_norm ** 2
-        grad_bias = (bias - new_bias) / lr
-
-        return grad_input, grad_weight, grad_bias
+        return IsgdUpdate.isgd_update(ctx.saved_tensors, grad_output, 'relu')
 
 
 class IsgdRelu(nn.Module):
