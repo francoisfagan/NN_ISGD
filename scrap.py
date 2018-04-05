@@ -1,3 +1,68 @@
+@staticmethod
+@once_differentiable
+def backward(ctx, grad_output):
+    input, weight, bias, output = ctx.saved_tensors
+
+    # Find all nodes where the output is greater than or equal to 0
+    ge0 = (output > 0).type(torch.FloatTensor)  # [1 x m]
+
+    # Mask the back-propagated gradient to zero out elements where the output is zero.
+    grad_output_masked = ge0 * grad_output  # [1 x m]
+
+    # Calculate gradients
+    grad_input = grad_output_masked.mm(weight)  # [1 x n]
+    grad_weight = grad_output_masked.t().mm(input)  # [m x n]
+    grad_bias = grad_output_masked.sum(0).squeeze(0)  # [m]
+
+    return grad_input, grad_weight, grad_bias
+
+
+
+
+
+
+## Old version
+# class IsgdLinearFunction(torch.autograd.Function):
+#
+#     # Note that both forward and backward are @staticmethods
+#     @staticmethod
+#     # bias is an optional argument
+#     def forward(ctx, input, weight, bias=None):
+#         output = input.mm(weight.t())
+#         if bias is not None:
+#             output += bias.unsqueeze(0).expand_as(output)
+#
+#         ctx.save_for_backward(input, weight, bias, output)
+#         return output
+#
+#     @staticmethod
+#     @once_differentiable
+#     def backward(ctx, grad_output):
+#         return IsgdUpdate.isgd_update(ctx.saved_tensors, grad_output, 'linear')
+
+
+## Old
+# class IsgdReluFunction(torch.autograd.Function):
+#
+#     # Note that both forward and backward are @staticmethods
+#     @staticmethod
+#     # bias is an optional argument
+#     def forward(ctx, input, weight, bias=None):
+#         output = input.mm(weight.t())
+#         if bias is not None:
+#             output += bias.unsqueeze(0).expand_as(output)
+#
+#         output = torch.clamp(output, min=0.0)
+#         ctx.save_for_backward(input, weight, bias, output)
+#         return output
+#
+#     @staticmethod
+#     @once_differentiable
+#     def backward(ctx, grad_output):
+#         return IsgdUpdate.isgd_update(ctx.saved_tensors, grad_output, 'relu')
+
+
+
 import torch
 import torch.nn as nn
 import math
