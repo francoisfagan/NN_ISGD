@@ -1,3 +1,63 @@
+def calc_grad_input(input, weight, bias, output, grad_output, sigma):
+    """Returns the gradient of the input for the activation function sigma for ISGD
+    """
+    # return None
+    if sigma == 'linear':
+        return grad_output.mm(weight)
+    elif sigma == 'relu':
+        sgn_output = (output >= 0).type(torch.FloatTensor)
+        return (grad_output.mul(sgn_output)).mm(weight)
+
+
+
+
+# def a_linear(s, d, c):
+#     """
+#     Arguments:
+#     s [1 x m]      Sign of back-propagated gradient
+#     d [1 x m]      Weighted constant, proportional to the sqrt(abs(back-propagated gradient))
+#     c [1 x m]      Logit contracted by ridge-regularization
+#
+#     Return
+#     a [1 x m]  Solution of ISGD update for each output
+#     """
+#     a = - s * d  # Note that this is element-wise multiplication
+#     return a
+
+
+# def a_relu(s, d, c, lr):
+#     """
+#     Arguments:
+#     s [1 x m]      Sign of back-propagated gradient
+#     d [1 x m]      Weighted constant, proportional to the sqrt(abs(back-propagated gradient))
+#     c [1 x m]      Logit contracted by ridge-regularization
+#     lr [1]         Learning rate
+#
+#     Return
+#     alpha [1 x m]  Solution of ISGD update for each output
+#     """
+#     cond1 = ((s == +1) * (c <= 0)).type(torch.FloatTensor)
+#     cond2 = ((s == +1) * (c > 0) * (c <= (lr * d ** 2))).type(torch.FloatTensor)
+#     cond3 = ((s == +1) * (c > (lr * d ** 2))).type(torch.FloatTensor)
+#     cond4 = ((s == -1) * (c <= -(lr * d ** 2) / 2.0)).type(torch.FloatTensor)
+#     cond5 = ((s == -1) * (c > -(lr * d ** 2) / 2.0)).type(torch.FloatTensor)
+#
+#     a = (0.0 * cond1
+#          - (c / (lr * d)) * cond2
+#          - d * cond3
+#          + 0.0 * cond4
+#          + d * cond5
+#          )
+#
+#     # a might contain Nan values if d = 0 at certain elements due to diving by d in (c / (lr * d)) * cond2
+#     # The operation below sets all Nans to zero
+#     # This is the appropriate value for ISGD
+#     a[a != a] = 0
+#
+#     return a
+
+
+
 @staticmethod
 @once_differentiable
 def backward(ctx, grad_output):
@@ -17,7 +77,17 @@ def backward(ctx, grad_output):
     return grad_input, grad_weight, grad_bias
 
 
+def fn(a,b,c):
+    """
 
+    Args:
+        a:
+        b:
+        c:
+
+    Returns:
+
+    """
 
 
 
