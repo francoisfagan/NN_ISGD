@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_loaders.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISGD_fns.py" beforeDir="false" afterPath="$PROJECT_DIR$/ISGD_fns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mnist_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISGD_fns.py" beforeDir="false" afterPath="$PROJECT_DIR$/isgd_fns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mnist_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrap.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,52 +20,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mnist_example.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mnist_example.py">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+            <state relative-caret-position="113">
+              <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
-                <element signature="e#2551#3230#0" />
+                <element signature="e#131#168#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISGD_fns.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="943" lean-forward="true" selection-start-line="943" selection-end-line="943" />
-              <folding>
-                <element signature="e#6#18#0" expanded="true" />
-                <element signature="e#198#872#0" />
-                <element signature="e#947#1366#0" />
-                <element signature="e#698#2104#0" />
-                <element signature="e#2928#3893#0" />
-                <element signature="e#4018#4230#0" />
-                <element signature="e#4272#6750#0" />
-                <element signature="e#5294#6750#0" />
-                <element signature="e#6809#9335#0" />
-                <element signature="e#6975#7713#0" />
-                <element signature="e#9392#13693#0" />
-                <element signature="e#9558#10329#0" />
-                <element signature="e#10418#13693#0" />
-                <element signature="e#13754#18090#0" />
-                <element signature="e#13920#14699#0" />
-                <element signature="e#14788#18090#0" />
-                <element signature="e#18149#21996#0" />
-                <element signature="e#18315#19095#0" />
-                <element signature="e#22053#24986#0" />
-                <element signature="e#25796#27341#0" />
-                <element signature="e#27377#28918#0" />
-                <element signature="e#28952#30489#0" />
-                <element signature="e#30527#32072#0" />
-                <element signature="e#32108#33649#0" />
-                <element signature="e#33683#35220#0" />
-                <element signature="e#34521#34569#0" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -68,8 +44,8 @@
       <file leaf-file-name="scrap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scrap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="74" selection-end-column="59" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -99,6 +75,10 @@
       <find>logit = calc_logit(input, weight, bias)</find>
       <find>outputfeatures</find>
       <find>CLIP</find>
+      <find>F</find>
+      <find>Hyperparameters.initialization_scale</find>
+      <find>get_hyperparameters</find>
+      <find>math</find>
     </findStrings>
     <replaceStrings>
       <replace>BATCHSIZE</replace>
@@ -110,8 +90,10 @@
       <replace>grad_input: [b x n]     Gradient of the input vector</replace>
       <replace>[b x n]</replace>
       <replace>logit = calc_logit(input, weight, bias)  # [b x m]</replace>
-      <replace>output features</replace>
       <replace>CLIPPING_THRESHOLD</replace>
+      <replace>output features</replace>
+      <replace>Hyperparameters.get_initialization_scale</replace>
+      <replace>get_isgd_hyperparameters</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -121,12 +103,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/new_autograd.py" />
-        <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/CubicEquationSolver.py" />
         <option value="$PROJECT_DIR$/../log_tricks/Implicit_illustration.py" />
         <option value="$USER_HOME$/Downloads/loadBinaryUSPS.py" />
         <option value="$PROJECT_DIR$/ISGD_fns.py" />
+        <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/mnist_example.py" />
+        <option value="$PROJECT_DIR$/train_test.py" />
+        <option value="$PROJECT_DIR$/data_loaders.py" />
+        <option value="$PROJECT_DIR$/architectures.py" />
+        <option value="$PROJECT_DIR$/isgd_fns.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
       </list>
     </option>
   </component>
@@ -147,6 +135,11 @@
             <path>
               <item name="NN_ISGD" type="b2602c69:ProjectViewProjectNode" />
               <item name="NN_ISGD" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NN_ISGD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NN_ISGD" type="462c0819:PsiDirectoryNode" />
+              <item name="Old" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -220,7 +213,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -281,7 +274,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32415903" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32415903" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -307,77 +300,16 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="44" />
+      <option name="time" value="48" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="74" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="481" column="9" selection-start-line="481" selection-start-column="9" selection-end-line="481" selection-end-column="9" />
-          <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
-            <element signature="e#27377#28918#0" />
-            <element signature="e#28952#30489#0" />
-            <element signature="e#30527#32072#0" />
-            <element signature="e#32108#33649#0" />
-            <element signature="e#33683#35220#0" />
-            <element signature="e#34521#34569#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="74" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -390,31 +322,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="481" column="9" lean-forward="true" selection-start-line="481" selection-start-column="9" selection-end-line="481" selection-end-column="9" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -425,13 +350,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -444,31 +368,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
           <caret line="478" column="56" lean-forward="true" selection-start-line="478" selection-start-column="56" selection-end-line="478" selection-end-column="56" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -479,13 +396,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -498,31 +414,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8738">
           <caret line="519" column="43" selection-start-line="519" selection-start-column="43" selection-end-line="519" selection-end-column="43" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -533,13 +442,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -552,31 +460,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8245">
           <caret line="490" column="49" lean-forward="true" selection-start-line="474" selection-start-column="8" selection-end-line="490" selection-end-column="49" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -587,42 +488,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5202">
           <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -633,42 +526,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4505">
           <caret line="268" column="42" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -686,42 +571,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="11" column="23" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="23" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -739,13 +616,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -757,31 +633,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -792,42 +661,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -845,42 +706,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2006">
           <caret line="121" column="25" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="25" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -891,13 +744,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
           <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -961,38 +813,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scrap.py">
+    <entry file="file://$PROJECT_DIR$/Old/CubicEquationSolver.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="74" selection-end-column="59" />
+        <state relative-caret-position="119">
+          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ISGD_fns.py">
+    <entry file="file://$PROJECT_DIR$/architectures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="943" lean-forward="true" selection-start-line="943" selection-end-line="943" />
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/isgd_fns.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding>
-            <element signature="e#6#18#0" expanded="true" />
-            <element signature="e#198#872#0" />
-            <element signature="e#947#1366#0" />
-            <element signature="e#698#2104#0" />
-            <element signature="e#2928#3893#0" />
-            <element signature="e#4018#4230#0" />
-            <element signature="e#4272#6750#0" />
-            <element signature="e#5294#6750#0" />
-            <element signature="e#6809#9335#0" />
-            <element signature="e#6975#7713#0" />
-            <element signature="e#9392#13693#0" />
-            <element signature="e#9558#10329#0" />
-            <element signature="e#10418#13693#0" />
-            <element signature="e#13754#18090#0" />
-            <element signature="e#13920#14699#0" />
-            <element signature="e#14788#18090#0" />
-            <element signature="e#18149#21996#0" />
-            <element signature="e#18315#19095#0" />
-            <element signature="e#22053#24986#0" />
-            <element signature="e#25796#27341#0" />
+            <element signature="e#118#130#0" expanded="true" />
+            <element signature="e#1669#2088#0" />
+            <element signature="e#2168#3643#0" />
+            <element signature="e#3719#4641#0" />
+            <element signature="e#4686#5143#0" />
+            <element signature="e#5248#7742#0" />
+            <element signature="e#7801#10376#0" />
+            <element signature="e#10433#14849#0" />
+            <element signature="e#14910#19361#0" />
+            <element signature="e#19420#23375#0" />
+            <element signature="e#23432#26403#0" />
+            <element signature="e#25796#27461#0" />
+            <element signature="e#26869#27341#0" />
             <element signature="e#27377#28918#0" />
             <element signature="e#28952#30489#0" />
             <element signature="e#30527#32072#0" />
@@ -1003,13 +865,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_example.py">
+    <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+        <state relative-caret-position="289">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#2551#3230#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>

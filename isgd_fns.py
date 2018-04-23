@@ -1,45 +1,28 @@
-"""
-b = batch size
-n = input size
-m = output size
+""" This file defines all of the activation, layers and functions
+for implicit stochastic gradient descent on neural networks
+
+It is helpful to keep track of dimensions while doing matrix and vector operations.
+We use the following shorthand to help keep track:
+
+    b = mini-batch size
+    n = input size to neural network layer
+    m = output size from neural network layer
+
+If you want to implement a new activation function and layer all you have to do is:
+    1. Copy, rename and edit IsgdTemplateFunction so that it can do
+        forward and backward passes with your activation function
+    2. Copy and edit IsgdTemplate
+Details of how to edit are given in the IsgdTemplateFunction and IsgdTemplate classes
+
 """
 
 import torch
 import torch.nn as nn
 import math
-from torch.autograd.function import once_differentiable
 import numpy as np
+from torch.autograd.function import once_differentiable
 from functools import reduce
-
-
-# Utility classes
-class Hyperparameters:
-    """Stores and sets the learning rate and ridge regularization constant"""
-
-    lr = 0.01  # Learning rate
-    mu = 0.0  # Ridge regularization constant
-    sgd_type = 'implicit'
-
-    @classmethod
-    def set_all_hyperparameters(cls, lr):
-        cls.lr = lr
-
-    @classmethod
-    def set_lr(cls, lr):
-        cls.lr = lr
-
-    @classmethod
-    def set_regularization(cls, mu):
-        cls.mu = mu
-
-    @classmethod
-    def set_sgd_type(cls, sgd_type):
-        assert sgd_type in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
-        cls.sgd_type = sgd_type
-
-    @classmethod
-    def get_hyperparameters(cls):
-        return cls.lr, cls.mu, cls.sgd_type
+from utils import Hyperparameters
 
 
 # Utility functions
@@ -191,7 +174,7 @@ class IsgdTemplateFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
 
@@ -261,7 +244,7 @@ class IsgdLinearFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
 
@@ -332,7 +315,7 @@ class IsgdReluFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
 
@@ -438,7 +421,7 @@ class IsgdHardTanhFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
         # If implicit do the implicit SGD update, else do the explicit SGD update
@@ -544,7 +527,7 @@ class IsgdArctanFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
 
@@ -644,7 +627,7 @@ class IsgdSeluFunction(torch.autograd.Function):
         """
 
         # Retrieve parameters required for the update
-        lr, mu, sgd_type = Hyperparameters.get_hyperparameters()
+        lr, mu, sgd_type = Hyperparameters.get_isgd_hyperparameters()
         input, weight, bias, output, logit, s, z_norm, d, c = calc_backwards_variables(ctx.saved_tensors, ctx.logit,
                                                                                        grad_output, lr, mu)
 
@@ -693,9 +676,10 @@ class IsgdTemplate(nn.Module):
 
         # Initialize parameters
         # Not a very smart way to initialize weights
-        self.weight.data.uniform_(-0.1, 0.1)
+        bias_scale, weight_scale = Hyperparameters.get_initialization_scale(input_features, output_features)
+        self.weight.data.uniform_(- weight_scale, weight_scale)
         if bias is not None:
-            self.bias.data.uniform_(-0.1, 0.1)
+            self.bias.data.uniform_(-bias_scale, bias_scale)
 
     def forward(self, input):
         """

@@ -1,3 +1,19 @@
+@classmethod
+def set_hyperparameters(cls, batch_norm, batch_size, clipping_threshold, initialization_scale, lr, mu, sgd_type,
+                        test_batch_size):
+    cls.batch_norm = batch_norm
+    cls.batch_size = batch_size
+    cls.clipping_threshold = clipping_threshold
+    cls.initialization_scale = initialization_scale
+    cls.lr = lr
+    cls.mu = mu
+    cls.sgd_type = sgd_type
+    cls.test_batch_size = test_batch_size
+
+
+
+
+
 def calc_grad_input(input, weight, bias, output, grad_output, sigma):
     """Returns the gradient of the input for the activation function sigma for ISGD
     """
