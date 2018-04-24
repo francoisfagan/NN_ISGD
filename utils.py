@@ -52,7 +52,10 @@ def train(model, train_loader, optimizer, epoch):
         if Hyperparameters.clipping_threshold != 0:
             clip_grad_norm(model.parameters(), Hyperparameters.clipping_threshold)
 
+        # Take optimization step
         optimizer.step()
+
+        # Print loss on current datapoint
         if batch_idx % 1000 == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),

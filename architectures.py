@@ -2,14 +2,20 @@
 
 """
 
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.autograd import Variable
 from isgd_fns import IsgdRelu, IsgdIdentity
 from utils import Hyperparameters
 
 
 # Define neural network
 class ConvolutionalFFNN(nn.Module):
+    """ Convolutional Feed Forward Neural Network architecture
+    Based on: https://github.com/pytorch/examples/blob/master/mnist/main.py
+
+    """
     def __init__(self):
         super(ConvolutionalFFNN, self).__init__()
 
@@ -30,3 +36,27 @@ class ConvolutionalFFNN(nn.Module):
         x = self.fc2(x)
 
         return F.log_softmax(x, dim=1)
+
+
+class RNN(nn.Module):
+    """ Recurrent Neural Network architecture
+    Based on: http://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html
+
+    """
+    def __init__(self, input_size, hidden_size, output_size):
+        super(RNN, self).__init__()
+
+        self.hidden_size = hidden_size
+
+        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)
+        self.i2o = nn.Linear(input_size + hidden_size, output_size)
+
+    def forward(self, input, hidden):
+        combined = torch.cat((input, hidden))
+        hidden = self.i2h(combined)
+        hidden = nn.functional.sigmoid(hidden)
+        output = self.i2o(combined)
+        return output, hidden
+
+    def initHidden(self):
+        return Variable(torch.zeros(self.hidden_size))
