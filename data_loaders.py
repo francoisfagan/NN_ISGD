@@ -9,7 +9,28 @@ import torch
 import numpy as np
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
-from utils import Hyperparameters
+from utils import Hp
+
+
+def get_dataset():
+    """ Return the train and test loaders for the dataset
+
+    Args:
+        dataset_name: Name of datast
+
+    Returns:
+        train_loader    Loads training data
+        test_loader     Loads test data
+
+    """
+    dataset_name = Hp.dataset_name
+    if dataset_name == 'mnist':
+        return mnist()
+    elif dataset_name == 'addition':
+        return addition_problem(Hp.train_length,
+                                Hp.test_length,
+                                Hp.sequence_length
+                                )
 
 
 def mnist():
@@ -26,13 +47,13 @@ def mnist():
                            transforms.ToTensor(),
                            transforms.Normalize((0.1307,), (0.3081,))
                        ])),
-        batch_size=Hyperparameters.batch_size, shuffle=True)
+        batch_size=Hp.batch_size, shuffle=True)
     test_loader = DataLoader(
         datasets.MNIST('../data', train=False, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.1307,), (0.3081,))
         ])),
-        batch_size=Hyperparameters.test_batch_size, shuffle=True)
+        batch_size=Hp.test_batch_size, shuffle=True)
 
     return train_loader, test_loader
 
@@ -73,30 +94,37 @@ class AdditionDataset(Dataset):
         sequence[1, t_2] = 1.0
 
         # Calculate target
-        target = sequence[0, t_1] + sequence[0, t_2]
+        target = torch.Tensor([sequence[0, t_1] + sequence[0, t_2]])
 
         # Collect sequence and target into a sample
-        sample = {'sequence': sequence, 'target': target}
+        sample = (sequence, target)
 
         return sample
 
 
-def addition_problem(train_dataset_length, test_data_length, len_sequence, batch_size=4, num_workers=4):
-    """This is the addition problem
+def addition_problem(train_length, test_length, sequence_length, num_workers=4):
+    """
+    This is the addition problem
+
 
     Args:
-        T: Sequence length
+        train_length:       Number of training examples for each epoch
+        test_length:        Number of test examples for each test
+        sequence_length:    Length of each sequence
+        num_workers:        Number of workers loading the data
 
     Returns:
         train_loader    Loads training data
         test_loader     Loads test data
 
     """
+    # Batch size should be 1 to prevent sequences in the same batch having different lengths
+    batch_size = 1
 
-    train_loader = DataLoader(AdditionDataset(train_dataset_length, len_sequence),
+    train_loader = DataLoader(AdditionDataset(train_length, sequence_length),
                               batch_size=batch_size,
                               num_workers=num_workers)
-    test_loader = DataLoader(AdditionDataset(test_data_length, len_sequence),
+    test_loader = DataLoader(AdditionDataset(test_length, sequence_length),
                              batch_size=batch_size,
                              num_workers=num_workers)
     return train_loader, test_loader

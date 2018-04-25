@@ -6,56 +6,48 @@ Author: Francois Fagan, Columbia University
 
 from __future__ import print_function
 import torch
-import torch.optim as optim
 import architectures
 import data_loaders
-from utils import train, test, Hyperparameters
+from utils import train, test, Hp, get_data_type, get_optimizer, check_hyperparameters_valid
 
 # Set seed
 torch.manual_seed(1)
 
 # Set hyperparameters
-ARCHITECTURE = 'conv_ffnn'
-BATCH_NORM = Hyperparameters.batch_norm = False
-BATCH_SIZE = Hyperparameters.batch_size = 1
-CLIPPING_THRESHOLD = Hyperparameters.clipping_threshold = 0
-DATASET = 'mnist'
-EPOCHS = Hyperparameters.epochs = 1
-INITIALIZATION_SCALE = Hyperparameters.initialization_scale = '\sqrt{\frac{6}{n+m}}'
-LEARNING_RATE = Hyperparameters.lr = 0.001
-MOMENTUM = Hyperparameters.momentum = 0.0
-REGULARIZATION = Hyperparameters.mu = 0.0
-SGD_TYPE = Hyperparameters.sgd_type = 'explicit'
-TEST_BATCH_SIZE = Hyperparameters.test_batch_size = 64
+Hp.architecture = 'rnn' #'conv_ffnn'  #
+Hp.batch_norm = False
+Hp.batch_size = 1
+Hp.clipping_threshold = 0
+Hp.dataset_name = 'addition' #'mnist'  #
+Hp.epochs = 1
+Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'
+Hp.lr = 0.001
+Hp.momentum = 0.0
+Hp.mu = 0.0
+Hp.sgd_type = 'explicit'
+Hp.test_batch_size = 64
 
+# Hyperpameters for RNN
+Hp.train_length = 200
+Hp.test_length = 300
+Hp.sequence_length = 11
+Hp.input_size = 2
+Hp.hidden_size = 50
+Hp.output_size = 1
 
-# Check that hyperparameter settings are valid
-assert (BATCH_SIZE > 1 if BATCH_NORM else True), 'For nn.BatchNorm1d to work, the batch size has to be greater than 1'
-assert SGD_TYPE in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
-assert INITIALIZATION_SCALE in {'0.1',
-                                '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
-assert DATASET in {'mnist', 'addition'}
-assert ARCHITECTURE in {'conv_ffnn', 'rnn'}
+# Infer the data type from the dataset
+Hp.data_type = get_data_type()
 
-# Load the data
-train_loader, test_loader = data_loaders.mnist()
+# Check that all of the hyperparameters are valid
+check_hyperparameters_valid()
 
-# Define the model architecture
-model = None
-if ARCHITECTURE == 'conv_ffnn':
-    model = architectures.ConvolutionalFFNN()
-elif ARCHITECTURE == 'rnn':
-    model = architectures.RNN()
+# Using the hyperparameters specified above, load the data, model and optimizer
+train_loader, test_loader = data_loaders.get_dataset()
 
-# Define optimizer
-if SGD_TYPE == 'implicit':
-    # If implicit then regularization is already done in the backprop,
-    # so it shouldn't be included in the optimizer
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
-else:
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=REGULARIZATION)
+model = architectures.get_model()
+optimizer = get_optimizer(model)
 
 # Run SGD and test
-for epoch in range(EPOCHS):
+for epoch in range(Hp.epochs):
     train(model, train_loader, optimizer, epoch)
     test(model, test_loader)

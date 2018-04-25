@@ -7,7 +7,23 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 from isgd_fns import IsgdRelu, IsgdIdentity
-from utils import Hyperparameters
+from utils import Hp
+
+
+def get_model():
+    """ Get model with the architecture stored in Hyperparameters
+
+    Returns:
+        Neural network model
+
+    """
+    architecture = Hp.architecture
+    if architecture == 'conv_ffnn':
+        return ConvolutionalFFNN()
+    elif architecture == 'rnn':
+        return RNN(Hp.input_size, Hp.hidden_size, Hp.output_size)
+    else:
+        raise ValueError('There is no model for the given architecture')
 
 
 # Define neural network
@@ -16,6 +32,7 @@ class ConvolutionalFFNN(nn.Module):
     Based on: https://github.com/pytorch/examples/blob/master/mnist/main.py
 
     """
+
     def __init__(self):
         super(ConvolutionalFFNN, self).__init__()
 
@@ -23,7 +40,7 @@ class ConvolutionalFFNN(nn.Module):
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = IsgdRelu(320, 50)  # nn.Linear(320, 50)  #
-        self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hyperparameters.batch_norm else IsgdIdentity()
+        self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else IsgdIdentity()
         self.fc2 = IsgdRelu(50, 10)  # nn.Linear(50, 10)  #
 
     def forward(self, x):
@@ -39,7 +56,7 @@ class ConvolutionalFFNN(nn.Module):
 
 
 class RNN(nn.Module):
-    """ Recurrent Neural Network architecture
+    """ Recurrent neural network architecture
     Based on: http://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html
 
     """
