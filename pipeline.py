@@ -8,7 +8,8 @@ from __future__ import print_function
 import torch
 import architectures
 import data_loaders
-from utils import train, test, Hp, get_data_type, get_optimizer, check_hyperparameters_valid
+from utils import Hp, get_data_type, get_optimizer, check_hyperparameters_valid
+from train_test import train, test
 
 # Set seed
 torch.manual_seed(1)
@@ -19,7 +20,7 @@ Hp.batch_norm = False
 Hp.batch_size = 1
 Hp.clipping_threshold = 0
 Hp.dataset_name = 'simple_rnn' #'addition' #'mnist'  #
-Hp.epochs = 10
+Hp.epochs = 1
 Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'
 Hp.lr = 0.001
 Hp.momentum = 0.0
@@ -28,8 +29,8 @@ Hp.sgd_type = 'explicit'
 Hp.test_batch_size = 64
 
 # Hyperpameters for RNN
-Hp.train_length = 2000
-Hp.test_length = 300
+Hp.train_length = 20000
+Hp.test_length = 3000
 Hp.sequence_length = 11
 Hp.input_size = 2
 Hp.hidden_size = 50
