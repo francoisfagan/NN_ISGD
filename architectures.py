@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-from isgd_fns import IsgdRelu, IsgdIdentity
+import isgd_fns
 from utils import Hp
 
 
@@ -21,7 +21,9 @@ def get_model():
     if architecture == 'conv_ffnn':
         return ConvolutionalFFNN()
     elif architecture == 'rnn':
-        return RNN(Hp.input_size, Hp.hidden_size, Hp.output_size)
+        return Isgd_RNN(Hp.input_size, Hp.hidden_size, Hp.output_size)
+    elif architecture == 'lstm':
+        return Isgd_LSTM(Hp.input_size, Hp.hidden_size, Hp.output_size)
     else:
         raise ValueError('There is no model for the given architecture')
 
@@ -39,9 +41,9 @@ class ConvolutionalFFNN(nn.Module):
         self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
-        self.fc1 = IsgdRelu(320, 50)  # nn.Linear(320, 50)  #
-        self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else IsgdIdentity()
-        self.fc2 = IsgdRelu(50, 10)  # nn.Linear(50, 10)  #
+        self.fc1 = isgd_fns.IsgdRelu(320, 50)  # nn.Linear(320, 50)  #
+        self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else isgd_fns.IsgdIdentity()
+        self.fc2 = isgd_fns.IsgdRelu(50, 10)  # nn.Linear(50, 10)  #
 
     def forward(self, x):
         x = F.relu(F.max_pool2d(self.conv1(x), 2))
@@ -55,25 +57,64 @@ class ConvolutionalFFNN(nn.Module):
         return F.log_softmax(x, dim=1)
 
 
-class RNN(nn.Module):
+class Isgd_RNN(nn.Module):
     """ Recurrent neural network architecture
     Based on: http://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html
 
+    To help keep track of dimensions, we use the notation
+        h:      Size hidden nodes
+        d:      Size of input
+        o:      Size of output
+
     """
+
     def __init__(self, input_size, hidden_size, output_size):
-        super(RNN, self).__init__()
+        super(Isgd_RNN, self).__init__()
 
-        self.hidden_size = hidden_size
+        self.hidden_size = hidden_size  # [h]
 
-        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)
-        self.i2o = nn.Linear(input_size + hidden_size, output_size)
+        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)  # [h + d] -> [h]
+        self.i2o = nn.Linear(input_size + hidden_size, output_size)  # [h + d] -> [o]
 
     def forward(self, input, hidden):
-        combined = torch.cat((input, hidden))
-        hidden = self.i2h(combined)
+        combined = torch.cat((input, hidden))  # [h + d]
+        hidden = self.i2h(combined)  # [h]
         # hidden = nn.functional.sigmoid(hidden)
-        output = self.i2o(combined)
+        output = self.i2o(combined)  # [0]
         return output, hidden
 
     def initHidden(self):
         return Variable(torch.zeros(self.hidden_size))
+
+
+class Isgd_LSTM(nn.Module):
+    """ LSTM architecture
+    Based on: http://pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html
+    and
+    http://pytorch.org/docs/master/nn.html
+
+    To help keep track of dimensions, we use the notation
+        h:      Size hidden nodes = size of lstm output
+        d:      Size of lstm input
+        o:      Size of output from layer on top of lstm
+
+    """
+
+    def __init__(self, input_size, hidden_size, output_size):
+        super(Isgd_LSTM, self).__init__()
+
+        self.hidden_size = hidden_size  # [h]
+
+        self.lstm = nn.LSTM(input_size, hidden_size)  # [d, h] -> [h, h]
+        self.lstm2output = nn.Linear(hidden_size, output_size)  # [h] -> [o]
+
+    def forward(self, input, hidden):
+        input = input.unsqueeze(0).unsqueeze(0)  # [d] -> [1 x 1 x d]
+        lstm_out, hidden = self.lstm(input, hidden)  # [d, h] -> [h, h]
+        output = self.lstm2output(lstm_out)  # [h] -> [o]
+        return output, hidden
+
+    def initHidden(self):
+        h0 = Variable(torch.zeros(1, 1, self.hidden_size))  # [1 x 1 x h]
+        c0 = Variable(torch.zeros(1, 1, self.hidden_size))  # [1 x 1 x h]
+        return (h0, c0)  # ([1 x 1 x h], [1 x 1 x h])

@@ -44,14 +44,14 @@ def check_hyperparameters_valid():
     assert Hp.initialization_scale in {'0.1',
                                        '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
     assert Hp.dataset_name in {'mnist', 'addition', 'simple_rnn'}
-    assert Hp.architecture in {'conv_ffnn', 'rnn'}
+    assert Hp.architecture in {'conv_ffnn', 'rnn', 'lstm'}
 
     # Dataset and architecture don't match
     error_string = 'Inappropriate architecture for dataset'
     if Hp.dataset_name == 'mnist':
         assert Hp.architecture in {'conv_ffnn'}, error_string
-    elif Hp.dataset_name == 'addition':
-        assert Hp.architecture in {'rnn'}, error_string
+    elif Hp.dataset_name in {'addition', 'simple_rnn'}:
+        assert Hp.architecture in {'rnn', 'lstm'}, error_string
 
     # Check if RNN then batch size = 1
     # This is because the sequences can have different lengths

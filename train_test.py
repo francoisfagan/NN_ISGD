@@ -28,22 +28,22 @@ def rnn_loss(model, data, target):
     """ Return loss for rnn models
 
     Args:
-        model:          Neural network model
-        data [2 x t]:   Mini-batch input data
-        target [1]:     Mini-batch target
+        model:              Neural network model
+        data [1 x d x t]:   Input sequence data, where d is the input dimension and t is the number of time periods
+        target [1]:         Target
 
     Returns:
-        loss:           Loss on mini-batch
+        loss:               Loss
 
     """
     # Get rid of zeroth dimension, since the minibatch is of size 1
-    data = data[0, :, :]  # [2 x t]
+    data = data[0, :, :]  # [d x t]
 
     hidden = model.initHidden()
 
     sequence_length = data.size()[1]
     for i in range(sequence_length):
-        input = data[:, i]
+        input = data[:, i]  # [d]
         output, hidden = model(input, hidden)
     return nn.MSELoss()(output, target)
 
@@ -53,12 +53,12 @@ def get_loss(model, data, target):
     which is specified in Hp.data_type
 
     Args:
-        model:  Neural network model
-        data:   Mini-batch input data
-        target: Mini-batch target
+        model:          Neural network model
+        data:           Input data
+        target:         Target
 
     Returns:
-        loss:   Loss on mini-batch
+        loss:           Loss
 
     """
     if Hp.data_type == 'classification':

@@ -15,14 +15,14 @@ from train_test import train, test
 torch.manual_seed(1)
 
 # Set hyperparameters
-Hp.architecture = 'rnn' #'conv_ffnn'  #
+Hp.architecture = 'lstm' #'rnn'#'conv_ffnn'  #
 Hp.batch_norm = False
 Hp.batch_size = 1
 Hp.clipping_threshold = 0
 Hp.dataset_name = 'simple_rnn' #'addition' #'mnist'  #
 Hp.epochs = 1
 Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'
-Hp.lr = 0.001
+Hp.lr = 0.01
 Hp.momentum = 0.0
 Hp.mu = 0.0
 Hp.sgd_type = 'explicit'
@@ -33,7 +33,7 @@ Hp.train_length = 20000
 Hp.test_length = 3000
 Hp.sequence_length = 11
 Hp.input_size = 2
-Hp.hidden_size = 50
+Hp.hidden_size = 1
 Hp.output_size = 1
 
 # Infer the data type from the dataset
