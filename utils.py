@@ -47,7 +47,7 @@ def check_hyperparameters_valid():
     assert Hp.sgd_type in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
     assert Hp.initialization_scale in {'0.1',
                                        '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
-    assert Hp.dataset_name in {'mnist', 'addition'}
+    assert Hp.dataset_name in {'mnist', 'addition', 'simple_rnn'}
     assert Hp.architecture in {'conv_ffnn', 'rnn'}
 
     # Dataset and architecture don't match
@@ -68,7 +68,7 @@ def get_data_type():
     dataset_name = Hp.dataset_name
     if dataset_name == 'mnist':
         data_type = 'classification'
-    elif dataset_name == 'addition':
+    elif dataset_name in {'addition', 'simple_rnn'}:
         data_type = 'sequential'
     else:
         raise ValueError('Data_type not know for given dataset')
@@ -220,8 +220,8 @@ def test(model, test_loader):
     print('\nTest set: Average loss: {:.4f}'.format(test_loss))
 
     if Hp.data_type == 'classification':
-        print('Test set: Accuracy: {}/{} ({:.0f}%)'.format(
+        print('Test set: Accuracy: {}/{} ({:.0f}%\n)'.format(
             correct, len(test_loader.dataset),
             100. * correct / len(test_loader.dataset)))
-
-    print('')
+    else:
+        print('\n')

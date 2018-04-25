@@ -18,8 +18,8 @@ Hp.architecture = 'rnn' #'conv_ffnn'  #
 Hp.batch_norm = False
 Hp.batch_size = 1
 Hp.clipping_threshold = 0
-Hp.dataset_name = 'addition' #'mnist'  #
-Hp.epochs = 1
+Hp.dataset_name = 'simple_rnn' #'addition' #'mnist'  #
+Hp.epochs = 10
 Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'
 Hp.lr = 0.001
 Hp.momentum = 0.0
@@ -28,7 +28,7 @@ Hp.sgd_type = 'explicit'
 Hp.test_batch_size = 64
 
 # Hyperpameters for RNN
-Hp.train_length = 200
+Hp.train_length = 2000
 Hp.test_length = 300
 Hp.sequence_length = 11
 Hp.input_size = 2

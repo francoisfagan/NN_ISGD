@@ -71,7 +71,7 @@ class RNN(nn.Module):
     def forward(self, input, hidden):
         combined = torch.cat((input, hidden))
         hidden = self.i2h(combined)
-        hidden = nn.functional.sigmoid(hidden)
+        # hidden = nn.functional.sigmoid(hidden)
         output = self.i2o(combined)
         return output, hidden
 
