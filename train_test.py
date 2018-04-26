@@ -79,12 +79,18 @@ def train(model, train_loader, optimizer, epoch):
 
     """
     model.train()
+    cum_loss = 0  # Cumulative loss between printing of training loss
+    cum_iterations = 0  # Cumulative number of datapoints between printing training loss
 
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = Variable(data), Variable(target)
         optimizer.zero_grad()
         loss = get_loss(model, data, target)
         loss.backward()
+
+        # Record loss
+        cum_loss += loss.data[0]
+        cum_iterations += 1
 
         # Clip gradients
         # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
@@ -95,10 +101,14 @@ def train(model, train_loader, optimizer, epoch):
         optimizer.step()
 
         # Print loss on current datapoint
-        if batch_idx % 1000 == 0:
+        if batch_idx % 1000 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
-                       100.0 * batch_idx / len(train_loader), loss.data[0]))
+                       100.0 * batch_idx / len(train_loader), cum_loss / cum_iterations))
+
+            # Reset cumulative losses
+            cum_loss = 0
+            cum_iterations = 0
 
 
 # Define testing

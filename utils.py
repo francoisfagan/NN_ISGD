@@ -43,7 +43,7 @@ def check_hyperparameters_valid():
     assert Hp.sgd_type in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
     assert Hp.initialization_scale in {'0.1',
                                        '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
-    assert Hp.dataset_name in {'mnist', 'addition', 'simple_rnn'}
+    assert Hp.dataset_name in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
     assert Hp.architecture in {'conv_ffnn', 'rnn', 'lstm'}
 
     # Dataset and architecture don't match
@@ -58,13 +58,17 @@ def check_hyperparameters_valid():
     if Hp.data_type == 'sequential':
         assert Hp.batch_size == 1, 'For RNNs the batch size must be 1. Otherwise the sequences in a batch could have different lengths'
 
+    # LSTM does not use implicit sgd, so they cannot be combined
+    if Hp.architecture == 'lstm':
+        assert Hp.sgd_type != 'implicit', 'LSTM does not currently support implicit sgd'
+
 
 def get_data_type():
     """Get type of data from dataset name stored in Hyperparameters"""
     dataset_name = Hp.dataset_name
     if dataset_name == 'mnist':
         data_type = 'classification'
-    elif dataset_name in {'addition', 'simple_rnn'}:
+    elif dataset_name in {'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}:
         data_type = 'sequential'
     else:
         raise ValueError('Data_type not know for given dataset')

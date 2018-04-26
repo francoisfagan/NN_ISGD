@@ -73,14 +73,19 @@ class Isgd_RNN(nn.Module):
 
         self.hidden_size = hidden_size  # [h]
 
-        self.i2h = nn.Linear(input_size + hidden_size, hidden_size)  # [h + d] -> [h]
-        self.i2o = nn.Linear(input_size + hidden_size, output_size)  # [h + d] -> [o]
+        self.i2h = isgd_fns.IsgdArctan(input_size + hidden_size, hidden_size)  # [d + h] -> [h]  #nn.Linear
+        self.i2o = nn.Linear(input_size + hidden_size, output_size)  # [d + h] -> [o]
 
     def forward(self, input, hidden):
-        combined = torch.cat((input, hidden))  # [h + d]
-        hidden = self.i2h(combined)  # [h]
-        # hidden = nn.functional.sigmoid(hidden)
-        output = self.i2o(combined)  # [0]
+        combined = torch.cat((input, hidden))  # [d + h]
+
+        # Calculate output
+        output = self.i2o(combined)  # [o]
+
+        # Calculate next hidden value
+        combined = combined.unsqueeze(0)  # [1, d + h]  Introduce a dummy batch size index (required for Isgd* layers)
+        hidden = self.i2h(combined)  # [1, h]
+        hidden = hidden.squeeze(0)  # [h]  Remove dummy batch size index
         return output, hidden
 
     def initHidden(self):
