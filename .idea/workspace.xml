@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/architectures.py" beforeDir="false" afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loaders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old/NN-ISGD RELU.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Old/NN-ISGD RELU.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old/NN-ISGD arctan.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Old/NN-ISGD arctan.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Old/NN-ISGD linear.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Old/NN-ISGD linear.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/isgd_fns.py" beforeDir="false" afterPath="$PROJECT_DIR$/isgd_fns.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="391">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
                 <element signature="e#131#168#0" expanded="true" />
               </folding>
@@ -29,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="isgd_fns.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="isgd_fns.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/isgd_fns.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-674">
-              <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+            <state relative-caret-position="150">
+              <caret line="594" column="49" lean-forward="true" selection-start-line="594" selection-start-column="8" selection-end-line="594" selection-end-column="49" />
               <folding>
                 <element signature="e#721#733#0" expanded="true" />
                 <element signature="e#961#1380#0" />
@@ -44,7 +45,6 @@
                 <element signature="e#7080#9642#0" />
                 <element signature="e#9699#14102#0" />
                 <element signature="e#14163#18601#0" />
-                <element signature="e#18660#22602#0" />
                 <element signature="e#22659#25617#0" />
                 <element signature="e#27423#28964#0" />
                 <element signature="e#28998#30535#0" />
@@ -60,19 +60,10 @@
       <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_loaders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2041">
+            <state relative-caret-position="5372">
               <caret line="320" column="50" selection-start-line="320" selection-start-column="29" selection-end-line="320" selection-end-column="50" />
               <folding>
                 <element signature="e#245#257#0" expanded="true" />
-                <element signature="e#429#2447#0" />
-                <element signature="e#2486#4504#0" />
-                <element signature="e#2478#4496#0" />
-                <element signature="e#2714#3077#0" />
-                <element signature="e#3110#3136#0" />
-                <element signature="e#954#1801#0" />
-                <element signature="e#3946#4871#0" />
-                <element signature="e#6568#7493#0" />
-                <element signature="e#6322#7247#0" />
               </folding>
             </state>
           </provider>
@@ -81,10 +72,12 @@
       <file leaf-file-name="architectures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="116" column="34" lean-forward="true" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
+            <state relative-caret-position="778">
+              <caret line="73" column="38" lean-forward="true" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
               <folding>
                 <element signature="e#47#59#0" expanded="true" />
+                <element signature="e#787#1741#0" />
+                <element signature="e#3010#4185#0" />
               </folding>
             </state>
           </provider>
@@ -93,13 +86,11 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="612">
               <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
               <folding>
-                <element signature="e#60#87#0" expanded="true" />
                 <element signature="e#1447#2851#0" />
                 <element signature="e#2879#3267#0" />
-                <element signature="e#3109#3764#0" />
               </folding>
             </state>
           </provider>
@@ -108,11 +99,10 @@
       <file leaf-file-name="train_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
+            <state relative-caret-position="1683">
               <caret line="103" column="51" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
               <folding>
                 <element signature="e#81#112#0" expanded="true" />
-                <element signature="e#50#332#0" />
               </folding>
             </state>
           </provider>
@@ -141,15 +131,15 @@
       <find>batch_size</find>
       <find>test_batch_size</find>
       <find>logit</find>
-      <find />
+      <find>The input to the next layer = logit put through the non-linear activation function</find>
       <find>calc_grad_input</find>
       <find>HyperparameterClass</find>
       <find>epoch</find>
       <find>SELU</find>
       <find>z_norm</find>
-      <find />
-      <find />
-      <find />
+      <find>grad_input: [1 x n]     Gradient of the input vector</find>
+      <find>[1 x n]</find>
+      <find>logit = calc_logit(input, weight, bias)</find>
       <find>outputfeatures</find>
       <find>CLIP</find>
       <find>F</find>
@@ -157,25 +147,25 @@
       <find>get_hyperparameters</find>
       <find>math</find>
       <find>IsgdRelu</find>
-      <find />
+      <find>[h + d]</find>
       <find>'easy_addition',</find>
     </findStrings>
     <replaceStrings>
       <replace>BATCHSIZE</replace>
       <replace>BATCH_SIZE</replace>
       <replace>TEST_BATCH_SIZE</replace>
-      <replace />
+      <replace>Input to the next layer = logit put through the non-linear activation function</replace>
       <replace>Hyperparameters</replace>
       <replace>Selu</replace>
-      <replace />
-      <replace />
-      <replace />
+      <replace>grad_input: [b x n]     Gradient of the input vector</replace>
+      <replace>[b x n]</replace>
+      <replace>logit = calc_logit(input, weight, bias)  # [b x m]</replace>
       <replace>CLIPPING_THRESHOLD</replace>
-      <replace />
+      <replace>output features</replace>
       <replace>Hyperparameters.get_initialization_scale</replace>
       <replace>get_isgd_hyperparameters</replace>
-      <replace />
-      <replace />
+      <replace>[d + h]</replace>
+      <replace>'easy_addition', 'medium_addition',</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -191,19 +181,19 @@
         <option value="$PROJECT_DIR$/ISGD_fns.py" />
         <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/mnist_example.py" />
-        <option value="$PROJECT_DIR$/isgd_fns.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
         <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/data_loaders.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/isgd_fns.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="width" value="1374" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -343,19 +333,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1374" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16510417" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2176128" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27772126" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31027466" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3418108" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.335707" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -377,7 +367,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="56" />
+      <option name="time" value="58" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -413,7 +403,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -457,7 +446,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -501,7 +489,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -545,7 +532,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -581,7 +567,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -617,7 +602,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -660,7 +644,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -710,7 +693,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -746,7 +728,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -789,7 +770,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -879,48 +859,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
+        <state relative-caret-position="1683">
           <caret line="103" column="51" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
           <folding>
             <element signature="e#81#112#0" expanded="true" />
-            <element signature="e#50#332#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architectures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="116" column="34" lean-forward="true" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
-          <folding>
-            <element signature="e#47#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2041">
+        <state relative-caret-position="5372">
           <caret line="320" column="50" selection-start-line="320" selection-start-column="29" selection-end-line="320" selection-end-column="50" />
           <folding>
             <element signature="e#245#257#0" expanded="true" />
-            <element signature="e#429#2447#0" />
-            <element signature="e#2486#4504#0" />
-            <element signature="e#2478#4496#0" />
-            <element signature="e#2714#3077#0" />
-            <element signature="e#3110#3136#0" />
-            <element signature="e#954#1801#0" />
-            <element signature="e#3946#4871#0" />
-            <element signature="e#6568#7493#0" />
-            <element signature="e#6322#7247#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+          <folding>
+            <element signature="e#1447#2851#0" />
+            <element signature="e#2879#3267#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architectures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="73" column="38" lean-forward="true" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
+          <folding>
+            <element signature="e#47#59#0" expanded="true" />
+            <element signature="e#787#1741#0" />
+            <element signature="e#3010#4185#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-674">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+        <state relative-caret-position="150">
+          <caret line="594" column="49" lean-forward="true" selection-start-line="594" selection-start-column="8" selection-end-line="594" selection-end-column="49" />
           <folding>
             <element signature="e#721#733#0" expanded="true" />
             <element signature="e#961#1380#0" />
@@ -931,7 +924,6 @@
             <element signature="e#7080#9642#0" />
             <element signature="e#9699#14102#0" />
             <element signature="e#14163#18601#0" />
-            <element signature="e#18660#22602#0" />
             <element signature="e#22659#25617#0" />
             <element signature="e#27423#28964#0" />
             <element signature="e#28998#30535#0" />
@@ -939,29 +931,6 @@
             <element signature="e#32154#33695#0" />
             <element signature="e#33729#35266#0" />
             <element signature="e#35304#35352#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-          <folding>
-            <element signature="e#60#87#0" expanded="true" />
-            <element signature="e#1447#2851#0" />
-            <element signature="e#2879#3267#0" />
-            <element signature="e#3109#3764#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -545,17 +545,39 @@ class IsgdArctanFunction(torch.autograd.Function):
             # root_closest_to_zero = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)
             # a = torch.from_numpy(root_closest_to_zero).unsqueeze(1).t().type(torch.FloatTensor)
 
+            # # Second method is iterative
+            # # It stays in pytorch, so is faster
+            # a = d * 0  # [b x m]
+            # a_diff = 1  # Norm difference between previous and current a values
+            # iter_count = 0  # Count of number of a iterations
+            # while a_diff > 1e-10:
+            #     a_new = - s * d / (1.0 + (lr * d * a + c) ** 2)  # [b x m]
+            #     a_diff = torch.norm(a - a_new)
+            #     a = a_new  # [b x m]
+            #     iter_count += 1
+            #     if iter_count >= 50:
+            #         assert (iter_count < 50), 'Arctan update has failed to converge'
+
             # Second method is iterative
             # It stays in pytorch, so is faster
-            a = d * 0  # [b x m]
+            # Make everything doubles to prevent rounding errors
+            d_d = d.double()
+            s_m_d = (s * d).double()
+            c_d = c.double()
+
+            a = d_d * 0  # [b x m]
             a_diff = 1  # Norm difference between previous and current a values
             iter_count = 0  # Count of number of a iterations
-            while a_diff < 1e-10:
-                a_new = - s * d / (1.0 + (lr * d * a + c) ** 2)  # [b x m]
+            while a_diff > 1e-12:
+                a_new = - s_m_d / (1.0 + (lr * d_d * a + c_d) ** 2)  # [b x m]
                 a_diff = torch.norm(a - a_new)
                 a = a_new  # [b x m]
                 iter_count += 1
-                assert (iter_count < 20), 'Arctan update has failed to converge'
+                if iter_count >= 50:
+                    assert (iter_count < 50), 'Arctan update has failed to converge'
+
+            # Make a float so that can be operated on with other tensors
+            a = a.float()
 
             # Calculate grad_weight, grad_bias and return all gradients
             grad_weight, grad_bias = calc_weigh_bias_grad(weight, mu, lr, a, d, input, z_norm, bias)
