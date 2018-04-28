@@ -15,17 +15,17 @@ from train_test import train, test
 torch.manual_seed(1)
 
 # Set hyperparameters
-Hp.architecture = 'rnn'  # 'lstm'  # 'conv_ffnn'  #
+Hp.architecture = 'rnn'  # 'conv_ffnn'  #'lstm'  #
 Hp.batch_norm = False
 Hp.batch_size = 1
 Hp.clipping_threshold = 0.0
-Hp.dataset_name = 'easy_addition'  # 'simple_rnn' #'mnist'  #
+Hp.dataset_name = 'easy_addition'  # 'mnist'  #'simple_rnn' #
 Hp.epochs = 1
-Hp.initialization_scale = '0.1'  # '\sqrt{\frac{6}{n+m}}'
-Hp.lr = 0.001
-Hp.momentum = 0.9
+Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'  # '0.1'  #
+Hp.lr = 0.1
+Hp.momentum = 0.0
 Hp.mu = 0.0  # 1e-4
-Hp.sgd_type = 'implicit'
+Hp.sgd_type = 'explicit'
 # Hp.test_batch_size = 64
 
 # Hyperpameters for RNN

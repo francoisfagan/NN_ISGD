@@ -41,7 +41,7 @@ class ConvolutionalFFNN(nn.Module):
         self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
-        self.fc1 = isgd_fns.IsgdRelu(320, 50)  # nn.Linear(320, 50)  #
+        self.fc1 = isgd_fns.IsgdArctan(320, 50)  # nn.Linear(320, 50)  #
         self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else isgd_fns.IsgdIdentity()
         self.fc2 = isgd_fns.IsgdRelu(50, 10)  # nn.Linear(50, 10)  #
 
