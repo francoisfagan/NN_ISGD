@@ -23,6 +23,7 @@ import numpy as np
 from torch.autograd.function import once_differentiable
 from functools import reduce
 from utils import Hp
+import cube_solver
 
 
 # Utility functions
@@ -119,10 +120,18 @@ def real_root_closest_to_zero(coeff):
         root_closest_to_zero:   Root that is closest to zero
 
     """
-    roots = np.roots(coeff)
-    real_roots = [root.real for root in roots if root.imag == 0]
-    root_closest_to_zero = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
-    return root_closest_to_zero
+    # Calculate all (complex) roots
+    roots = cube_solver.solve(coeff)  #np.roots(coeff) #
+
+    # Extract real roots
+    # Note cannot use root.imag == 0 since numpy sometimes has a tiny imaginary component for real roots
+    # See: https://stackoverflow.com/questions/28081247/print-real-roots-only-in-numpy
+    real_roots = (root.real for root in roots if abs(root.imag) < 1e-10)
+
+    # Extract the real root that is closest to zero
+    root = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
+
+    return root.astype('float32')
 
 
 # Function classes for activation functions
@@ -341,7 +350,7 @@ class IsgdReluFunction(torch.autograd.Function):
             # Check that exactly one condition satisfied for each node
             cond_sum = (cond0 + cond1 + cond2 + cond3 + cond4 + cond5)  # [b x m]
             if (torch.mean(
-                (cond_sum == 1).type(torch.FloatTensor)) != 1.0):
+                    (cond_sum == 1).type(torch.FloatTensor)) != 1.0):
                 assert torch.mean(
                     (cond_sum == 1).type(torch.FloatTensor)) == 1.0, 'No implicit update condition was satisfied'
 
@@ -434,33 +443,25 @@ class IsgdArctanFunction(torch.autograd.Function):
 
         # If implicit do the implicit SGD update, else do the explicit SGD update
         if sgd_type == 'implicit':
+
             # ISGD constants
-            # Make doubles to avoid rounding errors
-            z_norm_squared = (torch.norm(input, p=2, dim=1) ** 2 + 1.0).double()  # [b]
-            c = (logit / (1.0 + lr * mu)).double()  # [b x m]
-            g = grad_output.double()  # [b x m]
-            b = torch.mul(z_norm_squared, g.t()).t() * lr / (1 + lr * mu)  # [b x m]
+            b = grad_output / (1 + lr * mu)  # [b x m]
+            c = logit / (1.0 + lr * mu)  # [b x m]
+            z_norm_squared_mat = (torch.norm(input, p=2, dim=1) ** 2 + 1.0).unsqueeze(1).expand_as(c)  # [b x m]
 
-            # Solves for v in the equation:  v * (1 + (v - c)**2) = b
-            delta = 27 * (b ** 2) - 4 * b * (c ** 3) - 36 * b * c + 4 * (c ** 4) + 8 * (c ** 2) + 4  # [b x m]
-            delta = torch.clamp(delta, min=0.0)  # Occasionally delta < 0 due to rounding errors
-            gamma = 27 * b - 2 * (c ** 3) - 18 * c  # [b x m]
-            beta = (3 * ((3 * delta) ** (1 / 2)) + gamma)  # [b x m]
-            cr_beta = torch.sign(beta) * (torch.abs(beta) ** (1 / 3))  # [b x m]
-            v = cr_beta / (3 * (2 ** (1 / 3))) - (2 ** (1 / 3)) * (3 - c ** 2) / (3 * cr_beta) + 2 * c / 3  # [b x m]
+            # Coefficients of cubic equation for each power:
+            # a3*u**3 + a2*u**2 + a1*u + a0 = 0
+            a3 = ((lr * z_norm_squared_mat) ** 2)  # [b x m]
+            a2 = (-2 * lr * c * z_norm_squared_mat)  # [b x m]
+            a1 = (1 + c ** 2)  # [b x m]
+            a0 = (- b)  # [b x m]
 
-            # If v is infinity, then beta = 0
-            # The solution is to set v = 2 * c / 3
-            # NOT SURE IF THIS IS THE CORRECT THING TO DO!
-            v_inf_idx = (v == float("Inf")) + (v == -float("Inf"))
-            v[v_inf_idx] = 2 * c[v_inf_idx] / 3
+            # Coefficients as one big numpy matrix
+            coeff = torch.stack((a3, a2, a1, a0)).numpy()  # [4 x b x m]
 
-            # Calculate u in terms of v
-            u = torch.div(v.t(), lr * z_norm_squared).t()  # [b x m]
-            u = u.float()  # [b x m]
-
-            if torch.sum(u != u) != 0:
-                assert False, 'eish!'
+            # Calculate roots of cubic that are real and closest to zero
+            roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
+            u = torch.from_numpy(roots)  # [b x m]
 
             # Calculate input gradient
             grad_output_scaled = grad_output / (1 + logit ** 2)  # [b x m]
@@ -476,11 +477,6 @@ class IsgdArctanFunction(torch.autograd.Function):
             grad_input = grad_output_scaled.mm(weight)  # [b x n]
             grad_weight = grad_output_scaled.t().mm(input)  # [m x n]
             grad_bias = grad_output_scaled.sum(0).squeeze(0)  # [m]
-
-        if (torch.sum(grad_input != grad_input) != 0
-                or torch.sum(grad_weight != grad_weight) != 0
-                or torch.sum(grad_bias != grad_bias) != 0):
-            assert False, 'a'
 
         return grad_input, grad_weight, grad_bias
 
@@ -698,52 +694,6 @@ class IsgdRelu(nn.Module):
             output: [b x n]     Output features for subsequent layer
         """
         output = IsgdReluFunction.apply(input, self.weight, self.bias)
-        return output
-
-
-class IsgdHardTanh(nn.Module):
-    def __init__(self, input_features, output_features, bias=True):
-        """
-        Initialize the module by storing the input and output features
-        as well as creating and initializing the parameters
-
-        Args:
-            input_features: [b x n]     Input features from previous layer
-            output_features: [b x m]    Output features for subsequent layer
-            bias:
-        """
-        super(IsgdHardTanh, self).__init__()
-
-        # Store features
-        self.input_features = input_features
-        self.output_features = output_features
-
-        # Create parameters
-        self.weight = nn.Parameter(torch.Tensor(output_features, input_features))
-        if bias:
-            self.bias = nn.Parameter(torch.Tensor(output_features))
-        else:
-            self.register_parameter('bias', None)
-
-        # Initialize parameters
-        # Not a very smart way to initialize weights
-        self.weight.data.uniform_(-0.1, 0.1)
-        if bias is not None:
-            self.bias.data.uniform_(-0.1, 0.1)
-
-    def forward(self, input):
-        """
-        Set forward and backward-propagation functions.
-        Even though this function is called "forward",
-        the class which it calls defines both forward and backward-propagations
-
-        Args:
-            input: [b x m]      Input features from previous layer
-
-        Returns:
-            output: [b x n]     Output features for subsequent layer
-        """
-        output = IsgdHardTanhFunction.apply(input, self.weight, self.bias)
         return output
 
 

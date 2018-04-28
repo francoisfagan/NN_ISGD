@@ -1,4 +1,49 @@
 
+class IsgdHardTanh(nn.Module):
+    def __init__(self, input_features, output_features, bias=True):
+        """
+        Initialize the module by storing the input and output features
+        as well as creating and initializing the parameters
+
+        Args:
+            input_features: [b x n]     Input features from previous layer
+            output_features: [b x m]    Output features for subsequent layer
+            bias:
+        """
+        super(IsgdHardTanh, self).__init__()
+
+        # Store features
+        self.input_features = input_features
+        self.output_features = output_features
+
+        # Create parameters
+        self.weight = nn.Parameter(torch.Tensor(output_features, input_features))
+        if bias:
+            self.bias = nn.Parameter(torch.Tensor(output_features))
+        else:
+            self.register_parameter('bias', None)
+
+        # Initialize parameters
+        # Not a very smart way to initialize weights
+        self.weight.data.uniform_(-0.1, 0.1)
+        if bias is not None:
+            self.bias.data.uniform_(-0.1, 0.1)
+
+    def forward(self, input):
+        """
+        Set forward and backward-propagation functions.
+        Even though this function is called "forward",
+        the class which it calls defines both forward and backward-propagations
+
+        Args:
+            input: [b x m]      Input features from previous layer
+
+        Returns:
+            output: [b x n]     Output features for subsequent layer
+        """
+        output = IsgdHardTanhFunction.apply(input, self.weight, self.bias)
+        return output
+
 
 class IsgdHardTanhFunction(torch.autograd.Function):
 
