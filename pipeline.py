@@ -26,7 +26,7 @@ Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'  # '0.1'  #
 Hp.lr = 0.01
 Hp.momentum = 0.0
 Hp.mu = 0.0  # 1e-4
-Hp.sgd_type = 'explicit'
+Hp.sgd_type = 'implicit'
 # Hp.test_batch_size = 64
 
 # Hyperpameters for RNN

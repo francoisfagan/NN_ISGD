@@ -124,20 +124,24 @@ def test(model, test_loader):
 
     """
     model.eval()
+    cum_loss = 0  # Cumulative loss between printing of training loss
+    cum_iterations = 0  # Cumulative number of datapoints between printing training loss
 
-    test_loss = 0
     correct = 0
     for data, target in test_loader:
         data, target = Variable(data, volatile=True), Variable(target)
         loss = get_loss(model, data, target)
-        test_loss += loss.data[0]  # sum up batch loss
+
+        # Record loss
+        cum_loss += loss.data[0]
+        cum_iterations += 1
+
         if Hp.data_type == 'classification':
             output = model(data)
             pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
             correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
 
-    test_loss /= len(test_loader.dataset)
-    print('\nTest set: Average loss: {:.4f}'.format(test_loss))
+    print('\nTest set: Average loss: {:.4f}'.format(cum_loss / cum_iterations))
 
     if Hp.data_type == 'classification':
         print('Test set: Accuracy: {}/{} ({:.0f}%)\n'.format(
