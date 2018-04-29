@@ -140,7 +140,7 @@ def test(model, test_loader):
     print('\nTest set: Average loss: {:.4f}'.format(test_loss))
 
     if Hp.data_type == 'classification':
-        print('Test set: Accuracy: {}/{} ({:.0f}%\n)'.format(
+        print('Test set: Accuracy: {}/{} ({:.0f}%)\n'.format(
             correct, len(test_loader.dataset),
             100. * correct / len(test_loader.dataset)))
     else:

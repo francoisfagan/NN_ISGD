@@ -151,6 +151,140 @@ class IsgdHardTanhFunction(torch.autograd.Function):
         return grad_input, grad_weight, grad_bias
 
 
+
+# u[i, j] = real_root_closest_to_zero(x[:, i, j])
+# cimport cython
+# from libc.math cimport sqrt, acos, cos,sin, pow
+
+import math
+from functools import reduce
+
+# cdef real_root_closest_to_zero(float [:] coeff):
+#     """
+#     Given a list of polynomial coefficients,
+#     return the real root that is closest to zero
+#
+#     Args:
+#         coeff:  List of polynomial coefficients
+#
+#     Returns:
+#         root_closest_to_zero:   Root that is closest to zero
+#
+#     """
+#     # Calculate all (complex) roots
+#     # Could use np.roots(coeff)
+#     # However cube_solver.solve(coeff) is faster and more accurate
+#
+#     roots = solve(coeff)
+#     # Note, this doesn't work if there are no real roots, e.g. quadratic
+#     # print(np.array(coeff))
+#     # print(roots)
+#
+#     # Extract real roots
+#     # Note cannot use root.imag == 0 since numpy sometimes has a tiny imaginary component for real roots
+#     # See: https://stackoverflow.com/questions/28081247/print-real-roots-only-in-numpy
+#     real_roots = (root.real for root in roots if abs(root.imag) < 1e-10)
+#
+#     # Extract the real root that is closest to zero
+#     root = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
+#
+#     # Change from double to float
+#     # Otherwise the tensor operations are not consistent
+#     root = root.astype('float32')
+#
+#     return root
+#
+# # Main Function takes in the coefficient of the Cubic Polynomial
+# # as parameters and it returns the roots in form of numpy array.
+# # Polynomial Structure -> ax^3 + bx^2 + cx + d = 0
+#
+# # @cython.cdivision(True)
+# cdef solve(float [:] coeff):
+#     cdef float a = coeff[0]
+#     cdef float b = coeff[1]
+#     cdef float c = coeff[2]
+#     cdef float d = coeff[3]
+#
+#     if (a == 0 and b == 0):  # Case for handling Liner Equation
+#         return np.array([(-d * 1.0) / c])  # Returning linear root as numpy array.
+#
+#     elif (a == 0):  # Case for handling Quadratic Equations
+#
+#         D = c * c - 4.0 * b * d  # Helper Temporary Variable
+#         if D >= 0:
+#             D = sqrt(D)
+#             x1 = (-c + D) / (2.0 * b)
+#             x2 = (-c - D) / (2.0 * b)
+#         else:
+#             D = sqrt(-D)
+#             x1 = (-c + D * 1j) / (2.0 * b)
+#             x2 = (-c - D * 1j) / (2.0 * b)
+#
+#         return np.array([x1, x2])  # Returning Quadratic Roots as numpy array.
+#
+#     f = findF(a, b, c)  # Helper Temporary Variable
+#     g = findG(a, b, c, d)  # Helper Temporary Variable
+#     h = findH(g, f)  # Helper Temporary Variable
+#
+#     if f == 0 and g == 0 and h == 0:  # All 3 Roots are Real and Equal
+#         if (d / a) >= 0:
+#             x = (d / (1.0 * a)) ** (1 / 3.0) * -1
+#         else:
+#             x = (-d / (1.0 * a)) ** (1 / 3.0)
+#         return np.array([x, x, x])  # Returning Equal Roots as numpy array.
+#
+#     elif h <= 0:  # All 3 roots are Real
+#
+#         i = sqrt(((g ** 2.0) / 4.0) - h)  # Helper Temporary Variable
+#         j = i ** (1 / 3.0)  # Helper Temporary Variable
+#         k = acos(-(g / (2 * i)))  # Helper Temporary Variable
+#         L = j * -1  # Helper Temporary Variable
+#         M = cos(k / 3.0)  # Helper Temporary Variable
+#         N = sqrt(3) * sin(k / 3.0)  # Helper Temporary Variable
+#         P = (b / (3.0 * a)) * -1  # Helper Temporary Variable
+#
+#         x1 = 2 * j * cos(k / 3.0) - (b / (3.0 * a))
+#         x2 = L * (M + N) + P
+#         x3 = L * (M - N) + P
+#
+#         return np.array([x1, x2, x3])  # Returning Real Roots as numpy array.
+#
+#     elif h > 0:  # One Real Root and two Complex Roots
+#         R = -(g / 2.0) + sqrt(h)  # Helper Temporary Variable
+#         if R >= 0:
+#             S = R ** (1 / 3.0)  # Helper Temporary Variable
+#         else:
+#             S = (-R) ** (1 / 3.0) * -1  # Helper Temporary Variable
+#         T = -(g / 2.0) - sqrt(h)
+#         if T >= 0:
+#             U = (T ** (1 / 3.0))  # Helper Temporary Variable
+#         else:
+#             U = ((-T) ** (1 / 3.0)) * -1  # Helper Temporary Variable
+#
+#         x1 = (S + U) - (b / (3.0 * a))
+#         x2 = -(S + U) / 2 - (b / (3.0 * a)) + (S - U) * sqrt(3) * 0.5j
+#         x3 = -(S + U) / 2 - (b / (3.0 * a)) - (S - U) * sqrt(3) * 0.5j
+#
+#         return np.array([x1, x2, x3])  # Returning One Real Root and two Complex Roots as numpy array.
+#
+#
+# # Helper function to return float value of f.
+# # @cython.cdivision(True)
+# cdef findF(float a, float b, float c):
+#     return ((3.0 * c / a) - ((b ** 2.0) / (a ** 2.0))) / 3.0
+#
+#
+# # Helper function to return float value of g.
+# # @cython.cdivision(True)
+# cdef findG(float a, float b, float c, float d):
+#     return (((2.0 * (b ** 3.0)) / (a ** 3.0)) - ((9.0 * b * c) / (a ** 2.0)) + (27.0 * d / a)) / 27.0
+#
+#
+# # Helper function to return float value of h.
+# # @cython.cdivision(True)
+# cdef findH(float g, float f):
+#     return ((g ** 2.0) / 4.0 + (f ** 3.0) / 27.0)
+
 # Calculate a
 # # First method using algebraic root finding
 # # It is slow since it needs to move from pytorch to numpy and back

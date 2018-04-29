@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/cube_solver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Old/.ipynb_checkpoints/NN-ISGD arctan-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Old/.ipynb_checkpoints/NN-ISGD arctan-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Old/NN-ISGD arctan.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Old/NN-ISGD arctan.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cube_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/cube_solver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/isgd_fns.py" beforeDir="false" afterPath="$PROJECT_DIR$/isgd_fns.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +23,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+            <state relative-caret-position="375">
+              <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
               <folding>
                 <element signature="e#131#168#0" expanded="true" />
               </folding>
@@ -34,8 +35,8 @@
       <file leaf-file-name="isgd_fns.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/isgd_fns.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="294">
+              <caret line="473" column="31" selection-start-line="473" selection-start-column="31" selection-end-line="473" selection-end-column="31" />
               <folding>
                 <element signature="e#721#733#0" expanded="true" />
                 <element signature="e#961#1380#0" />
@@ -52,16 +53,17 @@
                 <element signature="e#28096#29637#0" />
                 <element signature="e#28168#29127#0" />
                 <element signature="e#29671#31208#0" />
+                <element signature="e#31246#31294#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cube_solver.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cube_solver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cube_solver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="672">
+              <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -81,11 +83,12 @@
       <file leaf-file-name="architectures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
+            <state relative-caret-position="182">
+              <caret line="43" column="38" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="38" />
               <folding>
                 <element signature="e#47#59#0" expanded="true" />
                 <element signature="e#210#720#0" />
+                <element signature="e#1777#2977#0" />
               </folding>
             </state>
           </provider>
@@ -104,18 +107,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_test.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
+            <state relative-caret-position="272">
+              <caret line="142" column="52" selection-start-line="142" selection-start-column="52" selection-end-line="142" selection-end-column="52" />
               <folding>
                 <element signature="e#81#112#0" expanded="true" />
                 <element signature="e#286#568#0" />
                 <element signature="e#610#1239#0" />
                 <element signature="e#1281#1731#0" />
                 <element signature="e#1806#3269#0" />
-                <element signature="e#3323#4376#0" />
               </folding>
             </state>
           </provider>
@@ -124,11 +126,12 @@
       <file leaf-file-name="scrap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scrap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="2363">
+              <caret line="285" column="51" selection-start-line="285" selection-start-column="51" selection-end-line="285" selection-end-column="51" />
               <folding>
                 <element signature="e#36#1581#0" />
                 <element signature="e#60#4498#0" />
+                <element signature="e#6202#6213#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,15 +201,15 @@
         <option value="$USER_HOME$/Downloads/loadBinaryUSPS.py" />
         <option value="$PROJECT_DIR$/ISGD_fns.py" />
         <option value="$PROJECT_DIR$/mnist_example.py" />
-        <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/data_loaders.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
-        <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/Old/cube_solver.py" />
         <option value="$PROJECT_DIR$/cube_solver.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/isgd_fns.py" />
+        <option value="$PROJECT_DIR$/scrap.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/train_test.py" />
       </list>
     </option>
   </component>
@@ -293,6 +296,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="cube_solver (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="NN_ISGD" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cube_solver.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="cube_solver" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NN_ISGD" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -329,38 +350,20 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="new_autograd" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="NN_ISGD" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_autograd.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list>
       <item itemvalue="Python.mnist_example" />
-      <item itemvalue="Python.new_autograd" />
       <item itemvalue="Python.CubicEquationSolver" />
       <item itemvalue="Python.Implicit_illustration" />
       <item itemvalue="Python.cube_solver" />
+      <item itemvalue="Python.cube_solver (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.mnist_example" />
+        <item itemvalue="Python.cube_solver (1)" />
         <item itemvalue="Python.cube_solver" />
         <item itemvalue="Python.Implicit_illustration" />
         <item itemvalue="Python.CubicEquationSolver" />
-        <item itemvalue="Python.new_autograd" />
       </list>
     </recent_temporary>
   </component>
@@ -386,11 +389,11 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.47945204" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.369863" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4607721" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37250787" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -408,7 +411,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isgd_fns.py</url>
-          <line>353</line>
+          <line>360</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
@@ -419,7 +422,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="68" />
+      <option name="time" value="69" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -443,6 +446,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -485,6 +489,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -527,6 +532,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -569,6 +575,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -603,6 +610,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -637,6 +645,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -678,6 +687,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -726,6 +736,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -760,6 +771,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -801,6 +813,7 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
@@ -885,49 +898,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
-          <folding>
-            <element signature="e#81#112#0" expanded="true" />
-            <element signature="e#286#568#0" />
-            <element signature="e#610#1239#0" />
-            <element signature="e#1281#1731#0" />
-            <element signature="e#1806#3269#0" />
-            <element signature="e#3323#4376#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architectures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
-          <folding>
-            <element signature="e#47#59#0" expanded="true" />
-            <element signature="e#210#720#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="320" column="50" selection-start-line="320" selection-start-column="29" selection-end-line="320" selection-end-column="50" />
           <folding>
             <element signature="e#245#257#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#36#1581#0" />
-            <element signature="e#60#4498#0" />
           </folding>
         </state>
       </provider>
@@ -949,20 +925,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/architectures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        <state relative-caret-position="182">
+          <caret line="43" column="38" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="38" />
           <folding>
-            <element signature="e#131#168#0" expanded="true" />
+            <element signature="e#47#59#0" expanded="true" />
+            <element signature="e#210#720#0" />
+            <element signature="e#1777#2977#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cube_solver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="285" column="51" selection-start-line="285" selection-start-column="51" selection-end-line="285" selection-end-column="51" />
+          <folding>
+            <element signature="e#36#1581#0" />
+            <element signature="e#60#4498#0" />
+            <element signature="e#6202#6213#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="294">
+          <caret line="473" column="31" selection-start-line="473" selection-start-column="31" selection-end-line="473" selection-end-column="31" />
           <folding>
             <element signature="e#721#733#0" expanded="true" />
             <element signature="e#961#1380#0" />
@@ -979,14 +976,32 @@
             <element signature="e#28096#29637#0" />
             <element signature="e#28168#29127#0" />
             <element signature="e#29671#31208#0" />
+            <element signature="e#31246#31294#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cube_solver.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="375">
+          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="142" column="52" selection-start-line="142" selection-start-column="52" selection-end-line="142" selection-end-column="52" />
+          <folding>
+            <element signature="e#81#112#0" expanded="true" />
+            <element signature="e#286#568#0" />
+            <element signature="e#610#1239#0" />
+            <element signature="e#1281#1731#0" />
+            <element signature="e#1806#3269#0" />
+          </folding>
         </state>
       </provider>
     </entry>

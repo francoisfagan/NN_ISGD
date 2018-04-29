@@ -23,6 +23,7 @@ import numpy as np
 from torch.autograd.function import once_differentiable
 from functools import reduce
 from utils import Hp
+import cubic_root_closest_to_0
 import cube_solver
 
 
@@ -121,7 +122,9 @@ def real_root_closest_to_zero(coeff):
 
     """
     # Calculate all (complex) roots
-    roots = cube_solver.solve(coeff)  #np.roots(coeff) #
+    # Could use np.roots(coeff)
+    # However cube_solver.solve(coeff) is faster and more accurate
+    roots = cube_solver.solve(coeff)
 
     # Extract real roots
     # Note cannot use root.imag == 0 since numpy sometimes has a tiny imaginary component for real roots
@@ -131,7 +134,11 @@ def real_root_closest_to_zero(coeff):
     # Extract the real root that is closest to zero
     root = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
 
-    return root.astype('float32')
+    # Change from double to float
+    # Otherwise the tensor operations are not consistent
+    root = root.astype('float32')
+
+    return root
 
 
 # Function classes for activation functions
@@ -460,7 +467,12 @@ class IsgdArctanFunction(torch.autograd.Function):
             coeff = torch.stack((a3, a2, a1, a0)).numpy()  # [4 x b x m]
 
             # Calculate roots of cubic that are real and closest to zero
-            roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
+            # Note that this is currently very slow!
+            # This is because np.apply_along_axis implements a python "for loop" and is not optimized
+            # There doesn't seem to be a simple way of improving this
+            # Perhaps in the future Cython could be used to speed up this computation
+            # roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
+            roots = cubic_root_closest_to_0.get_roots(coeff)
             u = torch.from_numpy(roots)  # [b x m]
 
             # Calculate input gradient

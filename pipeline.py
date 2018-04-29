@@ -16,17 +16,17 @@ from train_test import train, test
 torch.manual_seed(1)
 
 # Set hyperparameters
-Hp.architecture = 'rnn'  # 'conv_ffnn'  #'lstm'  #
+Hp.architecture = 'conv_ffnn'  # 'rnn'  # 'lstm'  #
 Hp.batch_norm = False
-Hp.batch_size = 1
+Hp.batch_size = 10
 Hp.clipping_threshold = 0.0
-Hp.dataset_name = 'easy_addition'  # 'mnist'  #'simple_rnn' #
+Hp.dataset_name = 'mnist'  # 'easy_addition'  # 'simple_rnn' #
 Hp.epochs = 1
 Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'  # '0.1'  #
 Hp.lr = 0.01
 Hp.momentum = 0.0
 Hp.mu = 0.0  # 1e-4
-Hp.sgd_type = 'implicit'
+Hp.sgd_type = 'explicit'
 # Hp.test_batch_size = 64
 
 # Hyperpameters for RNN
@@ -49,7 +49,7 @@ train_loader, test_loader = data_loaders.get_dataset()
 model = architectures.get_model()
 optimizer = get_optimizer(model)
 
-# Run SGD and test
+# Traing and test
 time_start = time.time()
 print('Started training')
 for epoch in range(Hp.epochs):
