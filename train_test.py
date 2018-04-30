@@ -79,8 +79,10 @@ def train(model, train_loader, optimizer, epoch):
 
     """
     model.train()
-    cum_loss = 0  # Cumulative loss between printing of training loss
-    cum_iterations = 0  # Cumulative number of datapoints between printing training loss
+
+    # Cumulative performance measures and counts
+    cum_loss = 0  # Loss
+    cum_minibatches = 0  # Number of minibatches
 
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = Variable(data), Variable(target)
@@ -88,9 +90,9 @@ def train(model, train_loader, optimizer, epoch):
         loss = get_loss(model, data, target)
         loss.backward()
 
-        # Record loss
+        # Update performance measures and counts
         cum_loss += loss.data[0]
-        cum_iterations += 1
+        cum_minibatches += 1
 
         # Clip gradients
         # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
@@ -100,52 +102,62 @@ def train(model, train_loader, optimizer, epoch):
         # Take optimization step
         optimizer.step()
 
-        # Print loss on current datapoint
-        if batch_idx % 10000 == 0 and batch_idx != 0:
+        # Print average loss
+        average_loss = cum_loss / cum_minibatches
+        if batch_idx % 100 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
-                       100.0 * batch_idx / len(train_loader), cum_loss / cum_iterations))
+                       100.0 * batch_idx / len(train_loader), average_loss))
 
-            # Reset cumulative losses
+            # Reset cumulative performance measures and counts
             cum_loss = 0
-            cum_iterations = 0
+            cum_minibatches = 0
 
 
 # Define testing
-def test(model, test_loader):
+def test(model, loader, dataset):
     """ Tests the neural network model
 
     Args:
         model:          Neural network model
-        test_loader:    Class that loads mini-batches
+        loader:    Class that loads mini-batches
+        dataset:        'train' or 'test'
 
     Returns:
         prints average loss
 
     """
     model.eval()
-    cum_loss = 0  # Cumulative loss between printing of training loss
-    cum_iterations = 0  # Cumulative number of datapoints between printing training loss
 
-    correct = 0
-    for data, target in test_loader:
+    # Cumulative performance measures and counts
+    cum_loss = 0  # Loss
+    cum_correct = 0  # Fraction of correct predictions if classification
+    cum_minibatches = 0  # Number of minibatches
+    cum_datapoints = 0  # Number of datapoints
+
+    for data, target in loader:
         data, target = Variable(data, volatile=True), Variable(target)
         loss = get_loss(model, data, target)
 
-        # Record loss
-        cum_loss += loss.data[0]
-        cum_iterations += 1
-
+        # Update performance measures and counts
+        cum_loss += loss.data[0]  # loss.data[0] is a scalar equal to the mean loss over the minibatch
+        cum_minibatches += 1
+        cum_datapoints += data.size()[0]
         if Hp.data_type == 'classification':
             output = model(data)
             pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
-            correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
+            cum_correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
 
-    print('\nTest set: Average loss: {:.4f}'.format(cum_loss / cum_iterations))
+    # Record and print performance measures
+    average_loss = cum_loss / cum_minibatches
+    print('{} set: average loss: {:.4f}'.format(dataset, average_loss))
 
+    average_accuracy = 0
     if Hp.data_type == 'classification':
-        print('Test set: Accuracy: {}/{} ({:.0f}%)\n'.format(
-            correct, len(test_loader.dataset),
-            100. * correct / len(test_loader.dataset)))
-    else:
-        print('\n')
+        average_accuracy = 100. * cum_correct / cum_datapoints
+        print('{} set: accuracy: {}/{} ({:.0f}%)'.format(
+            dataset, cum_correct, cum_datapoints, average_accuracy))
+
+    epoch_performance = {'average_loss': average_loss, 'average_accuracy': average_accuracy}
+
+    return epoch_performance

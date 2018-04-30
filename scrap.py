@@ -1,3 +1,15 @@
+self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else isgd_fns.IsgdIdentity()
+# assert (
+    #     Hp.batch_size > 1 if Hp.batch_norm else True), 'For nn.BatchNorm1d to work, the batch size has to be greater than 1'
+    # batch_norm = None  # True/False indicator of whether to use batch normalization or not
+
+# Hyperpameters for RNN
+Hp.train_length = 10000
+Hp.test_length = 300
+Hp.sequence_length = 11
+Hp.input_size = 2
+Hp.hidden_size = 10
+Hp.output_size = 1
 
 class IsgdHardTanh(nn.Module):
     def __init__(self, input_features, output_features, bias=True):

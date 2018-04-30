@@ -42,7 +42,6 @@ class ConvolutionalFFNN(nn.Module):
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = isgd_fns.IsgdArctan(320, 50)  # nn.Linear(320, 50)  #
-        self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else isgd_fns.IsgdIdentity()
         self.fc2 = isgd_fns.IsgdRelu(50, 10)  # nn.Linear(50, 10)  #
 
     def forward(self, x):
@@ -50,7 +49,6 @@ class ConvolutionalFFNN(nn.Module):
         x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
         x = x.view(-1, 320)
         x = self.fc1(x)
-        x = self.batch_norm(x)
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
 

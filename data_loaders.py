@@ -235,7 +235,7 @@ def mnist():
             transforms.ToTensor(),
             transforms.Normalize((0.1307,), (0.3081,))
         ])),
-        batch_size=Hp.test_batch_size, shuffle=True)
+        batch_size=Hp.batch_size, shuffle=True)
 
     return train_loader, test_loader
 

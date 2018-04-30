@@ -8,15 +8,25 @@ import math
 class Hp:
     """Stores and sets hyperparameters required for the neural network modules"""
 
-    # None placeholders for hyperparmeters
-    batch_norm = None  # True/False indicator of whether to use batch normalization or not
+    # # None placeholders for hyperparmeters
+    architecture = None  # Neural network architecture
     batch_size = None  # Size of the mini-batches
     clipping_threshold = None  # For gradient clipping. clipping_threshold = 0 means no clipping
+    dataset_name = None  # Name of the dataset
+    epochs = None  # Number of epochs
     initialization_scale = None  # String that indicates how to initialize the weights and biases
     lr = None  # Learning rate
-    mu = None  # L-2 regularization constant
+    momentum = None  # Momentum parameter
+    mu = None  # Ridge (L-2) regularization constant
+    seed = None  # Random seed
     sgd_type = None  # Whether to use implicit or explicit sgd
-    test_batch_size = None  # Size of the batches when evaluating on the test set
+
+    # @classmethod
+    # def set_hyperparameters(cls):
+    #
+    #
+    #
+    #     return cls.lr, cls.mu, cls.sgd_type
 
     @classmethod
     def get_isgd_hyperparameters(cls):
@@ -38,8 +48,7 @@ class Hp:
 def check_hyperparameters_valid():
     """ Check if hyperparameter values are valid
     """
-    assert (
-        Hp.batch_size > 1 if Hp.batch_norm else True), 'For nn.BatchNorm1d to work, the batch size has to be greater than 1'
+
     assert Hp.sgd_type in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
     assert Hp.initialization_scale in {'0.1',
                                        '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
