@@ -18,16 +18,15 @@ torch.manual_seed(1)
 # Set hyperparameters
 Hp.architecture = 'conv_ffnn'  # 'rnn'  # 'lstm'  #
 Hp.batch_norm = False
-Hp.batch_size = 10
+Hp.batch_size = 1
 Hp.clipping_threshold = 0.0
 Hp.dataset_name = 'mnist'  # 'easy_addition'  # 'simple_rnn' #
 Hp.epochs = 1
 Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'  # '0.1'  #
-Hp.lr = 0.01
+Hp.lr = 0.5
 Hp.momentum = 0.0
 Hp.mu = 0.0  # 1e-4
-Hp.sgd_type = 'implicit'
-# Hp.test_batch_size = 64
+Hp.sgd_type = 'explicit'
 
 # Hyperpameters for RNN
 Hp.train_length = 10000
