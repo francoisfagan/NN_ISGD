@@ -4,6 +4,8 @@
 import torch.optim as optim
 import torch
 import math
+import itertools
+import json
 
 
 class Hp:
@@ -113,7 +115,28 @@ class Hp:
         Returns:    File name of experiment
 
         """
-        return 'Results/' + '|'.join(key[:4]+'_'+str(value)[:6] for key, value in cls.hp.items()) + '.json'
+        return 'results/' + '|'.join(key[:4] + '_' + str(value)[:6] for key, value in cls.hp.items()) + '.json'
+
+
+def get_hyperparameters(hyperparameter_list_name):
+    """ Yield all permutations of hyperparameters given their potential values
+
+    Args:
+        hyperparameter_list_name: name of json file in which the hyperparameter values are stored
+
+    Returns:
+        Generatore of hyperparameter values
+
+    """
+    # Open json file containing the hyperparameter lists of potential values
+    with open('hyperparameter_lists/' + hyperparameter_list_name + '.json') as f:
+        hyperparameter_lists = dict(json.load(f))
+
+    # Yield all permutations of values
+    list_of_hyperparameter_tuples = [[(key, value) for value in values] for key, values in hyperparameter_lists.items()]
+    for hyperparameter_tuple in itertools.product(*list_of_hyperparameter_tuples):
+        hyperparameter = dict(hyperparameter_tuple)
+        yield hyperparameter
 
 
 def get_optimizer(model):

@@ -1,3 +1,19 @@
+# Set hyperparameters
+hyperparameters = {
+    'architecture': 'convffnn',
+    'batch_size': 100,
+    'clipping_threshold': 0.0,
+    'dataset_name': 'mnist',
+    'epochs': 3,
+    'initialization_scale': '\sqrt{\frac{6}{n+m}}',
+    'lr': 0.1,
+    'momentum': 0.0,
+    'mu': 0.0,
+    'seed': 8,
+    'sgdtype': 'explicit'
+}
+
+
 self.batch_norm = nn.BatchNorm1d(50, affine=False) if Hp.batch_norm else isgd_fns.IsgdIdentity()
 # assert (
     #     Hp.batch_size > 1 if Hp.batch_norm else True), 'For nn.BatchNorm1d to work, the batch size has to be greater than 1'
