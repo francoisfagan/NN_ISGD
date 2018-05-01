@@ -88,6 +88,29 @@ def rnn_loss(model, data, target):
         output, hidden = model(input, hidden)
     return nn.MSELoss()(output, target)
 
+def autoencoder_loss(model, data, target):
+    """ Return loss for rnn models
+
+    Args:
+        model:              Neural network model
+        data [1 x d x t]:   Input sequence data, where d is the input dimension and t is the number of time periods
+        target [1]:         Target
+
+    Returns:
+        loss:               Loss
+
+    """
+    # Get rid of zeroth dimension, since the minibatch is of size 1
+    data = data[0, :, :]  # [d x t]
+
+    hidden = model.initHidden()
+
+    sequence_length = data.size()[1]
+    for i in range(sequence_length):
+        input = data[:, i]  # [d]
+        output, hidden = model(input, hidden)
+    return nn.MSELoss()(output, target)
+
 
 def get_loss(model, data, target):
     """ Return loss for model depending on the type of data,
@@ -106,6 +129,10 @@ def get_loss(model, data, target):
         return classification_loss(model, data, target)
     elif Hp.hp['data_type'] == 'sequential':
         return rnn_loss(model, data, target)
+    elif Hp.hp['data_type'] == 'autoencoder':
+        return autoencoder_loss(model, data, target)
+    else
+        raise ValueError('No valid loss function for')
 
 
 # Define training

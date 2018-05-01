@@ -61,6 +61,32 @@ class ConvolutionalFFNN(nn.Module):
         return F.log_softmax(x, dim=1)
 
 
+class Autoencoder(nn.Module):
+    """
+    Autoencoder architecture as specified in
+    'Training Neural Networks with Stochastic Hessian-Free Optimization'
+
+    It only uses sigmoidal activations except for the first and final layer with is a relu.
+    It has the following structure:
+    784-1000-500-250-30
+
+    """
+
+    def __init__(self):
+        super(Autoencoder, self).__init__()
+
+    def forward(self, x):
+        x = isgd_fns.IsgdRelu(780, 1000)(x)
+        x = isgd_fns.IsgdArctan(1000, 500)(x)
+        x = isgd_fns.IsgdArctan(500, 250)(x)
+        x = isgd_fns.IsgdArctan(250, 30)(x)
+        x = isgd_fns.IsgdArctan(30, 250)(x)
+        x = isgd_fns.IsgdArctan(250, 500)(x)
+        x = isgd_fns.IsgdArctan(500, 1000)(x)
+        x = isgd_fns.IsgdRelu(1000, 780)(x)
+        return x
+
+
 class Isgd_RNN(nn.Module):
     """ Recurrent neural network architecture
     Based on: http://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html

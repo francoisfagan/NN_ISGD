@@ -7,6 +7,8 @@ http://pytorch.org/tutorials/beginner/data_loading_tutorial.html
 
 import torch
 import numpy as np
+import os
+import struct
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 from utils import Hp
@@ -55,6 +57,7 @@ class AdditionDataset(Dataset):
 
         return sample
 
+
 class EasyAdditionDataset(Dataset):
     """Easier version of the addition dataset
     Instead of the numbers to be summed being at the beginning and middle,
@@ -99,6 +102,7 @@ class EasyAdditionDataset(Dataset):
 
         return sample
 
+
 class MediumAdditionDataset(Dataset):
     """Easier version of the addition dataset
     Instead of the numbers to be summed being at the beginning and middle,
@@ -122,7 +126,8 @@ class MediumAdditionDataset(Dataset):
         # Sample the length of the sequence and positions of numbers to add
         t_dash = np.random.randint(self.t, int(self.t * 11.0 / 10.0))  # Length of the sequence
         t_1 = t_dash - 1 - np.random.randint(0, int(t_dash / 10.0))  # Indicator of position of first number to add
-        t_2 = t_dash - 1 - np.random.randint(int(t_dash / 10.0), int(t_dash / 2.0))  # Indicator of position of second number to add
+        t_2 = t_dash - 1 - np.random.randint(int(t_dash / 10.0),
+                                             int(t_dash / 2.0))  # Indicator of position of second number to add
 
         # We generate random numbers uniformly sampled from [0,1]
         # as depicted in Figure 2 of
@@ -178,6 +183,46 @@ class SimpleRNN(Dataset):
         return sample
 
 
+class Autoencoder(Dataset):
+    """Loads the mnist and fashion mnist datasets """
+
+    def __init__(self, dataset):
+        # Load the data
+        path = './data/autoencoder/' + Hp.hp['dataset_name'].split('_')[0]
+        if dataset is "train":
+            fname_img = os.path.join(path, 'train-images-idx3-ubyte')
+            fname_lbl = os.path.join(path, 'train-labels-idx1-ubyte')
+        elif dataset is "test":
+            fname_img = os.path.join(path, 't10k-images-idx3-ubyte')
+            fname_lbl = os.path.join(path, 't10k-labels-idx1-ubyte')
+        else:
+            raise ValueError("dataset must be 'test' or 'train'")
+
+        # Load everything in some numpy arrays
+        with open(fname_lbl, 'rb') as flbl:
+            magic, num = struct.unpack(">II", flbl.read(8))
+            self.labels = np.fromfile(flbl, dtype=np.uint8)
+
+        with open(fname_img, 'rb') as fimg:
+            magic, num, rows, cols = struct.unpack(">IIII", fimg.read(16))
+            self.images = np.fromfile(fimg, dtype=np.uint8).reshape(len(self.labels), rows, cols)
+
+        # Collapse the images into a vector
+        self.images = self.images.reshape((self.images.shape[0], -1))
+
+        # Put in torch tensors
+        self.labels = torch.Tensor(self.labels).to(Hp.device)
+        self.images = torch.Tensor(self.images).to(Hp.device)
+
+    def __len__(self):
+        return len(self.labels)
+
+    def __getitem__(self, idx):
+        data = self.images[idx, :, :]
+        target = self.labels[idx]
+        return data, target
+
+
 def get_dataset():
     """ Return the train and test loaders for the dataset
 
@@ -200,19 +245,23 @@ def get_dataset():
                                 )
     elif dataset_name == 'easy_addition':
         return easy_addition_problem(Hp.train_length,
-                                Hp.test_length,
-                                Hp.sequence_length
-                                )
+                                     Hp.test_length,
+                                     Hp.sequence_length
+                                     )
     elif dataset_name == 'medium_addition':
         return medium_addition_problem(Hp.train_length,
-                                Hp.test_length,
-                                Hp.sequence_length
-                                )
+                                       Hp.test_length,
+                                       Hp.sequence_length
+                                       )
     elif dataset_name == 'simple_rnn':
         return simple_rnn_problem(Hp.train_length,
-                                Hp.test_length,
-                                Hp.sequence_length
-                                )
+                                  Hp.test_length,
+                                  Hp.sequence_length
+                                  )
+    elif Hp.hp['data_type'] == 'autoencoder':
+        return autoencoder()
+    else:
+        raise ValueError('Not able to load dataset from dataset_name')
 
 
 def mnist():
@@ -348,6 +397,35 @@ def simple_rnn_problem(train_length, test_length, sequence_length, num_workers=4
                               batch_size=batch_size,
                               num_workers=num_workers)
     test_loader = DataLoader(SimpleRNN(test_length, sequence_length),
+                             batch_size=batch_size,
+                             num_workers=num_workers)
+    return train_loader, test_loader
+
+
+def autoencoder(num_workers=4):
+    """
+    This is a simple RNN problem where the target is the sum of the final values in the sequence
+    This is very easy and can be used as a check of whether the pipeline is working
+
+
+    Args:
+        train_length:       Number of training examples for each epoch
+        test_length:        Number of test examples for each test
+        sequence_length:    Length of each sequence
+        num_workers:        Number of workers loading the data
+
+    Returns:
+        train_loader    Loads training data
+        test_loader     Loads test data
+
+    """
+    # Batch size should be 1 to prevent sequences in the same batch having different lengths
+    batch_size = 1
+
+    train_loader = DataLoader(Autoencoder('train'),
+                              batch_size=batch_size,
+                              num_workers=num_workers)
+    test_loader = DataLoader(Autoencoder('test'),
                              batch_size=batch_size,
                              num_workers=num_workers)
     return train_loader, test_loader

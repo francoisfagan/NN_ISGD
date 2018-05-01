@@ -63,7 +63,7 @@ class Hp:
         assert cls.hp['sgdtype'] in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
         assert cls.hp['initialization_scale'] in {'0.1',
                                                   '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
-        assert cls.hp['dataset_name'] in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
+        # assert cls.hp['dataset_name'] in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
         assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm'}
 
         # Dataset and architecture don't match
@@ -91,6 +91,8 @@ class Hp:
             data_type = 'classification'
         elif dataset_name in {'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}:
             data_type = 'sequential'
+        elif dataset_name in {'mnist_autoencoder'}:
+            data_type = 'autoencoder'
         else:
             raise ValueError('Data_type not know for given dataset')
         return data_type
