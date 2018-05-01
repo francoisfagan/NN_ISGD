@@ -14,7 +14,6 @@ from train_test import train_and_test
 # Load all hyperparameter permutations
 hyperparameter_list_name = 'mnist_experiments'
 for hyperparameters in get_hyperparameters(hyperparameter_list_name):
-
     # Run experiment for each hyperparameter
     Hp.set_hyperparameters(hyperparameters)
     train_loader, test_loader = data_loaders.get_dataset()

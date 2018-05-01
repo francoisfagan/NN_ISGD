@@ -50,6 +50,9 @@ class Hp:
         # Check that all of the hyperparameters are valid
         cls.check_hyperparameters_valid()
 
+        # Determine if can run on GPU or CPU
+        cls.gpu = torch.cuda.is_available()
+
     @classmethod
     def check_hyperparameters_valid(cls):
         """ Check if hyperparameter values are valid

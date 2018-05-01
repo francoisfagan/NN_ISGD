@@ -18,14 +18,21 @@ def get_model():
 
     """
     architecture = Hp.hp['architecture']
+    model = None
     if architecture == 'convffnn':
-        return ConvolutionalFFNN()
+        model = ConvolutionalFFNN()
     elif architecture == 'rnn':
-        return Isgd_RNN(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
+        model = Isgd_RNN(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     elif architecture == 'lstm':
-        return Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
+        model = Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     else:
         raise ValueError('There is no model for the given architecture')
+
+    # If have a gpu then put the model on the gpu
+    if Hp.gpu:
+        return model.cuda()
+    else:
+        return model
 
 
 # Define neural network

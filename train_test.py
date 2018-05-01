@@ -127,7 +127,13 @@ def train(model, train_loader, optimizer, epoch):
     cum_minibatches = 0  # Number of minibatches
 
     for batch_idx, (data, target) in enumerate(train_loader):
-        data, target = Variable(data), Variable(target)
+        # Get data and put it on gpu if gpu available
+        if Hp.gpu:
+            data, target = Variable(data).cuda(), Variable(target).cuda()
+        else:
+            data, target = Variable(data), Variable(target)
+
+        # Take SGD step
         optimizer.zero_grad()
         loss = get_loss(model, data, target)
         loss.backward()
@@ -180,7 +186,11 @@ def test(model, loader, dataset):
     cum_datapoints = 0  # Number of datapoints
 
     for data, target in loader:
-        data, target = Variable(data, volatile=True), Variable(target)
+        # Get data and put it on gpu if gpu available
+        if Hp.gpu:
+            data, target = Variable(data).cuda(), Variable(target).cuda()
+        else:
+            data, target = Variable(data), Variable(target)
         loss = get_loss(model, data, target)
 
         # Update performance measures and counts
