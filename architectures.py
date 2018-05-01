@@ -17,13 +17,13 @@ def get_model():
         Neural network model
 
     """
-    architecture = Hp.architecture
-    if architecture == 'conv_ffnn':
+    architecture = Hp.hp['architecture']
+    if architecture == 'convffnn':
         return ConvolutionalFFNN()
     elif architecture == 'rnn':
-        return Isgd_RNN(Hp.input_size, Hp.hidden_size, Hp.output_size)
+        return Isgd_RNN(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     elif architecture == 'lstm':
-        return Isgd_LSTM(Hp.input_size, Hp.hidden_size, Hp.output_size)
+        return Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     else:
         raise ValueError('There is no model for the given architecture')
 

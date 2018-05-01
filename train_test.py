@@ -6,6 +6,47 @@ import torch.nn as nn
 from torch.autograd import Variable
 from torch.nn.utils import clip_grad_norm
 from utils import Hp
+import time
+
+
+def train_and_test(train_loader, test_loader, model, optimizer):
+    """ Train and test model using dataloaders with the given optimizer
+
+    Args:
+        train_loader:   Loader of training dataset
+        test_loader:    Loader of testing dataset
+        model:          Neural network model
+        optimizer:      Neural network optimizer
+
+    Returns:
+        results:        Dictionary storing the average loss and accuracy per epoch
+                            on both the training and testing sets
+
+    """
+    # Initialize variables to store results
+    time_start = time.time()
+    results = {'train': {'average_loss': [],
+                         'average_accuracy': []},
+               'test': {'average_loss': [],
+                        'average_accuracy': []}}
+
+    print('Started training')
+    for epoch in range(Hp.hp['epochs']):
+        # Train for one epoch
+        train(model, train_loader, optimizer, epoch)
+
+        # Record training and test loss
+        for dataset, loader in [('train', train_loader), ('test', test_loader)]:
+            average_loss, average_accuracy = test(model, loader, dataset)
+            results[dataset]['average_loss'].append(average_loss)
+            results[dataset]['average_accuracy'].append(average_accuracy)
+
+    time_finish = time.time()
+
+    # Print how long it took to run the algorithm
+    results['runtime'] = time_finish - time_start
+
+    return results
 
 
 def classification_loss(model, data, target):
@@ -61,9 +102,9 @@ def get_loss(model, data, target):
         loss:           Loss
 
     """
-    if Hp.data_type == 'classification':
+    if Hp.hp['data_type'] == 'classification':
         return classification_loss(model, data, target)
-    elif Hp.data_type == 'sequential':
+    elif Hp.hp['data_type'] == 'sequential':
         return rnn_loss(model, data, target)
 
 
@@ -78,6 +119,7 @@ def train(model, train_loader, optimizer, epoch):
         epoch:          Current epoch number
 
     """
+    print('')
     model.train()
 
     # Cumulative performance measures and counts
@@ -96,8 +138,8 @@ def train(model, train_loader, optimizer, epoch):
 
         # Clip gradients
         # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
-        if Hp.clipping_threshold != 0:
-            clip_grad_norm(model.parameters(), Hp.clipping_threshold)
+        if Hp.hp['clipping_threshold'] != 0:
+            clip_grad_norm(model.parameters(), Hp.hp['clipping_threshold'])
 
         # Take optimization step
         optimizer.step()
@@ -112,6 +154,8 @@ def train(model, train_loader, optimizer, epoch):
             # Reset cumulative performance measures and counts
             cum_loss = 0
             cum_minibatches = 0
+
+    print('')
 
 
 # Define testing
@@ -143,7 +187,7 @@ def test(model, loader, dataset):
         cum_loss += loss.data[0]  # loss.data[0] is a scalar equal to the mean loss over the minibatch
         cum_minibatches += 1
         cum_datapoints += data.size()[0]
-        if Hp.data_type == 'classification':
+        if Hp.hp['data_type'] == 'classification':
             output = model(data)
             pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
             cum_correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
@@ -153,11 +197,9 @@ def test(model, loader, dataset):
     print('{} set: average loss: {:.4f}'.format(dataset, average_loss))
 
     average_accuracy = 0
-    if Hp.data_type == 'classification':
+    if Hp.hp['data_type'] == 'classification':
         average_accuracy = 100. * cum_correct / cum_datapoints
         print('{} set: accuracy: {}/{} ({:.0f}%)'.format(
             dataset, cum_correct, cum_datapoints, average_accuracy))
 
-    epoch_performance = {'average_loss': average_loss, 'average_accuracy': average_accuracy}
-
-    return epoch_performance
+    return average_loss, average_accuracy

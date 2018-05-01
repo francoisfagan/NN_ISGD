@@ -5,54 +5,35 @@ Author: Francois Fagan, Columbia University
 """
 
 from __future__ import print_function
-import time
-import torch
+import json
 import architectures
 import data_loaders
-from utils import Hp, get_data_type, get_optimizer, check_hyperparameters_valid
-from train_test import train, test
+from utils import Hp, get_optimizer
+from train_test import train_and_test
 
 # Set hyperparameters
-Hp.architecture = 'conv_ffnn'  # 'rnn'  # 'lstm'  #
-Hp.batch_size = 100
-Hp.clipping_threshold = 0.0
-Hp.dataset_name = 'mnist'  # 'easy_addition'  # 'simple_rnn' #
-Hp.epochs = 2
-Hp.initialization_scale = '\sqrt{\frac{6}{n+m}}'  # '0.1'  #
-Hp.lr = 0.1
-Hp.momentum = 0.0
-Hp.mu = 0.0  # 1e-4
-Hp.seed = 10
-Hp.sgd_type = 'explicit'
+hyperparameters = {
+    'architecture': 'convffnn',  # 'rnn'  # 'lstm'  #
+    'batch_size': 100,
+    'clipping_threshold': 0.0,
+    'dataset_name': 'mnist',  # 'easy_addition'  # 'simple_rnn' #
+    'epochs': 3,
+    'initialization_scale': '\sqrt{\frac{6}{n+m}}',  # '0.1'
+    'lr': 0.1,
+    'momentum': 0.0,
+    'mu': 0.0,
+    'seed': 8,
+    'sgdtype': 'explicit'
+}
 
-# Set seed
-torch.manual_seed(Hp.seed)
-
-# Infer the data type from the dataset
-Hp.data_type = get_data_type()
-
-# Check that all of the hyperparameters are valid
-check_hyperparameters_valid()
-
-# Using the hyperparameters specified above, load the data, model and optimizer
+Hp.set_hyperparameters(hyperparameters)
 train_loader, test_loader = data_loaders.get_dataset()
 model = architectures.get_model()
 optimizer = get_optimizer(model)
+results = train_and_test(train_loader, test_loader, model, optimizer)
 
-# Train and test
-time_start = time.time()
-performance = {'train': [], 'test': []}
-print('Started training')
-for epoch in range(Hp.epochs):
-    train(model, train_loader, optimizer, epoch)
-    print('')
-    for dataset, loader in [('train', train_loader), ('test', test_loader)]:
-        performance[dataset].append(test(model, loader, dataset))
-    print('\n')
-time_finish = time.time()
-
-# Print how long it took to run the algorithm
-time_total = time_finish - time_start
-print('Time: ', time_total)
-
-print(performance)
+# Save experiment in a dictionary and dump as a json
+with open(Hp.get_experiment_name(), 'w') as f:
+    experiment_dict = {'hyperparameters': hyperparameters,
+                       'results': results}
+    json.dump(experiment_dict, f, indent=2)

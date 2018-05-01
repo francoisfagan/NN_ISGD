@@ -190,7 +190,7 @@ def get_dataset():
 
     """
     print('Loading dataset')
-    dataset_name = Hp.dataset_name
+    dataset_name = Hp.hp['dataset_name']
     if dataset_name == 'mnist':
         return mnist()
     elif dataset_name == 'addition':
@@ -229,13 +229,13 @@ def mnist():
                            transforms.ToTensor(),
                            transforms.Normalize((0.1307,), (0.3081,))
                        ])),
-        batch_size=Hp.batch_size, shuffle=True)
+        batch_size=Hp.hp['batch_size'], shuffle=True)
     test_loader = DataLoader(
         datasets.MNIST('../data', train=False, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.1307,), (0.3081,))
         ])),
-        batch_size=Hp.batch_size, shuffle=True)
+        batch_size=Hp.hp['batch_size'], shuffle=True)
 
     return train_loader, test_loader
 
