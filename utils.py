@@ -37,6 +37,7 @@ class Hp:
             hyperparameters:    Dictionary of hyperparameters
 
         """
+        print(json.dumps(hyperparameters, indent=2))
 
         # Store the hyperparameters
         cls.hp = hyperparameters
@@ -50,8 +51,9 @@ class Hp:
         # Check that all of the hyperparameters are valid
         cls.check_hyperparameters_valid()
 
-        # Determine if can run on GPU or CPU
-        cls.gpu = torch.cuda.is_available()
+        # # Determine if can run on GPU or CPU
+        # cls.gpu = torch.cuda.is_available()
+        cls.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     @classmethod
     def check_hyperparameters_valid(cls):

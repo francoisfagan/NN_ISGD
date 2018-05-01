@@ -347,19 +347,16 @@ class IsgdReluFunction(torch.autograd.Function):
 
             # Calculate conditions for u
             threshold = lr * torch.mul(z_norm_squared, grad_output.t()).t() / (1.0 + lr * mu)  # [b x m]
-            cond0 = (s == 0).type(torch.FloatTensor)  # [b x m]
-            cond1 = ((s == +1) * (c <= 0)).type(torch.FloatTensor)  # [b x m]
-            cond2 = ((s == +1) * (c > 0) * (c <= threshold)).type(torch.FloatTensor)  # [b x m]
-            cond3 = ((s == +1) * (c > threshold)).type(torch.FloatTensor)  # [b x m]
-            cond4 = ((s == -1) * (c <= threshold / 2.0)).type(torch.FloatTensor)  # [b x m]
-            cond5 = ((s == -1) * (c > threshold / 2.0)).type(torch.FloatTensor)  # [b x m]
+            cond0 = (s == 0).float()  # [b x m]
+            cond1 = ((s == +1) * (c <= 0)).float()  # [b x m]
+            cond2 = ((s == +1) * (c > 0) * (c <= threshold)).float()  # [b x m]
+            cond3 = ((s == +1) * (c > threshold)).float()  # [b x m]
+            cond4 = ((s == -1) * (c <= threshold / 2.0)).float()  # [b x m]
+            cond5 = ((s == -1) * (c > threshold / 2.0)).float()  # [b x m]
 
             # Check that exactly one condition satisfied for each node
             cond_sum = (cond0 + cond1 + cond2 + cond3 + cond4 + cond5)  # [b x m]
-            if (torch.mean(
-                    (cond_sum == 1).type(torch.FloatTensor)) != 1.0):
-                assert torch.mean(
-                    (cond_sum == 1).type(torch.FloatTensor)) == 1.0, 'No implicit update condition was satisfied'
+            assert torch.mean((cond_sum == 1).float()) == 1.0, 'No implicit update condition was satisfied'
 
             # Calculate u
             u = (0.0 * (cond0 + cond1 + cond4)
@@ -373,7 +370,7 @@ class IsgdReluFunction(torch.autograd.Function):
             u[u != u] = 0
 
             # Calculate input gradient
-            ge0 = (output > 0).type(torch.FloatTensor)  # [b x m]
+            ge0 = (output > 0).float()  # [b x m]
             grad_output_masked = ge0 * grad_output  # [b x m]
             grad_input = grad_output_masked.mm(weight)  # [b x n]
 
@@ -383,7 +380,8 @@ class IsgdReluFunction(torch.autograd.Function):
 
         else:  # Explicit SGD update
             # Find all nodes where the output is greater than or equal to 0
-            ge0 = (output > 0).type(torch.FloatTensor)  # [b x m]
+            # ge0 = (output > 0).float()  # [b x m]
+            ge0 = (output > 0).float()  # [b x m]
 
             # Mask the back-propagated gradient to zero out elements where the output is zero.
             grad_output_masked = ge0 * grad_output  # [b x m]
@@ -464,7 +462,7 @@ class IsgdArctanFunction(torch.autograd.Function):
             a0 = (- b)  # [b x m]
 
             # Coefficients as one big numpy matrix
-            coeff = torch.stack((a3, a2, a1, a0)).numpy()  # [4 x b x m]
+            coeff = torch.stack((a3, a2, a1, a0)).cpu().numpy()  # [4 x b x m]
 
             # Calculate roots of cubic that are real and closest to zero
             # Note that this is currently very slow!
@@ -473,7 +471,7 @@ class IsgdArctanFunction(torch.autograd.Function):
             # Perhaps in the future Cython could be used to speed up this computation
             # roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
             roots = cubic_root_closest_to_0.get_roots(coeff)
-            u = torch.from_numpy(roots)  # [b x m]
+            u = torch.from_numpy(roots).to(Hp.device)  # [b x m]
 
             # Calculate input gradient
             grad_output_scaled = grad_output / (1 + logit ** 2)  # [b x m]
@@ -519,7 +517,7 @@ class IsgdSeluFunction(torch.autograd.Function):
         alpha = 1.6732632423543772848170429916717
         scale = 1.0507009873554804934193349852946
 
-        ge0 = (logit > 0).type(torch.FloatTensor)  # [b x m]
+        ge0 = (logit > 0).float()  # [b x m]
         output = scale * (ge0 * logit
                           + (1 - ge0) * alpha * (torch.exp(logit) - 1)
                           )  # [b x m]
@@ -557,7 +555,7 @@ class IsgdSeluFunction(torch.autograd.Function):
         # Calculate selu multiplied grad_output
         alpha = 1.6732632423543772848170429916717
         scale = 1.0507009873554804934193349852946
-        ge0 = (output > 0).type(torch.FloatTensor)  # [b x m]
+        ge0 = (output > 0).float()  # [b x m]
         selu_multipier = scale * (ge0 + (1 - ge0) * alpha * torch.exp(output))  # [b x m]
         selu_multiplied_grad_output = selu_multipier * grad_output  # [b x m]
 

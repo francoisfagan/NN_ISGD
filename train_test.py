@@ -36,7 +36,7 @@ def train_and_test(train_loader, test_loader, model, optimizer):
         train(model, train_loader, optimizer, epoch)
 
         # Record training and test loss
-        for dataset, loader in [('train', train_loader), ('test', test_loader)]:
+        for dataset, loader in [('test', test_loader), ('train', train_loader)]:
             average_loss, average_accuracy = test(model, loader, dataset)
             results[dataset]['average_loss'].append(average_loss)
             results[dataset]['average_accuracy'].append(average_accuracy)
@@ -128,10 +128,7 @@ def train(model, train_loader, optimizer, epoch):
 
     for batch_idx, (data, target) in enumerate(train_loader):
         # Get data and put it on gpu if gpu available
-        if Hp.gpu:
-            data, target = Variable(data).cuda(), Variable(target).cuda()
-        else:
-            data, target = Variable(data), Variable(target)
+        data, target = Variable(data).to(Hp.device), Variable(target).to(Hp.device)
 
         # Take SGD step
         optimizer.zero_grad()
@@ -139,7 +136,7 @@ def train(model, train_loader, optimizer, epoch):
         loss.backward()
 
         # Update performance measures and counts
-        cum_loss += loss.data[0]
+        cum_loss += loss.data
         cum_minibatches += 1
 
         # Clip gradients
@@ -187,20 +184,17 @@ def test(model, loader, dataset):
 
     for data, target in loader:
         # Get data and put it on gpu if gpu available
-        if Hp.gpu:
-            data, target = Variable(data).cuda(), Variable(target).cuda()
-        else:
-            data, target = Variable(data), Variable(target)
+        data, target = Variable(data).to(Hp.device), Variable(target).to(Hp.device)
         loss = get_loss(model, data, target)
 
         # Update performance measures and counts
-        cum_loss += loss.data[0]  # loss.data[0] is a scalar equal to the mean loss over the minibatch
+        cum_loss += float(loss.data)  # loss.data is a scalar equal to the mean loss over the minibatch
         cum_minibatches += 1
         cum_datapoints += data.size()[0]
         if Hp.hp['data_type'] == 'classification':
             output = model(data)
             pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
-            cum_correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
+            cum_correct += int(pred.eq(target.data.view_as(pred)).long().cpu().sum())
 
     # Record and print performance measures
     average_loss = cum_loss / cum_minibatches

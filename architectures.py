@@ -29,10 +29,9 @@ def get_model():
         raise ValueError('There is no model for the given architecture')
 
     # If have a gpu then put the model on the gpu
-    if Hp.gpu:
-        return model.cuda()
-    else:
-        return model
+    model = model.to(Hp.device)
+
+    return model
 
 
 # Define neural network

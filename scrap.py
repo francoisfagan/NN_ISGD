@@ -1,3 +1,20 @@
+# if Hp.gpu:
+#     return model.cuda()
+# else:
+#     return model
+
+
+# if Hp.gpu:
+#     data, target = Variable(data).cuda(), Variable(target).cuda()
+# else:
+#     data, target = Variable(data), Variable(target)
+
+
+# if Hp.gpu:
+#     data, target = Variable(data).cuda(), Variable(target).cuda()
+# else:
+#     data, target = Variable(data), Variable(target)
+
 # Set hyperparameters
 hyperparameters = {
     'architecture': 'convffnn',
