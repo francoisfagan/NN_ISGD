@@ -8,11 +8,8 @@
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/mnist_autoencoder_experiments.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/mnist_autoencoder_experiments.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/arch_autoen|batc_100|clip_100.0|data_mnist_|epoc_1|init_\sqrt{|lr_0.0001|mome_0.0|mu_0.0|seed_1|sgdt_explic|data_autoen.json" beforeDir="false" afterPath="$PROJECT_DIR$/results/arch_autoen|batc_100|clip_100.0|data_mnist_|epoc_1|init_\sqrt{|lr_0.0001|mome_0.0|mu_0.0|seed_1|sgdt_explic|data_autoen.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_1|sgdt_explic|data_classi.json" beforeDir="false" afterPath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_1|sgdt_explic|data_classi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_1|sgdt_implic|data_classi.json" beforeDir="false" afterPath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_1|sgdt_implic|data_classi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_2|sgdt_explic|data_classi.json" beforeDir="false" afterPath="$PROJECT_DIR$/results/arch_convff|batc_100|clip_0.0|data_mnist|epoc_1|init_\sqrt{|lr_1.6|mome_0.0|mu_0.0|seed_2|sgdt_explic|data_classi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +20,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="323">
+              <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+              <folding>
+                <element signature="e#131#168#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="84" column="47" lean-forward="true" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+            <state relative-caret-position="77">
+              <caret line="66" column="7" lean-forward="true" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
               <folding>
                 <element signature="e#47#59#0" expanded="true" />
               </folding>
@@ -86,8 +86,8 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="66" column="81" selection-start-line="66" selection-start-column="81" selection-end-line="66" selection-end-column="81" />
+            <state relative-caret-position="1513">
+              <caret line="89" column="35" lean-forward="true" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
               <folding>
                 <element signature="e#59#86#0" expanded="true" />
               </folding>
@@ -98,8 +98,8 @@
       <file leaf-file-name="train_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="753">
+              <caret line="170" column="26" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
               <folding>
                 <element signature="e#81#112#0" expanded="true" />
               </folding>
@@ -198,12 +198,12 @@
         <option value="$PROJECT_DIR$/Old/cube_solver.py" />
         <option value="$PROJECT_DIR$/cube_solver.py" />
         <option value="$PROJECT_DIR$/scrap.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/isgd_fns.py" />
-        <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/data_loaders.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
       </list>
     </option>
   </component>
@@ -383,7 +383,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.37858033" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37775445" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -448,6 +448,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -479,6 +482,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -510,6 +516,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -533,6 +542,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -563,6 +575,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -593,6 +608,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -623,6 +641,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -653,6 +674,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -676,6 +700,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
           <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -780,16 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="66" column="81" selection-start-line="66" selection-start-column="81" selection-end-line="66" selection-end-column="81" />
-          <folding>
-            <element signature="e#59#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1802">
@@ -806,16 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="e#81#112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3536">
@@ -826,19 +833,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/train_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="753">
+          <caret line="170" column="26" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
+          <folding>
+            <element signature="e#81#112#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/architectures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="84" column="47" lean-forward="true" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
+        <state relative-caret-position="77">
+          <caret line="66" column="7" lean-forward="true" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
           <folding>
             <element signature="e#47#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="89" column="35" lean-forward="true" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
+          <folding>
+            <element signature="e#59#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+          <folding>
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>

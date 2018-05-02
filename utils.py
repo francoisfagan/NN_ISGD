@@ -91,7 +91,7 @@ class Hp:
             data_type = 'classification'
         elif dataset_name in {'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}:
             data_type = 'sequential'
-        elif dataset_name in {'mnist_autoencoder'}:
+        elif dataset_name in {'mnist_autoencoder', 'fashionmnist_autoencoder'}:
             data_type = 'autoencoder'
         else:
             raise ValueError('Data_type not know for given dataset')

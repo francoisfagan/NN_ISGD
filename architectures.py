@@ -76,23 +76,30 @@ class Autoencoder(nn.Module):
 
     def __init__(self):
         super(Autoencoder, self).__init__()
-        self.f = nn.Linear(784, 784)
-        self.f1 = isgd_fns.IsgdRelu(784, 250)
-        self.f4 = isgd_fns.IsgdArctan(250, 30)
-        self.f4 = isgd_fns.IsgdArctan(30, 10)
-        self.f4 = isgd_fns.IsgdArctan(10, 30)
-        self.f5 = isgd_fns.IsgdArctan(30, 250)
-        self.f6 = isgd_fns.IsgdArctan(250, 784)
+
+        # self.f = nn.Linear(784, 784)
+
+        self.f1 = isgd_fns.IsgdRelu(784, 500)#nn.Linear(784, 500) #
+        self.f2 = isgd_fns.IsgdRelu(500, 300)
+        self.f3 = isgd_fns.IsgdRelu(300, 100)
+        self.f4 = isgd_fns.IsgdRelu(100, 30)
+        self.f5 = isgd_fns.IsgdRelu(30, 100)
+        self.f6 = isgd_fns.IsgdRelu(100, 300)
+        self.f7 = isgd_fns.IsgdRelu(300, 500)
+        self.f8 = isgd_fns.IsgdRelu(500, 784)#nn.Linear(500, 784) #
 
     def forward(self, x):
+
+        # x = self.f(x)
+
         x = self.f1(x)
+        x = self.f2(x)
         x = self.f3(x)
         x = self.f4(x)
         x = self.f5(x)
         x = self.f6(x)
         x = self.f7(x)
-
-        # x = self.f(x)
+        x = self.f8(x)
 
         return x
 
