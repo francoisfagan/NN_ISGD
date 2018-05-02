@@ -356,7 +356,8 @@ class IsgdReluFunction(torch.autograd.Function):
 
             # Check that exactly one condition satisfied for each node
             cond_sum = (cond0 + cond1 + cond2 + cond3 + cond4 + cond5)  # [b x m]
-            assert torch.mean((cond_sum == 1).float()) == 1.0, 'No implicit update condition was satisfied'
+            if torch.mean((cond_sum == 1).float()) != 1.0:
+                assert torch.mean((cond_sum == 1).float()) == 1.0, 'No implicit update condition was satisfied'
 
             # Calculate u
             u = (0.0 * (cond0 + cond1 + cond4)

@@ -64,7 +64,7 @@ class Hp:
         assert cls.hp['initialization_scale'] in {'0.1',
                                                   '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
         # assert cls.hp['dataset_name'] in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
-        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm'}
+        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm', 'autoencoder'}
 
         # Dataset and architecture don't match
         error_string = 'Inappropriate architecture for dataset'

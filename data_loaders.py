@@ -211,14 +211,14 @@ class Autoencoder(Dataset):
         self.images = self.images.reshape((self.images.shape[0], -1))
 
         # Put in torch tensors
-        self.labels = torch.Tensor(self.labels).to(Hp.device)
-        self.images = torch.Tensor(self.images).to(Hp.device)
+        self.labels = torch.Tensor(self.labels)#.to(Hp.device)
+        self.images = torch.Tensor(self.images)#.to(Hp.device)
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        data = self.images[idx, :, :]
+        data = self.images[idx, :]
         target = self.labels[idx]
         return data, target
 

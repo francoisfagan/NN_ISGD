@@ -4,16 +4,32 @@
     "batch_size": 100,
     "clipping_threshold": 0.0,
     "dataset_name": "mnist",
-    "epochs": 2,
+    "epochs": 1,
     "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
-    "lr": 0.1,
+    "lr": 0.2,
     "momentum": 0.0,
     "mu": 0.0,
-    "seed": 1,
+    "seed": 9,
     "sgdtype": "explicit",
     "data_type": "classification"
   },
   "results": {
     "train": {
       "average_loss": [
-        
+        0.09587717449602981
+      ],
+      "average_accuracy": [
+        97.04833333333333
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.09285149680450559
+      ],
+      "average_accuracy": [
+        97.07
+      ]
+    },
+    "runtime": 15.365924835205078
+  }
+}

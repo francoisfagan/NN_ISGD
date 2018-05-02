@@ -4,7 +4,7 @@
 import torch.nn.functional as F
 import torch.nn as nn
 from torch.autograd import Variable
-from torch.nn.utils import clip_grad_norm
+from torch.nn.utils import clip_grad_norm_
 from utils import Hp
 import time
 
@@ -88,28 +88,20 @@ def rnn_loss(model, data, target):
         output, hidden = model(input, hidden)
     return nn.MSELoss()(output, target)
 
-def autoencoder_loss(model, data, target):
-    """ Return loss for rnn models
+
+def autoencoder_loss(model, data):
+    """ Return loss for classification models
 
     Args:
-        model:              Neural network model
-        data [1 x d x t]:   Input sequence data, where d is the input dimension and t is the number of time periods
-        target [1]:         Target
+        model:  Neural network model
+        data:   Mini-batch input data
 
     Returns:
-        loss:               Loss
+        loss:   Loss on mini-batch
 
     """
-    # Get rid of zeroth dimension, since the minibatch is of size 1
-    data = data[0, :, :]  # [d x t]
-
-    hidden = model.initHidden()
-
-    sequence_length = data.size()[1]
-    for i in range(sequence_length):
-        input = data[:, i]  # [d]
-        output, hidden = model(input, hidden)
-    return nn.MSELoss()(output, target)
+    output = model(data)
+    return nn.MSELoss()(output, data)
 
 
 def get_loss(model, data, target):
@@ -130,8 +122,8 @@ def get_loss(model, data, target):
     elif Hp.hp['data_type'] == 'sequential':
         return rnn_loss(model, data, target)
     elif Hp.hp['data_type'] == 'autoencoder':
-        return autoencoder_loss(model, data, target)
-    else
+        return autoencoder_loss(model, data)
+    else:
         raise ValueError('No valid loss function for')
 
 
@@ -169,7 +161,7 @@ def train(model, train_loader, optimizer, epoch):
         # Clip gradients
         # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
         if Hp.hp['clipping_threshold'] != 0:
-            clip_grad_norm(model.parameters(), Hp.hp['clipping_threshold'])
+            clip_grad_norm_(model.parameters(), Hp.hp['clipping_threshold'])
 
         # Take optimization step
         optimizer.step()

@@ -1,0 +1,35 @@
+{
+  "hyperparameters": {
+    "architecture": "autoencoder",
+    "batch_size": 100,
+    "clipping_threshold": 100.0,
+    "dataset_name": "mnist_autoencoder",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "lr": 0.01,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "autoencoder"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        4623.171727716064
+      ],
+      "average_accuracy": [
+        0
+      ]
+    },
+    "test": {
+      "average_loss": [
+        4680.693866284179
+      ],
+      "average_accuracy": [
+        0
+      ]
+    },
+    "runtime": 7115.200896024704
+  }
+}

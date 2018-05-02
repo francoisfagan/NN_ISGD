@@ -25,6 +25,8 @@ def get_model():
         model = Isgd_RNN(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     elif architecture == 'lstm':
         model = Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
+    elif architecture == 'autoencoder':
+        model = Autoencoder()
     else:
         raise ValueError('There is no model for the given architecture')
 
@@ -68,22 +70,30 @@ class Autoencoder(nn.Module):
 
     It only uses sigmoidal activations except for the first and final layer with is a relu.
     It has the following structure:
-    784-1000-500-250-30
+    784-500-250-30
 
     """
 
     def __init__(self):
         super(Autoencoder, self).__init__()
+        self.f = nn.Linear(784, 784)
+        self.f1 = isgd_fns.IsgdRelu(784, 500)
+        self.f3 = isgd_fns.IsgdArctan(500, 250)
+        self.f4 = isgd_fns.IsgdArctan(250, 30)
+        self.f5 = isgd_fns.IsgdArctan(30, 250)
+        self.f6 = isgd_fns.IsgdArctan(250, 500)
+        self.f7 = isgd_fns.IsgdRelu(500, 784)
 
     def forward(self, x):
-        x = isgd_fns.IsgdRelu(780, 1000)(x)
-        x = isgd_fns.IsgdArctan(1000, 500)(x)
-        x = isgd_fns.IsgdArctan(500, 250)(x)
-        x = isgd_fns.IsgdArctan(250, 30)(x)
-        x = isgd_fns.IsgdArctan(30, 250)(x)
-        x = isgd_fns.IsgdArctan(250, 500)(x)
-        x = isgd_fns.IsgdArctan(500, 1000)(x)
-        x = isgd_fns.IsgdRelu(1000, 780)(x)
+        x = self.f1(x)
+        x = self.f3(x)
+        x = self.f4(x)
+        x = self.f5(x)
+        x = self.f6(x)
+        x = self.f7(x)
+
+        # x = self.f(x)
+
         return x
 
 
