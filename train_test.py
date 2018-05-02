@@ -3,6 +3,8 @@
 """
 import torch.nn.functional as F
 import torch.nn as nn
+import torch
+import numpy as np
 from torch.autograd import Variable
 from torch.nn.utils import clip_grad_norm_
 from utils import Hp
@@ -89,6 +91,41 @@ def rnn_loss(model, data, target):
     return nn.MSELoss()(output, target)
 
 
+def music_loss(model, data, target):
+    """ Return loss for rnn models
+
+    Args:
+        model:              Neural network model
+        data [1 x d x t]:   Input sequence data, where d is the input dimension and t is the number of time periods
+        target [1]:         Target
+
+    Returns:
+        loss:               Loss
+
+    """
+    # Get rid of zeroth dimension, since the minibatch is of size 1
+    data = data[0, :, :]  # [d x t]
+    target = target[0, :, :]  # [d x t]
+
+    hidden = model.initHidden()
+
+    sequence_length = data.size()[0]
+    loss = 0
+    for i in range(sequence_length):
+        input = data[i, :]  # [d]
+        output, hidden = model(input, hidden)
+
+        # Normalize the output to be between 0 and 1
+        # since it needs to be a probability as doing prediction
+        output = (output + np.pi / 2) / np.pi
+
+        # Calculate the log-loss
+        loss += -(target[i, :] * torch.log(output)
+                 + (1 - target[i, :]) * (torch.log(1 - output))).mean()
+
+    return loss
+
+
 def autoencoder_loss(model, data):
     """ Return loss for classification models
 
@@ -101,7 +138,7 @@ def autoencoder_loss(model, data):
 
     """
     output = model(data)
-    return nn.MSELoss()(output, data) /1000.0
+    return nn.MSELoss()(output, data) / 1000.0
 
 
 def get_loss(model, data, target):
@@ -121,6 +158,8 @@ def get_loss(model, data, target):
         return classification_loss(model, data, target)
     elif Hp.hp['data_type'] == 'sequential':
         return rnn_loss(model, data, target)
+    elif Hp.hp['data_type'] == 'sequential_many':
+        return music_loss(model, data, target)
     elif Hp.hp['data_type'] == 'autoencoder':
         return autoencoder_loss(model, data)
     else:
@@ -168,7 +207,7 @@ def train(model, train_loader, optimizer, epoch):
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 1000 == 0 and batch_idx != 0:
+        if batch_idx % 10 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))

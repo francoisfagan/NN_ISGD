@@ -23,6 +23,8 @@ def get_model():
         model = ConvolutionalFFNN()
     elif architecture == 'rnn':
         model = Isgd_RNN(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
+    elif architecture == 'music':
+        model = Isgd_RNN(88, Hp.hp['nodes'], 88)
     elif architecture == 'lstm':
         model = Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     elif architecture == 'autoencoder':
@@ -79,17 +81,16 @@ class Autoencoder(nn.Module):
 
         # self.f = nn.Linear(784, 784)
 
-        self.f1 = isgd_fns.IsgdRelu(784, 500)#nn.Linear(784, 500) #
+        self.f1 = isgd_fns.IsgdRelu(784, 500)  # nn.Linear(784, 500) #
         self.f2 = isgd_fns.IsgdRelu(500, 300)
         self.f3 = isgd_fns.IsgdRelu(300, 100)
         self.f4 = isgd_fns.IsgdRelu(100, 30)
         self.f5 = isgd_fns.IsgdRelu(30, 100)
         self.f6 = isgd_fns.IsgdRelu(100, 300)
         self.f7 = isgd_fns.IsgdRelu(300, 500)
-        self.f8 = isgd_fns.IsgdRelu(500, 784)#nn.Linear(500, 784) #
+        self.f8 = isgd_fns.IsgdRelu(500, 784)  # nn.Linear(500, 784) #
 
     def forward(self, x):
-
         # x = self.f(x)
 
         x = self.f1(x)
@@ -121,16 +122,19 @@ class Isgd_RNN(nn.Module):
         self.hidden_size = hidden_size  # [h]
 
         self.i2h = isgd_fns.IsgdArctan(input_size + hidden_size, hidden_size)  # [d + h] -> [h]  #nn.Linear
-        self.i2o = nn.Linear(input_size + hidden_size, output_size)  # [d + h] -> [o]
+        # self.i2o = nn.Linear(input_size + hidden_size, output_size)  # [d + h] -> [o]
+        self.i2o = isgd_fns.IsgdArctan(input_size + hidden_size, output_size)  # [d + h] -> [o]
 
     def forward(self, input, hidden):
         combined = torch.cat((input, hidden))  # [d + h]
+
+        # Introduce a dummy batch size index (required for Isgd* layers)
+        combined = combined.unsqueeze(0)  # [1, d + h]
 
         # Calculate output
         output = self.i2o(combined)  # [o]
 
         # Calculate next hidden value
-        combined = combined.unsqueeze(0)  # [1, d + h]  Introduce a dummy batch size index (required for Isgd* layers)
         hidden = self.i2h(combined)  # [1, h]
         hidden = hidden.squeeze(0)  # [h]  Remove dummy batch size index
         return output, hidden

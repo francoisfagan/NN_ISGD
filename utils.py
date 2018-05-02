@@ -64,7 +64,7 @@ class Hp:
         assert cls.hp['initialization_scale'] in {'0.1',
                                                   '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
         # assert cls.hp['dataset_name'] in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
-        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm', 'autoencoder'}
+        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm', 'autoencoder', 'music'}
 
         # Dataset and architecture don't match
         error_string = 'Inappropriate architecture for dataset'
@@ -93,6 +93,8 @@ class Hp:
             data_type = 'sequential'
         elif dataset_name in {'mnist_autoencoder', 'fashionmnist_autoencoder'}:
             data_type = 'autoencoder'
+        elif dataset_name in {'Piano-midi.de'}:
+            data_type = 'sequential_many'
         else:
             raise ValueError('Data_type not know for given dataset')
         return data_type

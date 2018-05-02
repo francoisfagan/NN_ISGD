@@ -9,6 +9,7 @@ import torch
 import numpy as np
 import os
 import struct
+import pickle
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 from utils import Hp
@@ -211,8 +212,8 @@ class Autoencoder(Dataset):
         self.images = self.images.reshape((self.images.shape[0], -1))
 
         # Put in torch tensors
-        self.labels = torch.Tensor(self.labels)#.to(Hp.device)
-        self.images = torch.Tensor(self.images)#.to(Hp.device)
+        self.labels = torch.Tensor(self.labels)  # .to(Hp.device)
+        self.images = torch.Tensor(self.images)  # .to(Hp.device)
 
     def __len__(self):
         return len(self.labels)
@@ -220,6 +221,64 @@ class Autoencoder(Dataset):
     def __getitem__(self, idx):
         data = self.images[idx, :]
         target = self.labels[idx]
+        return data, target
+
+
+class Music(Dataset):
+    """Loads the music datasets for RNNs """
+
+    def __init__(self, dataset):
+        # Load the data
+        path = './data/music/' + Hp.hp['dataset_name'] + '.pickle'
+        data_all = pickle.load(open(path, 'rb'))  # This includes train, test and validation sets
+
+        # Select which dataset to store: train or test
+        self.data = data_all[dataset]
+
+    def __len__(self):
+        return len(self.data)
+
+    def chord_to_binary(self, chord):
+        """According to http://www-etud.iro.umontreal.ca/~boulanni/icml2012,
+        each chord is a list of the non-zero elements in the piano-roll at this instant.
+         (in MIDI note numbers, between 21 and 108 inclusive).
+
+        This function transforms the list into a binary vector of length 88 (= 108 - 21 + 1)
+        indicating which notes were played in the given chord
+        """
+        indices = [note - 21 for note in chord]
+        binary_vector = torch.zeros(88)
+        binary_vector[indices] = 1.0
+        return binary_vector
+
+    def piece_to_binary(self, piece):
+        """ Converts piece with n chords into a binary (n x 88) tensor
+
+        Args:
+            piece:          Piece given in chord format, i.e. a list of lists
+                             with each inner list containing the notes that are played in that chord
+                             e.g. piece = [[2,5], [9,12]]
+
+        Returns:
+            piece_binary:   Binarized piece as a binary (n x 88) tensor
+                             (but with float opposed to byte values)
+
+        """
+        piece_binary = torch.zeros((len(piece), 88))
+        for chord_idx in range(len(piece)):
+            piece_binary[chord_idx, :] = self.chord_to_binary(piece[chord_idx])
+        return piece_binary
+
+    def __getitem__(self, idx):
+        # First put the piece in its binarize form
+        piece_binarized = self.piece_to_binary(self.data[idx])
+
+        # Input excludes the final chord
+        data = piece_binarized[:-1, :]
+
+        # Target excludes the first chord
+        target = piece_binarized[1:, :]
+
         return data, target
 
 
@@ -260,6 +319,8 @@ def get_dataset():
                                   )
     elif Hp.hp['data_type'] == 'autoencoder':
         return autoencoder()
+    elif Hp.hp['data_type'] == 'sequential_many':
+        return music()
     else:
         raise ValueError('Not able to load dataset from dataset_name')
 
@@ -426,6 +487,31 @@ def autoencoder(num_workers=4):
                               batch_size=batch_size,
                               num_workers=num_workers)
     test_loader = DataLoader(Autoencoder('test'),
+                             batch_size=batch_size,
+                             num_workers=num_workers)
+    return train_loader, test_loader
+
+
+def music(num_workers=4):
+    """
+    Loads music datasets
+
+
+    Args:
+        num_workers:        Number of workers loading the data
+
+    Returns:
+        train_loader    Loads training data
+        test_loader     Loads test data
+
+    """
+    # Batch size should be 1 to prevent sequences in the same batch having different lengths
+    batch_size = 1
+
+    train_loader = DataLoader(Music('train'),
+                              batch_size=batch_size,
+                              num_workers=num_workers)
+    test_loader = DataLoader(Music('test'),
                              batch_size=batch_size,
                              num_workers=num_workers)
     return train_loader, test_loader
