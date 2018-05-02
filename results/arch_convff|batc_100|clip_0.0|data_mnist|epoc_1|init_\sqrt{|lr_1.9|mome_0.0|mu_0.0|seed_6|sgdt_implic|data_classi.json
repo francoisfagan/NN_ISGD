@@ -1,0 +1,35 @@
+{
+  "hyperparameters": {
+    "architecture": "convffnn",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "mnist",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "lr": 1.9,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "seed": 6,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        2.3092323168118796
+      ],
+      "average_accuracy": [
+        9.863333333333333
+      ]
+    },
+    "test": {
+      "average_loss": [
+        2.310221130847931
+      ],
+      "average_accuracy": [
+        9.58
+      ]
+    },
+    "runtime": 59.54046559333801
+  }
+}
