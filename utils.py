@@ -83,6 +83,9 @@ class Hp:
         if cls.hp['architecture'] == 'lstm':
             assert cls.hp['sgd_type'] != 'implicit', 'LSTM does not currently support implicit sgd'
 
+        if 'intra_epoch' in cls.hp and cls.hp['intra_epoch']:
+            assert cls.hp['epochs'] == 1, 'If using intra-epoch loss, must have epochs = 1'
+
     @classmethod
     def get_data_type(cls):
         """Get type of data from dataset name stored in Hyperparameters"""

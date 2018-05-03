@@ -35,13 +35,22 @@ def train_and_test(train_loader, test_loader, model, optimizer):
     print('Started training')
     for epoch in range(Hp.hp['epochs']):
         # Train for one epoch
-        train(model, train_loader, optimizer, epoch)
+        average_loss_intra_epoch, average_accuracy_intra_epoch = train(model, train_loader, optimizer, epoch)
+
+        # Record intra-epoch loss (e.g. every 100 minibatches)
+        results['average_loss_intra_epoch'] = average_loss_intra_epoch
+        results['average_accuracy_intra_epoch'] = average_accuracy_intra_epoch
 
         # Record training and test loss
         for dataset, loader in [('test', test_loader), ('train', train_loader)]:
             average_loss, average_accuracy = test(model, loader, dataset)
             results[dataset]['average_loss'].append(average_loss)
             results[dataset]['average_accuracy'].append(average_accuracy)
+
+
+        # Add intra-epoch loss for the end of the epoch
+        results['average_loss_intra_epoch'].append(average_loss)
+        results['average_accuracy_intra_epoch'].append(average_accuracy)
 
     time_finish = time.time()
 
@@ -184,39 +193,57 @@ def train(model, train_loader, optimizer, epoch):
     cum_loss = 0  # Loss
     cum_minibatches = 0  # Number of minibatches
 
+    average_loss_intra_epochs = []
+    average_accuracy_intra_epochs = []
+
     for batch_idx, (data, target) in enumerate(train_loader):
         # Get data and put it on gpu if gpu available
         data, target = Variable(data).to(Hp.device), Variable(target).to(Hp.device)
 
-        # Take SGD step
-        optimizer.zero_grad()
-        loss = get_loss(model, data, target)
-        loss.backward()
+        if True:
+            # Take SGD step
+            optimizer.zero_grad()
+            loss = get_loss(model, data, target)
+            loss.backward()
 
-        # Update performance measures and counts
-        cum_loss += loss.data
-        cum_minibatches += 1
+            # Update performance measures and counts
+            cum_loss += loss.data
+            cum_minibatches += 1
 
-        # Clip gradients
-        # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
-        if Hp.hp['clipping_threshold'] != 0:
-            clip_grad_norm_(model.parameters(), Hp.hp['clipping_threshold'])
+            # Clip gradients
+            # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
+            if Hp.hp['clipping_threshold'] != 0:
+                clip_grad_norm_(model.parameters(), Hp.hp['clipping_threshold'])
 
-        # Take optimization step
-        optimizer.step()
+            # Take optimization step
+            optimizer.step()
+        else:
+            with torch.no_grad():
+                for param in model.parameters():
+                    param -= Hp.hp['lr'] * param.grad
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 10 == 0 and batch_idx != 0:
+        if batch_idx % 100 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))
+
+            if 'intra_epoch' in Hp.hp and Hp.hp['intra_epoch']:
+                print('Testing intra-epoch loss')
+                loss_intra_epoch, accuracy_intra_epoch = test(model, train_loader, 'train')
+                average_loss_intra_epochs.append(loss_intra_epoch)
+                average_accuracy_intra_epochs.append(accuracy_intra_epoch)
+
+                model.train()
+
 
             # Reset cumulative performance measures and counts
             cum_loss = 0
             cum_minibatches = 0
 
     print('')
+    return average_loss_intra_epochs, average_accuracy_intra_epochs
 
 
 # Define testing

@@ -12,7 +12,7 @@ from utils import Hp, get_optimizer, get_hyperparameters
 from train_test import train_and_test
 
 # Load all hyperparameter permutations
-hyperparameter_list_name = 'music'#mnist_autoencoder_experiments
+hyperparameter_list_name = 'mnist_experiments' # 'music'# 'mnist_autoencoder_experiments' #
 for hyperparameters in get_hyperparameters(hyperparameter_list_name):
     # Run experiment for each hyperparameter
     Hp.set_hyperparameters(hyperparameters)

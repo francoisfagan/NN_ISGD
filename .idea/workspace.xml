@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/.ipynb_checkpoints/Display results-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/.ipynb_checkpoints/Display results-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/Display results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Display results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/architectures.py" beforeDir="false" afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/music/music_how_to_load_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/music/music_how_to_load_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loaders.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/mnist_autoencoder_experiments.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/mnist_autoencoder_experiments.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="16" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="323">
+              <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
               <folding>
                 <element signature="e#131#168#0" expanded="true" />
               </folding>
@@ -38,8 +37,8 @@
       <file leaf-file-name="isgd_fns.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/isgd_fns.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1802">
-              <caret line="344" column="26" selection-start-line="344" selection-start-column="12" selection-end-line="344" selection-end-column="26" />
+            <state relative-caret-position="410">
+              <caret line="340" column="20" selection-start-line="340" selection-start-column="20" selection-end-line="340" selection-end-column="20" />
               <folding>
                 <element signature="e#721#733#0" expanded="true" />
                 <element signature="e#1011#1430#0" />
@@ -56,21 +55,23 @@
       <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_loaders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="321" column="47" selection-start-line="321" selection-start-column="47" selection-end-line="321" selection-end-column="47" />
+            <state relative-caret-position="-330">
+              <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="e#245#257#0" expanded="true" />
-                <element signature="e#454#2472#0" />
-                <element signature="e#2515#4469#0" />
-                <element signature="e#4514#6608#0" />
-                <element signature="e#6641#7965#0" />
-                <element signature="e#8000#9492#0" />
-                <element signature="e#10973#11827#0" />
-                <element signature="e#11915#12840#0" />
-                <element signature="e#12933#13866#0" />
-                <element signature="e#13961#14898#0" />
-                <element signature="e#14988#16049#0" />
-                <element signature="e#16088#17109#0" />
+                <element signature="e#468#2486#0" />
+                <element signature="e#2529#4483#0" />
+                <element signature="e#4528#6622#0" />
+                <element signature="e#6655#7979#0" />
+                <element signature="e#8014#9512#0" />
+                <element signature="e#9541#11621#0" />
+                <element signature="e#11647#13155#0" />
+                <element signature="e#14117#15042#0" />
+                <element signature="e#15135#16068#0" />
+                <element signature="e#16163#17100#0" />
+                <element signature="e#17190#18251#0" />
+                <element signature="e#18290#19311#0" />
+                <element signature="e#19344#20008#0" />
               </folding>
             </state>
           </provider>
@@ -85,16 +86,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="134" column="42" lean-forward="true" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+              <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
               <folding>
                 <element signature="e#47#59#0" expanded="true" />
-                <element signature="e#210#952#0" />
-                <element signature="e#1019#1839#0" />
-                <element signature="e#1876#2929#0" />
               </folding>
             </state>
           </provider>
@@ -103,28 +101,28 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="96" column="40" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="40" />
+            <state relative-caret-position="452">
+              <caret line="85" column="59" selection-start-line="85" selection-start-column="59" selection-end-line="85" selection-end-column="59" />
               <folding>
                 <element signature="e#59#86#0" expanded="true" />
+                <element signature="e#3441#4076#0" />
+                <element signature="e#4142#4194#0" />
+                <element signature="e#4293#4772#0" />
+                <element signature="e#4833#5117#0" />
+                <element signature="e#5175#5959#0" />
+                <element signature="e#5992#6682#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_test.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="210" column="46" selection-start-line="210" selection-start-column="46" selection-end-line="210" selection-end-column="46" />
+            <state relative-caret-position="380">
+              <caret line="226" column="31" lean-forward="true" selection-start-line="226" selection-start-column="11" selection-end-line="226" selection-end-column="31" />
               <folding>
                 <element signature="e#81#112#0" expanded="true" />
-                <element signature="e#318#1667#0" />
-                <element signature="e#1720#2002#0" />
-                <element signature="e#2044#2673#0" />
-                <element signature="e#2715#2971#0" />
-                <element signature="e#3013#3631#0" />
-                <element signature="e#5416#7087#0" />
               </folding>
             </state>
           </provider>
@@ -150,8 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>test_batch_size</find>
-      <find>logit</find>
       <find>The input to the next layer = logit put through the non-linear activation function</find>
       <find>calc_grad_input</find>
       <find>HyperparameterClass</find>
@@ -180,6 +176,8 @@
       <find>loss.data[0]</find>
       <find>.type(torch.FloatTensor)</find>
       <find>.type(torch.FloatTensor).to(Hp.device)</find>
+      <find>dataset</find>
+      <find>intra_epochs</find>
     </findStrings>
     <replaceStrings>
       <replace>BATCHSIZE</replace>
@@ -204,6 +202,7 @@
       <replace>loss.data</replace>
       <replace>.type(torch.FloatTensor).to(Hp.device)</replace>
       <replace>.float()</replace>
+      <replace>intra_epoch</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -222,11 +221,11 @@
         <option value="$PROJECT_DIR$/cube_solver.py" />
         <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/isgd_fns.py" />
+        <option value="$PROJECT_DIR$/data_loaders.py" />
+        <option value="$PROJECT_DIR$/architectures.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/data_loaders.py" />
         <option value="$PROJECT_DIR$/train_test.py" />
-        <option value="$PROJECT_DIR$/architectures.py" />
       </list>
     </option>
   </component>
@@ -241,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +257,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,11 +405,11 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5249237" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2366127" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.42828077" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4271482" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -439,7 +438,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="101" />
+      <option name="time" value="102" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -830,10 +829,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/architectures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="134" column="42" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+          <folding>
+            <element signature="e#47#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_loaders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
+          <folding>
+            <element signature="e#245#257#0" expanded="true" />
+            <element signature="e#468#2486#0" />
+            <element signature="e#2529#4483#0" />
+            <element signature="e#4528#6622#0" />
+            <element signature="e#6655#7979#0" />
+            <element signature="e#8014#9512#0" />
+            <element signature="e#9541#11621#0" />
+            <element signature="e#11647#13155#0" />
+            <element signature="e#14117#15042#0" />
+            <element signature="e#15135#16068#0" />
+            <element signature="e#16163#17100#0" />
+            <element signature="e#17190#18251#0" />
+            <element signature="e#18290#19311#0" />
+            <element signature="e#19344#20008#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="85" column="59" selection-start-line="85" selection-start-column="59" selection-end-line="85" selection-end-column="59" />
+          <folding>
+            <element signature="e#59#86#0" expanded="true" />
+            <element signature="e#3441#4076#0" />
+            <element signature="e#4142#4194#0" />
+            <element signature="e#4293#4772#0" />
+            <element signature="e#4833#5117#0" />
+            <element signature="e#5175#5959#0" />
+            <element signature="e#5992#6682#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="344" column="26" selection-start-line="344" selection-start-column="12" selection-end-line="344" selection-end-column="26" />
+        <state relative-caret-position="410">
+          <caret line="340" column="20" selection-start-line="340" selection-start-column="20" selection-end-line="340" selection-end-column="20" />
           <folding>
             <element signature="e#721#733#0" expanded="true" />
             <element signature="e#1011#1430#0" />
@@ -848,70 +896,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="16" />
+        <state relative-caret-position="323">
+          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
           <folding>
             <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="96" column="40" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="40" />
-          <folding>
-            <element signature="e#59#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_loaders.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="321" column="47" selection-start-line="321" selection-start-column="47" selection-end-line="321" selection-end-column="47" />
-          <folding>
-            <element signature="e#245#257#0" expanded="true" />
-            <element signature="e#454#2472#0" />
-            <element signature="e#2515#4469#0" />
-            <element signature="e#4514#6608#0" />
-            <element signature="e#6641#7965#0" />
-            <element signature="e#8000#9492#0" />
-            <element signature="e#10973#11827#0" />
-            <element signature="e#11915#12840#0" />
-            <element signature="e#12933#13866#0" />
-            <element signature="e#13961#14898#0" />
-            <element signature="e#14988#16049#0" />
-            <element signature="e#16088#17109#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="210" column="46" selection-start-line="210" selection-start-column="46" selection-end-line="210" selection-end-column="46" />
+        <state relative-caret-position="380">
+          <caret line="226" column="31" lean-forward="true" selection-start-line="226" selection-start-column="11" selection-end-line="226" selection-end-column="31" />
           <folding>
             <element signature="e#81#112#0" expanded="true" />
-            <element signature="e#318#1667#0" />
-            <element signature="e#1720#2002#0" />
-            <element signature="e#2044#2673#0" />
-            <element signature="e#2715#2971#0" />
-            <element signature="e#3013#3631#0" />
-            <element signature="e#5416#7087#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/architectures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="134" column="42" lean-forward="true" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
-          <folding>
-            <element signature="e#47#59#0" expanded="true" />
-            <element signature="e#210#952#0" />
-            <element signature="e#1019#1839#0" />
-            <element signature="e#1876#2929#0" />
           </folding>
         </state>
       </provider>
