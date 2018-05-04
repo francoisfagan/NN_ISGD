@@ -140,7 +140,7 @@ class Isgd_RNN(nn.Module):
         return output, hidden
 
     def initHidden(self):
-        return Variable(torch.zeros(self.hidden_size))
+        return Variable(torch.zeros(self.hidden_size)).to(Hp.device)
 
 
 class Isgd_LSTM(nn.Module):

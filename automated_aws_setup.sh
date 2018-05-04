@@ -3,7 +3,7 @@ mkdir NN_ISGD
 mkdir NN_ISGD/results
 sudo yum update
 sudo yum install htop
-source activate pytorch_p36
+# source activate pytorch_p36
 # tmux new -s experiment1
 
 # pip install Cython

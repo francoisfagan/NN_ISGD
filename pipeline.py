@@ -6,13 +6,17 @@ Author: Francois Fagan, Columbia University
 
 from __future__ import print_function
 import json
+import sys
 import architectures
 import data_loaders
 from utils import Hp, get_optimizer, get_hyperparameters
 from train_test import train_and_test
 
 # Load all hyperparameter permutations
-hyperparameter_list_name = 'music'#'mnist_autoencoder_experiments' #'mnist_experiments' #
+if len(sys.argv)>1:
+    hyperparameter_list_name = sys.argv[1]
+else:
+    hyperparameter_list_name = 'music'  # 'mnist_autoencoder_experiments' #'mnist_experiments' #
 for hyperparameters in get_hyperparameters(hyperparameter_list_name):
     # Run experiment for each hyperparameter
     Hp.set_hyperparameters(hyperparameters)

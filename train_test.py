@@ -235,7 +235,7 @@ def train(model, train_loader, optimizer, epoch):
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 1000 == 0 and batch_idx != 0:
+        if batch_idx % 10 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))

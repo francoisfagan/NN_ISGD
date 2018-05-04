@@ -101,7 +101,7 @@ class Hp:
             data_type = 'sequential'
         elif dataset_name in {'mnist_autoencoder', 'fashionmnist_autoencoder'}:
             data_type = 'autoencoder'
-        elif dataset_name in {'Piano-midi.de'}:
+        elif dataset_name in {'Piano-midi.de', 'JSB Chorales', 'Nottingham', 'MuseData'}:
             data_type = 'sequential_many'
         else:
             raise ValueError('Data_type not know for given dataset')
