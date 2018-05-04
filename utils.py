@@ -86,6 +86,11 @@ class Hp:
         if 'intra_epoch' in cls.hp and cls.hp['intra_epoch']:
             assert cls.hp['epochs'] == 1, 'If using intra-epoch loss, must have epochs = 1'
 
+        assert type(cls.hp['inner_ISGD_iterations']) == int, 'inner_ISGD_iterations must be an integer'
+
+        if cls.hp['inner_ISGD_iterations'] > 0:
+            assert cls.hp['sgdtype'] == 'explicit', 'If doing inner ISGD, then must use explicit gradients'
+
     @classmethod
     def get_data_type(cls):
         """Get type of data from dataset name stored in Hyperparameters"""

@@ -47,7 +47,6 @@ def train_and_test(train_loader, test_loader, model, optimizer):
             results[dataset]['average_loss'].append(average_loss)
             results[dataset]['average_accuracy'].append(average_accuracy)
 
-
         # Add intra-epoch loss for the end of the epoch
         results['average_loss_intra_epoch'].append(average_loss)
         results['average_accuracy_intra_epoch'].append(average_accuracy)
@@ -130,7 +129,7 @@ def music_loss(model, data, target):
 
         # Calculate the log-loss
         loss += -(target[i, :] * torch.log(output)
-                 + (1 - target[i, :]) * (torch.log(1 - output))).mean()
+                  + (1 - target[i, :]) * (torch.log(1 - output))).mean()
 
     return loss
 
@@ -200,15 +199,11 @@ def train(model, train_loader, optimizer, epoch):
         # Get data and put it on gpu if gpu available
         data, target = Variable(data).to(Hp.device), Variable(target).to(Hp.device)
 
-        if True:
+        if Hp.hp['inner_ISGD_iterations'] == 0:
             # Take SGD step
             optimizer.zero_grad()
             loss = get_loss(model, data, target)
             loss.backward()
-
-            # Update performance measures and counts
-            cum_loss += loss.data
-            cum_minibatches += 1
 
             # Clip gradients
             # As implemented in https://github.com/pytorch/examples/blob/master/word_language_model/main.py#L162-L164
@@ -217,26 +212,40 @@ def train(model, train_loader, optimizer, epoch):
 
             # Take optimization step
             optimizer.step()
+        # elif batch_idx % Hp.hp['inner_ISGD_iterations'] == 0:
         else:
-            with torch.no_grad():
-                for param in model.parameters():
-                    param -= Hp.hp['lr'] * param.grad
+            original_param = dict()
+            for j, param in enumerate(model.parameters()):
+                original_param[j] = param.clone()
+            for i in range(Hp.hp['inner_ISGD_iterations']):
+                loss = get_loss(model, data, target)
+                model.zero_grad()
+                loss.backward()
+
+                with torch.no_grad():
+                    for j, param in enumerate(model.parameters()):
+                        # param -= (Hp.hp['lr'] * param.grad + param - original_param[j]
+                        #           * 2.0 / float(Hp.hp['inner_ISGD_iterations']))
+                        param -= (Hp.hp['lr'] * (param.grad + param - original_param[j])
+                                  / np.sqrt(float(Hp.hp['inner_ISGD_iterations'])))
+
+        # Update performance measures and counts
+        cum_loss += loss.data
+        cum_minibatches += 1
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 100 == 0 and batch_idx != 0:
+        if batch_idx % 1000 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))
 
             if 'intra_epoch' in Hp.hp and Hp.hp['intra_epoch']:
-                print('Testing intra-epoch loss')
                 loss_intra_epoch, accuracy_intra_epoch = test(model, train_loader, 'train')
                 average_loss_intra_epochs.append(loss_intra_epoch)
                 average_accuracy_intra_epochs.append(accuracy_intra_epoch)
 
                 model.train()
-
 
             # Reset cumulative performance measures and counts
             cum_loss = 0

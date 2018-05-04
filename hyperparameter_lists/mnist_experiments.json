@@ -1,6 +1,6 @@
 {
   "architecture": [
-    "convffnn"
+    "autoencoder"
   ],
   "batch_size": [
     100
@@ -9,7 +9,7 @@
     1.0
   ],
   "dataset_name": [
-    "mnist"
+    "mnist_autoencoder"
   ],
   "epochs": [
     1
@@ -17,11 +17,18 @@
   "initialization_scale": [
     "\\sqrt{\frac{6}{n+m}}"
   ],
+  "inner_ISGD_iterations": [
+    0
+  ],
   "intra_epoch": [
     false
   ],
   "lr": [
-    2.5
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2
   ],
   "momentum": [
     0.0
@@ -33,24 +40,9 @@
     50
   ],
   "seed": [
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20
+    1
   ],
   "sgdtype": [
-    "explicit",
-    "implicit"
+    "explicit"
   ]
 }
