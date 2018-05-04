@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "music",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "Piano-midi.de",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 0.1,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "sequential_many"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        137.43168556827237,
+        160.2383672780004,
+        702.897169266624,
+        176.17757426733257,
+        134.8472881536374,
+        119.19078379663928,
+        143.72152139948702,
+        118.50750701728909,
+        123.78546063653354,
+        120.91012328794633
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "test": {
+      "average_loss": [
+        117.24437641143798,
+        138.00040184020997,
+        613.2717893981934,
+        152.65973396301268,
+        116.18217430114746,
+        103.50418640136719,
+        124.83501808166504,
+        103.45892768859864,
+        108.1793631362915,
+        105.48172386169433
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "average_loss_intra_epoch": [
+      120.91012328794633
+    ],
+    "average_accuracy_intra_epoch": [
+      0
+    ],
+    "runtime": 1117.553299665451
+  }
+}

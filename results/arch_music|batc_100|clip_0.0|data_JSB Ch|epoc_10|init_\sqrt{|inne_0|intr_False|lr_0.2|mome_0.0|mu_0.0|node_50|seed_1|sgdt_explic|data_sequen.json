@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "music",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "JSB Chorales",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 0.2,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "sequential_many"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        9.094664285276654,
+        8.5789808914651,
+        8.24671908861685,
+        8.055339881946948,
+        7.932733518067406,
+        7.8195275812690435,
+        7.721855421774252,
+        7.634694878190886,
+        7.5581512451171875,
+        7.494168458547134
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "test": {
+      "average_loss": [
+        9.23325893476412,
+        8.71711338340462,
+        8.400273236361416,
+        8.214389206527116,
+        8.09353543566419,
+        7.982102759472736,
+        7.886506331431401,
+        7.8019578116280695,
+        7.729158751376263,
+        7.669117004840405
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "average_loss_intra_epoch": [
+      7.494168458547134
+    ],
+    "average_accuracy_intra_epoch": [
+      0
+    ],
+    "runtime": 241.02901792526245
+  }
+}

@@ -19,7 +19,7 @@
   "results": {
     "train": {
       "average_loss": [
-        1.4021953096322715
+        1.4108655905805527
       ],
       "average_accuracy": [
         0
@@ -27,18 +27,18 @@
     },
     "test": {
       "average_loss": [
-        1.3983244485221804
+        1.4018607324786485
       ],
       "average_accuracy": [
         0
       ]
     },
     "average_loss_intra_epoch": [
-      1.4021953096322715
+      1.4108655905805527
     ],
     "average_accuracy_intra_epoch": [
       0
     ],
-    "runtime": 1436.7326490879059
+    "runtime": 433.1603031158447
   }
 }
