@@ -9,7 +9,7 @@
     0.0
   ],
   "dataset_name": [
-    "abalone_classification"
+    "adult_classification"
   ],
   "epochs": [
     10
@@ -29,16 +29,7 @@
     0.003,
     0.01,
     0.03,
-    0.1,
-    0.2,
-    0.3,
-    0.5,
-    1.0,
-    3.0,
-    5.0,
-    10.0,
-    30.0,
-    50.0
+    0.1
   ],
   "momentum": [
     0.0
