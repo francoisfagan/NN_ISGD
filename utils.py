@@ -6,6 +6,7 @@ import torch
 import math
 import itertools
 import json
+import numpy as np
 
 
 class Hp:
@@ -44,6 +45,7 @@ class Hp:
 
         # Set seed
         torch.manual_seed(cls.hp['seed'])
+        np.random.seed(cls.hp['seed'])
 
         # Infer the data type from the dataset
         cls.hp['data_type'] = cls.get_data_type()
@@ -63,8 +65,7 @@ class Hp:
         assert cls.hp['sgdtype'] in {'implicit', 'explicit'}, 'sgd_type must be in {implicit, explicit}'
         assert cls.hp['initialization_scale'] in {'0.1',
                                                   '\sqrt{\frac{6}{n+m}}'}, 'initialization_scale must be in {0.1, \sqrt{\frac{6}{n+m}}}'
-        # assert cls.hp['dataset_name'] in {'mnist', 'addition', 'easy_addition', 'medium_addition', 'simple_rnn'}
-        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm', 'autoencoder', 'music'}
+        assert cls.hp['architecture'] in {'convffnn', 'rnn', 'lstm', 'autoencoder', 'music', 'classification'}
 
         # Dataset and architecture don't match
         error_string = 'Inappropriate architecture for dataset'
@@ -103,6 +104,8 @@ class Hp:
             data_type = 'autoencoder'
         elif dataset_name in {'Piano-midi.de', 'JSB Chorales', 'Nottingham', 'MuseData'}:
             data_type = 'sequential_many'
+        elif dataset_name.split('_')[1] == 'classification':
+            data_type = 'classification'
         else:
             raise ValueError('Data_type not know for given dataset')
         return data_type

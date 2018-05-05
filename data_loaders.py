@@ -10,6 +10,7 @@ import numpy as np
 import os
 import struct
 import pickle
+from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 from utils import Hp
@@ -282,6 +283,23 @@ class Music(Dataset):
         return data, target
 
 
+class Classification:
+    """Loads the music datasets for RNNs """
+
+    def __init__(self, x, y):
+        self.x = torch.Tensor(x)
+        self.y = torch.LongTensor(y)
+
+    def __len__(self):
+        return len(self.y)
+
+    def __getitem__(self, idx):
+        data = self.x[idx, :]
+        target = self.y[idx]
+
+        return data, target
+
+
 def get_dataset():
     """ Return the train and test loaders for the dataset
 
@@ -317,6 +335,8 @@ def get_dataset():
                                   Hp.test_length,
                                   Hp.sequence_length
                                   )
+    elif dataset_name.split('_')[1] == 'classification':
+        return classification(dataset_name)
     elif Hp.hp['data_type'] == 'autoencoder':
         return autoencoder()
     elif Hp.hp['data_type'] == 'sequential_many':
@@ -513,5 +533,43 @@ def music(num_workers=4):
                               num_workers=num_workers)
     test_loader = DataLoader(Music('test'),
                              batch_size=batch_size,
+                             num_workers=num_workers)
+    return train_loader, test_loader
+
+
+def classification(dataset_name, num_workers=4):
+    """
+    Loads music datasets
+
+
+    Args:
+        num_workers:        Number of workers loading the data
+
+    Returns:
+        train_loader    Loads training data
+        test_loader     Loads test data
+
+    """
+    # Load the data
+    dataset_name = dataset_name.split('_')[0]
+    dataset_path = 'data/classification/' + dataset_name + '/'
+    x = np.loadtxt(open(dataset_path + dataset_name + '_py.dat'), delimiter=",")
+    y = np.loadtxt(open(dataset_path + 'labels_py.dat'), delimiter=",")
+
+    # Infer the number of classes and input dimension
+    # This assumes that the labels are in [0,1,2,...,classes - 1], which seems to be the case
+    # Store the values in the Hp class so that the appropriate architecture can be built
+    Hp.classes = int(np.max(y)) + 1
+    Hp.input_dim = int(x.shape[1])
+
+    # Split the data into train and test
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=1)
+
+    # Create the data loaders
+    train_loader = DataLoader(Classification(x_train, y_train),
+                              batch_size=Hp.hp['batch_size'],
+                              num_workers=num_workers)
+    test_loader = DataLoader(Classification(x_test, y_test),
+                             batch_size=Hp.hp['batch_size'],
                              num_workers=num_workers)
     return train_loader, test_loader

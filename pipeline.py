@@ -16,7 +16,7 @@ from train_test import train_and_test
 if len(sys.argv)>1:
     hyperparameter_list_name = sys.argv[1]
 else:
-    hyperparameter_list_name = 'music'  # 'mnist_autoencoder_experiments' #'mnist_experiments' #
+    hyperparameter_list_name = 'classification'
 for hyperparameters in get_hyperparameters(hyperparameter_list_name):
     # Run experiment for each hyperparameter
     Hp.set_hyperparameters(hyperparameters)

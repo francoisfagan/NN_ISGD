@@ -131,6 +131,10 @@ def music_loss(model, data, target):
         loss += -(target[i, :] * torch.log(output)
                   + (1 - target[i, :]) * (torch.log(1 - output))).mean()
 
+        # Normalize loss by sequence length
+        # This is as advised on p.12 of "On the difficulty of training Recurrent Neural Networks"
+        loss = loss / sequence_length
+
     return loss
 
 
@@ -235,7 +239,7 @@ def train(model, train_loader, optimizer, epoch):
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 10 == 0 and batch_idx != 0:
+        if batch_idx % 100 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))

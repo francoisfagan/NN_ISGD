@@ -7,13 +7,13 @@
   ],
   "clipping_threshold": [
     0.0,
-    1.0
+    8.0
   ],
   "dataset_name": [
     "Piano-midi.de"
   ],
   "epochs": [
-    10
+    5
   ],
   "initialization_scale": [
     "\\sqrt{\frac{6}{n+m}}"
@@ -38,7 +38,7 @@
     0.0
   ],
   "nodes": [
-    50
+    300
   ],
   "seed": [
     1

@@ -29,6 +29,8 @@ def get_model():
         model = Isgd_LSTM(Hp.hp['input_size'], Hp.hp['hidden_size'], Hp.hp['output_size'])
     elif architecture == 'autoencoder':
         model = Autoencoder()
+    elif architecture == 'classification':
+        model = Classification()
     else:
         raise ValueError('There is no model for the given architecture')
 
@@ -61,6 +63,42 @@ class ConvolutionalFFNN(nn.Module):
         x = self.fc1(x)
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
+
+        return F.log_softmax(x, dim=1)
+
+
+class Classification(nn.Module):
+    """
+    Autoencoder architecture as specified in
+    'Training Neural Networks with Stochastic Hessian-Free Optimization'
+
+    It only uses sigmoidal activations except for the first and final layer with is a relu.
+    It has the following structure:
+    784-500-250-30
+
+    """
+
+    def __init__(self):
+        super(Classification, self).__init__()
+
+        # Get the number of classes and input dimension
+        classes = Hp.classes
+        input_dim = Hp.input_dim
+
+        # Layers
+        self.f1 = isgd_fns.IsgdArctan(input_dim, input_dim)
+        self.f2 = isgd_fns.IsgdArctan(input_dim, input_dim)
+        self.f3 = isgd_fns.IsgdArctan(input_dim, input_dim)
+        self.ffinal = nn.Linear(input_dim, classes)
+
+    def forward(self, x):
+
+        x = self.f1(x)
+        x = self.f2(x)
+        x = self.f3(x)
+        # x = self.f4(x)
+        # x = self.f5(x)
+        x = self.ffinal(x)
 
         return F.log_softmax(x, dim=1)
 
