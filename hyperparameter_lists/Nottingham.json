@@ -6,7 +6,7 @@
     100
   ],
   "clipping_threshold": [
-    0.0
+    8.0
   ],
   "dataset_name": [
     "Nottingham"
@@ -24,9 +24,7 @@
     false
   ],
   "lr": [
-    0.5,
-    2.0,
-    5.0
+    500.0
   ],
   "momentum": [
     0.0

@@ -1,0 +1,60 @@
+{
+  "hyperparameters": {
+    "architecture": "music",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "Nottingham",
+    "epochs": 5,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 5.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 300,
+    "seed": 3,
+    "sgdtype": "explicit",
+    "data_type": "sequential_many"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.0006823158974742339,
+        0.0005829565601041091,
+        0.0005281162000347133,
+        0.00048533798803414974,
+        0.00044733883104886273
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.0006806617815848714,
+        0.0005868623079389663,
+        0.0005362848763444858,
+        0.000497846212302273,
+        0.0004640799557391267
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.00044733883104886273
+    ],
+    "average_accuracy_intra_epoch": [
+      0
+    ],
+    "runtime": 1365.7851166725159
+  }
+}
