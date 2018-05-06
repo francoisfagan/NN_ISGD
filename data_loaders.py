@@ -335,12 +335,12 @@ def get_dataset():
                                   Hp.test_length,
                                   Hp.sequence_length
                                   )
-    elif dataset_name.split('_')[1] == 'classification':
-        return classification(dataset_name)
     elif Hp.hp['data_type'] == 'autoencoder':
         return autoencoder()
     elif Hp.hp['data_type'] == 'sequential_many':
         return music()
+    elif dataset_name.split('_')[1] == 'classification':
+        return classification(dataset_name)
     else:
         raise ValueError('Not able to load dataset from dataset_name')
 

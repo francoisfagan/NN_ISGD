@@ -2,29 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/.ipynb_checkpoints/Display results-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/.ipynb_checkpoints/Display results-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/Display results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Display results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/architectures.py" beforeDir="false" afterPath="$PROJECT_DIR$/architectures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/music/music_how_to_load_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/music/music_how_to_load_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/automated_aws_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/automated_aws_setup.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loaders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/JSB Chorales.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/JSB Chorales.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/MuseData.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/MuseData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/Nottingham.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/Nottingham.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/Piano-midi.de.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/Piano-midi.de.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/mnist_experiments.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_clipped_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_autoencoder_clipped_average_loss.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_accuracy.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_classification_clipping_average_accuracy.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/arch_music|batc_100|clip_0.0|data_JSB Ch|epoc_10|init_\sqrt{|inne_0|intr_False|lr_0.001|mome_0.0|mu_0.0|node_50|seed_1|sgdt_explic|data_sequen.json" beforeDir="false" afterPath="$PROJECT_DIR$/results/arch_music|batc_100|clip_0.0|data_JSB Ch|epoc_10|init_\sqrt{|inne_0|intr_False|lr_0.001|mome_0.0|mu_0.0|node_50|seed_1|sgdt_explic|data_sequen.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+            <state relative-caret-position="306">
+              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
                 <element signature="e#131#168#0" expanded="true" />
               </folding>
@@ -65,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_loaders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="539" column="48" selection-start-line="539" selection-start-column="48" selection-end-line="539" selection-end-column="48" />
+            <state relative-caret-position="410">
+              <caret line="342" column="43" selection-start-line="342" selection-start-column="43" selection-end-line="342" selection-end-column="43" />
               <folding>
                 <element signature="e#245#257#0" expanded="true" />
                 <element signature="e#20560#21921#0" />
@@ -102,7 +85,7 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
+            <state relative-caret-position="1717">
               <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
               <folding>
                 <element signature="e#59#86#0" expanded="true" />
@@ -218,8 +201,8 @@
         <option value="$PROJECT_DIR$/isgd_fns.py" />
         <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/utils.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/data_loaders.py" />
       </list>
     </option>
@@ -400,7 +383,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4847849" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31506848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -868,7 +851,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
+        <state relative-caret-position="1717">
           <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
           <folding>
             <element signature="e#59#86#0" expanded="true" />
@@ -876,23 +859,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_loaders.py">
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="539" column="48" selection-start-line="539" selection-start-column="48" selection-end-line="539" selection-end-column="48" />
+        <state relative-caret-position="306">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <element signature="e#245#257#0" expanded="true" />
-            <element signature="e#20560#21921#0" />
+            <element signature="e#131#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+        <state relative-caret-position="410">
+          <caret line="342" column="43" selection-start-line="342" selection-start-column="43" selection-end-line="342" selection-end-column="43" />
           <folding>
-            <element signature="e#131#168#0" expanded="true" />
+            <element signature="e#245#257#0" expanded="true" />
+            <element signature="e#20560#21921#0" />
           </folding>
         </state>
       </provider>
