@@ -135,7 +135,13 @@ class Hp:
         Returns:    File name of experiment
 
         """
-        return 'results/' + '|'.join(key[:4] + '_' + str(value)[:6] for key, value in cls.hp.items()) + '.json'
+        return 'results/' + '|'.join(key[:4] + '_'
+                                     + (str(value)
+                                        if (key == 'dataset_name'
+                                            and len(value.split('_')) > 1
+                                            and value.split('_')[1] == 'classification')
+                                        else str(value)[:6])
+                                     for key, value in cls.hp.items()) + '.json'
 
 
 def get_hyperparameters(hyperparameter_list_name):

@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "low-res-spect_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        22.538743591308595
+      ],
+      "average_accuracy": [
+        23.349056603773583
+      ]
+    },
+    "test": {
+      "average_loss": [
+        28.6403169631958
+      ],
+      "average_accuracy": [
+        20.560747663551403
+      ]
+    },
+    "average_loss_intra_epoch": [
+      22.538743591308595
+    ],
+    "average_accuracy_intra_epoch": [
+      23.349056603773583
+    ],
+    "runtime": 0.11016583442687988
+  }
+}

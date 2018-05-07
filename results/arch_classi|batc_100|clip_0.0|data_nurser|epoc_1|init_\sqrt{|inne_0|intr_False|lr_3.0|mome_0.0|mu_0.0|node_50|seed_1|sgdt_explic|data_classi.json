@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "nursery_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        1.2127963258669927
+      ],
+      "average_accuracy": [
+        80.45910493827161
+      ]
+    },
+    "test": {
+      "average_loss": [
+        1.1747806209784288
+      ],
+      "average_accuracy": [
+        81.40432098765432
+      ]
+    },
+    "average_loss_intra_epoch": [
+      1.2127963258669927
+    ],
+    "average_accuracy_intra_epoch": [
+      80.45910493827161
+    ],
+    "runtime": 0.4687023162841797
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "blood_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.5407713005940119
+      ],
+      "average_accuracy": [
+        77.09030100334448
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.5887620747089386
+      ],
+      "average_accuracy": [
+        72.66666666666667
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.5407713005940119
+    ],
+    "average_accuracy_intra_epoch": [
+      77.09030100334448
+    ],
+    "runtime": 0.07612800598144531
+  }
+}

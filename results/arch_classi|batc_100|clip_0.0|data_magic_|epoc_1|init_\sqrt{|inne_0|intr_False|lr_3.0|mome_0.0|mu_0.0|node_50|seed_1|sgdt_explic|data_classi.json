@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "magic_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.7290405176239076
+      ],
+      "average_accuracy": [
+        78.18743427970557
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.7491556971501081
+      ],
+      "average_accuracy": [
+        77.6813880126183
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.7290405176239076
+    ],
+    "average_accuracy_intra_epoch": [
+      78.18743427970557
+    ],
+    "runtime": 0.4094357490539551
+  }
+}

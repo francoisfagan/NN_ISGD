@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "ilpd-indian-liver_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.6053681969642639
+      ],
+      "average_accuracy": [
+        71.45922746781116
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.6577728092670441
+      ],
+      "average_accuracy": [
+        70.94017094017094
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.6053681969642639
+    ],
+    "average_accuracy_intra_epoch": [
+      71.45922746781116
+    ],
+    "runtime": 0.07380008697509766
+  }
+}

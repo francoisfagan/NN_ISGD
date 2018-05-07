@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "soybean_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        3.758555769920349
+      ],
+      "average_accuracy": [
+        22.52747252747253
+      ]
+    },
+    "test": {
+      "average_loss": [
+        3.5486741065979004
+      ],
+      "average_accuracy": [
+        27.00729927007299
+      ]
+    },
+    "average_loss_intra_epoch": [
+      3.758555769920349
+    ],
+    "average_accuracy_intra_epoch": [
+      22.52747252747253
+    ],
+    "runtime": 1.0874519348144531
+  }
+}

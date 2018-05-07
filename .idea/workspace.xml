@@ -2,12 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/Display results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Display results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/automated_aws_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/automated_aws_setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loaders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/MuseData.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/MuseData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_nucleus_4d/folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_nucleus_4d/labels_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_nucleus_4d/oocytes_merluccius_nucleus_4d_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_nucleus_4d/validation_folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_states_2f/folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_states_2f/labels_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_states_2f/oocytes_merluccius_states_2f_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_merluccius_states_2f/validation_folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_nucleus_2f/folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_nucleus_2f/labels_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_nucleus_2f/oocytes_trisopterus_nucleus_2f_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_nucleus_2f/validation_folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_states_5b/folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_states_5b/labels_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_states_5b/oocytes_trisopterus_states_5b_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classification/oocytes_trisopterus_states_5b/validation_folds_py.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/.ipynb_checkpoints/generate hyperparameter lists-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/JSB Chorales.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/JSB Chorales.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/Piano-midi.de.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/Piano-midi.de.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/classification.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/classification.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/exact_ISGD_classification_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/exact_ISGD_classification_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/intra_epoch_average_accuracy_intra_epoch.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/intra_epoch_average_accuracy_intra_epoch.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_clipped_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_autoencoder_clipped_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_accuracy.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_classification_clipping_average_accuracy.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_classification_clipping_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/mnist_classification_average_accuracy.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mnist_classification_average_accuracy.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +51,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding>
-                <element signature="e#131#168#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="11" column="56" lean-forward="true" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -48,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_loaders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="342" column="43" selection-start-line="342" selection-start-column="43" selection-end-line="342" selection-end-column="43" />
+            <state relative-caret-position="496">
+              <caret line="341" selection-start-line="341" selection-end-line="341" />
               <folding>
                 <element signature="e#245#257#0" expanded="true" />
                 <element signature="e#20560#21921#0" />
@@ -82,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1717">
-              <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
+            <state relative-caret-position="110">
+              <caret line="143" column="80" lean-forward="true" selection-start-line="143" selection-start-column="80" selection-end-line="143" selection-end-column="80" />
               <folding>
                 <element signature="e#59#86#0" expanded="true" />
               </folding>
@@ -126,8 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>The input to the next layer = logit put through the non-linear activation function</find>
-      <find>calc_grad_input</find>
       <find>HyperparameterClass</find>
       <find>epoch</find>
       <find>SELU</find>
@@ -156,6 +181,8 @@
       <find>.type(torch.FloatTensor).to(Hp.device)</find>
       <find>dataset</find>
       <find>intra_epochs</find>
+      <find>get_data_type</find>
+      <find>'a'</find>
     </findStrings>
     <replaceStrings>
       <replace>BATCHSIZE</replace>
@@ -201,9 +228,9 @@
         <option value="$PROJECT_DIR$/isgd_fns.py" />
         <option value="$PROJECT_DIR$/train_test.py" />
         <option value="$PROJECT_DIR$/architectures.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/data_loaders.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/utils.py" />
       </list>
     </option>
   </component>
@@ -383,11 +410,11 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31506848" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.498132" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4730417" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29704985" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -416,17 +443,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="114" />
+      <option name="time" value="121" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="74" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/isgd_fns.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
@@ -447,9 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -481,9 +498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -515,9 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -541,9 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,9 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -607,9 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -640,9 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,9 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,9 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
           <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -849,33 +842,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
+        <state relative-caret-position="272">
+          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_loaders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="341" selection-start-line="341" selection-end-line="341" />
           <folding>
-            <element signature="e#59#86#0" expanded="true" />
+            <element signature="e#245#257#0" expanded="true" />
+            <element signature="e#20560#21921#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-          <folding>
-            <element signature="e#131#168#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="11" column="56" lean-forward="true" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_loaders.py">
+    <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="342" column="43" selection-start-line="342" selection-start-column="43" selection-end-line="342" selection-end-column="43" />
+        <state relative-caret-position="110">
+          <caret line="143" column="80" lean-forward="true" selection-start-line="143" selection-start-column="80" selection-end-line="143" selection-end-column="80" />
           <folding>
-            <element signature="e#245#257#0" expanded="true" />
-            <element signature="e#20560#21921#0" />
+            <element signature="e#59#86#0" expanded="true" />
           </folding>
         </state>
       </provider>

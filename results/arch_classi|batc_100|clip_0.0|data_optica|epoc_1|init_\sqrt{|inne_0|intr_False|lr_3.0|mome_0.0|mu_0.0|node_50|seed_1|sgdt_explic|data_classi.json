@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "optical_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        6.867242590586344
+      ],
+      "average_accuracy": [
+        44.928825622775804
+      ]
+    },
+    "test": {
+      "average_loss": [
+        6.770275592803955
+      ],
+      "average_accuracy": [
+        45.99644128113879
+      ]
+    },
+    "average_loss_intra_epoch": [
+      6.867242590586344
+    ],
+    "average_accuracy_intra_epoch": [
+      44.928825622775804
+    ],
+    "runtime": 0.3039510250091553
+  }
+}

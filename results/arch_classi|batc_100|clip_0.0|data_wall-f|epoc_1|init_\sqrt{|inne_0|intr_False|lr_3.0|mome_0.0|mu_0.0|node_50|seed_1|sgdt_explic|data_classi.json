@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "wall-following_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        15.35746466029774
+      ],
+      "average_accuracy": [
+        32.67644362969752
+      ]
+    },
+    "test": {
+      "average_loss": [
+        14.767561305652965
+      ],
+      "average_accuracy": [
+        34.15750915750916
+      ]
+    },
+    "average_loss_intra_epoch": [
+      15.35746466029774
+    ],
+    "average_accuracy_intra_epoch": [
+      32.67644362969752
+    ],
+    "runtime": 0.22232985496520996
+  }
+}

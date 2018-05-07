@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "car_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.6087040667022977
+      ],
+      "average_accuracy": [
+        78.29232995658467
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.5917396396398544
+      ],
+      "average_accuracy": [
+        80.63583815028902
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.6087040667022977
+    ],
+    "average_accuracy_intra_epoch": [
+      78.29232995658467
+    ],
+    "runtime": 0.11014485359191895
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "chess-krvkp_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        24.457501301398644
+      ],
+      "average_accuracy": [
+        74.53051643192488
+      ]
+    },
+    "test": {
+      "average_loss": [
+        29.28122465951102
+      ],
+      "average_accuracy": [
+        70.625
+      ]
+    },
+    "average_loss_intra_epoch": [
+      24.457501301398644
+    ],
+    "average_accuracy_intra_epoch": [
+      74.53051643192488
+    ],
+    "runtime": 0.16831636428833008
+  }
+}

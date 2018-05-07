@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "flags_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        1.8157604932785034
+      ],
+      "average_accuracy": [
+        20.64516129032258
+      ]
+    },
+    "test": {
+      "average_loss": [
+        1.8210409879684448
+      ],
+      "average_accuracy": [
+        20.512820512820515
+      ]
+    },
+    "average_loss_intra_epoch": [
+      1.8157604932785034
+    ],
+    "average_accuracy_intra_epoch": [
+      20.64516129032258
+    ],
+    "runtime": 0.08421897888183594
+  }
+}

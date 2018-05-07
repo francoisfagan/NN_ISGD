@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "titanic_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.6884631945027245
+      ],
+      "average_accuracy": [
+        67.72727272727273
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.6881787776947021
+      ],
+      "average_accuracy": [
+        67.57369614512471
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.6884631945027245
+    ],
+    "average_accuracy_intra_epoch": [
+      67.72727272727273
+    ],
+    "runtime": 0.37042784690856934
+  }
+}

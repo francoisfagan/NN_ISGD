@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "miniboone_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        5.132813662662744
+      ],
+      "average_accuracy": [
+        84.97083161142132
+      ]
+    },
+    "test": {
+      "average_loss": [
+        5.2552701833147655
+      ],
+      "average_accuracy": [
+        84.4846807365548
+      ]
+    },
+    "average_loss_intra_epoch": [
+      5.132813662662744
+    ],
+    "average_accuracy_intra_epoch": [
+      84.97083161142132
+    ],
+    "runtime": 230.95135688781738
+  }
+}

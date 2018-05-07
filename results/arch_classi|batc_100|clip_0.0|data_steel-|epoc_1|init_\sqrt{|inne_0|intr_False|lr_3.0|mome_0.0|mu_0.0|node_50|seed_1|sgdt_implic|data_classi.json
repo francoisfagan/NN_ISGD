@@ -1,0 +1,44 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "steel-plates_classification",
+    "epochs": 1,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 3.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        8.581645846366882
+      ],
+      "average_accuracy": [
+        37.69329896907217
+      ]
+    },
+    "test": {
+      "average_loss": [
+        8.469344139099121
+      ],
+      "average_accuracy": [
+        37.53213367609254
+      ]
+    },
+    "average_loss_intra_epoch": [
+      8.581645846366882
+    ],
+    "average_accuracy_intra_epoch": [
+      37.69329896907217
+    ],
+    "runtime": 1.7398860454559326
+  }
+}
