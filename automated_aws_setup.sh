@@ -4,8 +4,14 @@ mkdir NN_ISGD/results
 mkdir NN_ISGD/data
 sudo yum update
 sudo yum install htop
-# tmux new -s experiment1
+
+# tmux new -s e
+# cd NN_ISGD
 # source activate pytorch_p36
+# pip install -U scikit-learn
+# pip install scipy
+# python pipeline.py 'JSB Chorales'
+# tmux a -t e
 
 # pip install Cython
 

@@ -1,0 +1,60 @@
+{
+  "hyperparameters": {
+    "architecture": "music",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "MuseData",
+    "epochs": 5,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 20.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 300,
+    "seed": 2,
+    "sgdtype": "implicit",
+    "data_type": "sequential_many"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.002532468719353707,
+        0.0023462638599515487,
+        0.001615513861920833,
+        0.0013664491386289437,
+        0.0012010563214409267
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.002343717038926233,
+        0.0019629438230631714,
+        0.0012386544965685912,
+        0.0012408390936886257,
+        0.001075123779628484
+      ],
+      "average_accuracy": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.0012010563214409267
+    ],
+    "average_accuracy_intra_epoch": [
+      0
+    ],
+    "runtime": 9908.382364034653
+  }
+}
