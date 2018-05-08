@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "heart-va_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 5.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        2.0257320404052734,
+        12.685348510742188,
+        20.88847827911377,
+        59.721479415893555,
+        23.266963005065918,
+        44.70380783081055,
+        60.8483829498291,
+        41.26972007751465,
+        61.48538398742676,
+        48.078895568847656
+      ],
+      "average_accuracy": [
+        25.625,
+        28.125,
+        27.5,
+        19.375,
+        16.875,
+        20.625,
+        23.125,
+        27.5,
+        23.125,
+        27.5
+      ]
+    },
+    "test": {
+      "average_loss": [
+        2.1346912384033203,
+        12.017423629760742,
+        18.706111907958984,
+        51.979820251464844,
+        28.606441497802734,
+        35.38914489746094,
+        73.95652770996094,
+        34.651832580566406,
+        75.96913146972656,
+        43.42003631591797
+      ],
+      "average_accuracy": [
+        25.0,
+        27.5,
+        30.0,
+        15.0,
+        7.5,
+        32.5,
+        10.0,
+        27.5,
+        10.0,
+        25.0
+      ]
+    },
+    "average_loss_intra_epoch": [
+      48.078895568847656
+    ],
+    "average_accuracy_intra_epoch": [
+      27.5
+    ],
+    "runtime": 6.374461889266968
+  }
+}

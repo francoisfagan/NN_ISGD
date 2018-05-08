@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "balance-scale_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 0.01,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        1.1288038730621337,
+        1.1209359169006348,
+        1.1134199380874634,
+        1.1062352657318115,
+        1.0993637800216676,
+        1.0927880525588989,
+        1.0864918947219848,
+        1.0804600954055785,
+        1.0746786832809447,
+        1.069134736061096
+      ],
+      "average_accuracy": [
+        7.6,
+        46.2,
+        46.2,
+        46.2,
+        46.2,
+        46.2,
+        46.2,
+        46.2,
+        46.2,
+        46.2
+      ]
+    },
+    "test": {
+      "average_loss": [
+        1.1210652589797974,
+        1.114311158657074,
+        1.1078857779502869,
+        1.1017701029777527,
+        1.0959460139274597,
+        1.09039705991745,
+        1.0851078629493713,
+        1.0800642371177673,
+        1.0752522349357605,
+        1.0706599354743958
+      ],
+      "average_accuracy": [
+        8.8,
+        45.6,
+        45.6,
+        45.6,
+        45.6,
+        45.6,
+        45.6,
+        45.6,
+        45.6,
+        45.6
+      ]
+    },
+    "average_loss_intra_epoch": [
+      1.069134736061096
+    ],
+    "average_accuracy_intra_epoch": [
+      46.2
+    ],
+    "runtime": 3.4539968967437744
+  }
+}

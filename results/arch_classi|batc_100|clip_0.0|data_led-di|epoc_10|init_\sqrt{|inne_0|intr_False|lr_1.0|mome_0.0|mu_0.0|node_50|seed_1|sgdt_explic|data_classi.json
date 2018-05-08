@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "led-display_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 1.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "explicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        2.2996090948581696,
+        2.275509923696518,
+        1.9014230817556381,
+        1.792494997382164,
+        1.7366792559623718,
+        1.6324585527181625,
+        1.3943059891462326,
+        1.3335029035806656,
+        1.2904303520917892,
+        1.2516890913248062
+      ],
+      "average_accuracy": [
+        12.125,
+        11.75,
+        20.375,
+        31.25,
+        32.625,
+        45.375,
+        55.125,
+        54.875,
+        55.25,
+        57.875
+      ]
+    },
+    "test": {
+      "average_loss": [
+        2.3033527135849,
+        2.2818870544433594,
+        1.9483296275138855,
+        1.8419736623764038,
+        1.7832873463630676,
+        1.6648322939872742,
+        1.3796647191047668,
+        1.3152377605438232,
+        1.2743189930915833,
+        1.2351938486099243
+      ],
+      "average_accuracy": [
+        12.0,
+        12.0,
+        18.5,
+        33.0,
+        33.0,
+        42.5,
+        57.0,
+        55.5,
+        57.0,
+        56.5
+      ]
+    },
+    "average_loss_intra_epoch": [
+      1.2516890913248062
+    ],
+    "average_accuracy_intra_epoch": [
+      57.875
+    ],
+    "runtime": 3.8851208686828613
+  }
+}
