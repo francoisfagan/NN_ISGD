@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "statlog-german-credit_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 0.1,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        0.6513125002384186,
+        0.6219022572040558,
+        0.6124022081494331,
+        0.6087117791175842,
+        0.6065077930688858,
+        0.6044206544756889,
+        0.6019086614251137,
+        0.598604328930378,
+        0.5940884500741959,
+        0.58777866512537
+      ],
+      "average_accuracy": [
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875,
+        69.875
+      ]
+    },
+    "test": {
+      "average_loss": [
+        0.6499190032482147,
+        0.6189204752445221,
+        0.6085724830627441,
+        0.6044839024543762,
+        0.6021567285060883,
+        0.6001285016536713,
+        0.5978209972381592,
+        0.5948699414730072,
+        0.5908946692943573,
+        0.5853914618492126
+      ],
+      "average_accuracy": [
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5,
+        70.5
+      ]
+    },
+    "average_loss_intra_epoch": [
+      0.58777866512537
+    ],
+    "average_accuracy_intra_epoch": [
+      69.875
+    ],
+    "runtime": 30.448866367340088
+  }
+}

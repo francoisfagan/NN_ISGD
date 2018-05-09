@@ -1,0 +1,80 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 100,
+    "clipping_threshold": 0.0,
+    "dataset_name": "waveform_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 10.0,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [
+        21.856932640075684,
+        11.933219182491303,
+        14.378475713729859,
+        6.172984409332275,
+        7.1016918331384655,
+        10.996253001689912,
+        6.932472383975982,
+        6.5161693572998045,
+        6.304847654700279,
+        9.133963346481323
+      ],
+      "average_accuracy": [
+        56.175,
+        72.725,
+        72.375,
+        83.35,
+        75.4,
+        74.625,
+        68.725,
+        71.85,
+        76.35,
+        80.625
+      ]
+    },
+    "test": {
+      "average_loss": [
+        21.26138229370117,
+        12.033348274230956,
+        14.06402654647827,
+        6.529280686378479,
+        7.453856182098389,
+        11.474004220962524,
+        7.0303082942962645,
+        6.16956524848938,
+        6.675760674476623,
+        9.181517696380615
+      ],
+      "average_accuracy": [
+        57.5,
+        73.2,
+        73.1,
+        82.5,
+        76.4,
+        74.5,
+        68.5,
+        72.1,
+        78.3,
+        81.6
+      ]
+    },
+    "average_loss_intra_epoch": [
+      9.133963346481323
+    ],
+    "average_accuracy_intra_epoch": [
+      80.625
+    ],
+    "runtime": 121.17512273788452
+  }
+}

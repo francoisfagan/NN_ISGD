@@ -4,14 +4,27 @@
     <list default="true" id="1a7475b5-5de1-4440-ad59-ca000e446c52" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/Display results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Display results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/classification/UCI_how_to_load_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/classification.json" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/classification.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/hyperparameter_lists/generate hyperparameter lists.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_0_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_0_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_0_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_0_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_1_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_1_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_8_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/JSB_Chorales_average_loss_clip_8_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/MuseData_average_loss_clip_0_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/MuseData_average_loss_clip_0_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Nottingham_average_loss_clip_0_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Nottingham_average_loss_clip_0_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Nottingham_average_loss_clip_8_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Nottingham_average_loss_clip_8_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_01.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_01.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_0_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_1_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_1_0.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_8_0.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/Piano-midi_average_loss_clip_8_0.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plots/exact_ISGD_classification_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/exact_ISGD_classification_average_loss.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plots/intra_epoch_average_accuracy_intra_epoch.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/intra_epoch_average_accuracy_intra_epoch.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/minst_classification_clipping_average_loss.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/intra_epoch_average_loss_intra_epoch.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_average_loss.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_autoencoder_clipped_average_loss.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_accuracy.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/minst_classification_clipping_average_loss.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plots/mnist_classification_average_accuracy.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mnist_classification_average_accuracy.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mnist_classification_average_loss.pdf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="56" lean-forward="true" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+              <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -52,7 +65,7 @@
       <file leaf-file-name="data_loaders.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_loaders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="5661">
               <caret line="341" selection-start-line="341" selection-end-line="341" />
               <folding>
                 <element signature="e#245#257#0" expanded="true" />
@@ -71,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="architectures.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/architectures.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="90" column="59" selection-start-line="90" selection-start-column="59" selection-end-line="90" selection-end-column="59" />
+            <state relative-caret-position="286">
+              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
               <folding>
                 <element signature="e#47#59#0" expanded="true" />
               </folding>
@@ -83,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
+            <state relative-caret-position="732">
+              <caret line="182" column="52" lean-forward="true" selection-start-line="182" selection-start-column="52" selection-end-line="182" selection-end-column="52" />
               <folding>
                 <element signature="e#59#86#0" expanded="true" />
               </folding>
@@ -210,8 +223,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1404" />
-    <option name="height" value="1057" />
+    <option name="width" value="1401" />
+    <option name="height" value="975" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -376,10 +389,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1404" height="1057" extended-state="0" />
+    <frame x="0" y="23" width="1401" height="975" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21367522" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21413276" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -796,16 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/architectures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="90" column="59" selection-start-line="90" selection-start-column="59" selection-end-line="90" selection-end-column="59" />
-          <folding>
-            <element signature="e#47#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -825,7 +828,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_loaders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
+        <state relative-caret-position="5661">
           <caret line="341" selection-start-line="341" selection-end-line="341" />
           <folding>
             <element signature="e#245#257#0" expanded="true" />
@@ -837,16 +840,26 @@
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="56" lean-forward="true" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+          <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
+        <state relative-caret-position="732">
+          <caret line="182" column="52" lean-forward="true" selection-start-line="182" selection-start-column="52" selection-end-line="182" selection-end-column="52" />
           <folding>
             <element signature="e#59#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/architectures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+          <folding>
+            <element signature="e#47#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
