@@ -1,3 +1,158 @@
+import numpy as np
+from functools import reduce
+import cubic_root_closest_to_0
+import cube_solver
+
+
+
+# z_norm_squared = torch.norm(input, p=2, dim=1) ** 2 + 1.0  # [b]
+# threshold = lr * torch.mul(z_norm_squared, grad_output.t()).t() / (1.0 + lr * mu)  # [b x m]
+
+# z_norm_squared_mat = (torch.norm(input, p=2, dim=1) ** 2 + 1.0).unsqueeze(1).expand_as(c)  # [b x m]
+# threshold = lr * z_norm_squared_mat * grad_output / (1.0 + lr * mu)  # [b x m]
+
+# Update u according to those conditions
+if torch.sum(c2) > 0:
+    u[c2] = c[c2] / z_norm_squared_mat[c2] / lr
+    # u = torch.where(c2, c / z_norm_squared_mat / lr, u)
+if torch.sum(c5) > 0:
+    u[c5] = grad_output[c5] / (1.0 + lr * mu)
+    # u = torch.where(c5, grad_output / (1.0 + lr * mu), u)
+
+
+def real_root_closest_to_zero(coeff):
+    """
+    Given a list of polynomial coefficients,
+    return the real root that is closest to zero
+
+    Args:
+        coeff:  List of polynomial coefficients
+
+    Returns:
+        root_closest_to_zero:   Root that is closest to zero
+
+    """
+    # Calculate all (complex) roots
+    # Could use np.roots(coeff)
+    # However cube_solver.solve(coeff) is faster and more accurate
+    roots = cube_solver.solve(coeff)
+
+    # Extract real roots
+    # Note cannot use root.imag == 0 since numpy sometimes has a tiny imaginary component for real roots
+    # See: https://stackoverflow.com/questions/28081247/print-real-roots-only-in-numpy
+    real_roots = (root.real for root in roots if abs(root.imag) < 1e-10)
+
+    # Extract the real root that is closest to zero
+    root = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
+
+    # Change from double to float
+    # Otherwise the tensor operations are not consistent
+    root = root.astype('float32')
+
+    return root
+
+
+# def cubic_solution(coeff):
+#     """
+#     Given a list of polynomial coefficients,
+#     return the real root that is closest to zero.
+#
+#     Based on the code of the cubic root solver of
+#         Shril Kumar [(shril.iitdhn@gmail.com),(github.com/shril)] &
+#         Devojoyti Halder [(devjyoti.itachi@gmail.com),(github.com/devojoyti)]
+#     available:
+#         https://github.com/shril/CubicEquationSolver
+#
+#     Args:
+#         coeff:  List of polynomial coefficients
+#
+#     Returns:
+#         Real root closest to zero
+#
+#     """
+#     a, b, c, d = coeff  # [b x m] for a, b, c, d
+#
+#     f = ((3.0 * c / a) - ((b ** 2.0) / (a ** 2.0))) / 3.0  # [b x m]
+#     g = (((2.0 * (b ** 3.0)) / (a ** 3.0)) - ((9.0 * b * c) / (a ** 2.0)) + (27.0 * d / a)) / 27.0  # [b x m]
+#     h = ((g ** 2.0) / 4.0 + (f ** 3.0) / 27.0)  # [b x m]
+#
+#     # All 3 Roots are Real and Equal
+#     c1 = ((f == 0) * (g == 0) * (h == 0)).float()
+#     y = d / (1.0 * a)
+#     x1 = - torch.abs(y) ** (1 / 3.0) * torch.sign(y)
+#
+#     # All 3 roots are Real
+#
+#     i = torch.sqrt(((g ** 2.0) / 4.0) + torch.abs(h))  # Helper Temporary Variable
+#     j = i ** (1 / 3.0)  # Helper Temporary Variable
+#     k = torch.acos(-(g / (2 * i)))  # Helper Temporary Variable
+#     L = j * -1  # Helper Temporary Variable
+#     M = torch.cos(k / 3.0)  # Helper Temporary Variable
+#     N = math.sqrt(3) * torch.sin(k / 3.0)  # Helper Temporary Variable
+#     P = (b / (3.0 * a)) * -1  # Helper Temporary Variable
+#
+#     x2_a = 2 * j * torch.cos(k / 3.0) - (b / (3.0 * a))
+#     x2_b = L * (M + N) + P
+#     x2_c = L * (M - N) + P
+#
+#     x2v = torch.stack((x2_a, x2_b, x2_c))
+#     v, _ = torch.min(torch.abs(x2v), dim=0)
+#     # For my application all roots will have the same sign.
+#     # There will only be on minimum root (unless all roots are equal)
+#     # So don't have to worry about double/triple counting the roots
+#
+#     x2 = torch.sum((x2v == v).float() * v + (x2v == -v).float() * -v, dim=0)
+#
+#     # One Real Root and two Complex Roots
+#     R = -(g / 2.0) + torch.sqrt(torch.abs(h))  # Helper Temporary Variable
+#     S = torch.abs(R) ** (1 / 3.0) * torch.sign(R)
+#     T = -(g / 2.0) - torch.sqrt(torch.abs(h))
+#     U = (torch.abs(T) ** (1 / 3.0)) * torch.sign(T)  # Helper Temporary Variable
+#     x3 = (S + U) - (b / (3.0 * a))
+#
+#     x = c1 * x1 + (1 - c1) * ((h <= 0).float() * x2 + (h > 0).float() * x3)
+#
+#     return x
+
+#  Calculate conditions for u
+threshold = lr * torch.mul(z_norm_squared, grad_output.t()).t() / (1.0 + lr * mu)  # [b x m]
+cond2 = ((s == +1) * (c > 0) * (c <= threshold))  # [b x m]
+cond3 = ((s == +1) * (c > threshold))  # [b x m]
+cond5 = ((s == -1) * (c > threshold / 2.0))  # [b x m]
+
+# Calculate u
+u = torch.zeros_like(threshold)
+u[cond2] = torch.div(c.t(), z_norm_squared).t()[cond2] / lr
+u[cond3] = grad_output[cond3] / (1.0 + lr * mu)
+u[cond5] = grad_output[cond5] / (1.0 + lr * mu)
+
+
+
+# #cond0 = (s == 0).float()  # [b x m]
+# #cond1 = ((s == +1) * (c <= 0)).float()  # [b x m]
+# cond2 = ((s == +1) * (c > 0) * (c <= threshold)).float()  # [b x m]
+# cond3 = ((s == +1) * (c > threshold)).float()  # [b x m]
+# #cond4 = ((s == -1) * (c <= threshold / 2.0)).float()  # [b x m]
+# cond5 = ((s == -1) * (c > threshold / 2.0)).float()  # [b x m]
+#
+# # # Check that exactly one condition satisfied for each node
+# # cond_sum = (cond0 + cond1 + cond2 + cond3 + cond4 + cond5)  # [b x m]
+# # if torch.mean((cond_sum == 1).float()) != 1.0:
+# #     assert torch.mean((cond_sum == 1).float()) == 1.0, 'No implicit update condition was satisfied'
+#
+# # Calculate u
+# u = (#0.0 * (cond0 + cond1 + cond4) +
+#      torch.div(c.t(), z_norm_squared).t() / lr * cond2
+#      + grad_output / (1.0 + lr * mu) * (cond3 + cond5)
+#      )  # [b x m]
+
+
+# # u might contain Nan values
+# # The operation below sets all Nans to zero,
+# # which is the appropriate behaviour for ISGD
+# u[u != u] = 0
+
+
 # if Hp.gpu:
 #     return model.cuda()
 # else:

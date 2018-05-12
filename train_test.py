@@ -41,15 +41,15 @@ def train_and_test(train_loader, test_loader, model, optimizer):
         results['average_loss_intra_epoch'] = average_loss_intra_epoch
         results['average_accuracy_intra_epoch'] = average_accuracy_intra_epoch
 
-        # Record training and test loss
-        for dataset, loader in [('test', test_loader), ('train', train_loader)]:
-            average_loss, average_accuracy = test(model, loader, dataset)
-            results[dataset]['average_loss'].append(average_loss)
-            results[dataset]['average_accuracy'].append(average_accuracy)
-
-        # Add intra-epoch loss for the end of the epoch
-        results['average_loss_intra_epoch'].append(average_loss)
-        results['average_accuracy_intra_epoch'].append(average_accuracy)
+        # # Record training and test loss
+        # for dataset, loader in [('test', test_loader), ('train', train_loader)]:
+        #     average_loss, average_accuracy = test(model, loader, dataset)
+        #     results[dataset]['average_loss'].append(average_loss)
+        #     results[dataset]['average_accuracy'].append(average_accuracy)
+        #
+        # # Add intra-epoch loss for the end of the epoch
+        # results['average_loss_intra_epoch'].append(average_loss)
+        # results['average_accuracy_intra_epoch'].append(average_accuracy)
 
     time_finish = time.time()
 
@@ -189,7 +189,7 @@ def train(model, train_loader, optimizer, epoch):
         epoch:          Current epoch number
 
     """
-    print('')
+    # print('')
     model.train()
 
     # Cumulative performance measures and counts
@@ -239,7 +239,7 @@ def train(model, train_loader, optimizer, epoch):
 
         # Print average loss
         average_loss = cum_loss / cum_minibatches
-        if batch_idx % 100 == 0 and batch_idx != 0:
+        if batch_idx % 1000 == 0 and batch_idx != 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                        100.0 * batch_idx / len(train_loader), average_loss))
@@ -255,7 +255,7 @@ def train(model, train_loader, optimizer, epoch):
             cum_loss = 0
             cum_minibatches = 0
 
-    print('')
+    # print('')
     return average_loss_intra_epochs, average_accuracy_intra_epochs
 
 

@@ -1,0 +1,32 @@
+{
+  "hyperparameters": {
+    "architecture": "classification",
+    "batch_size": 1,
+    "clipping_threshold": 0.0,
+    "dataset_name": "haberman-survival_classification",
+    "epochs": 10,
+    "initialization_scale": "\\sqrt{\frac{6}{n+m}}",
+    "inner_ISGD_iterations": 0,
+    "intra_epoch": false,
+    "lr": 0.01,
+    "momentum": 0.0,
+    "mu": 0.0,
+    "nodes": 50,
+    "seed": 1,
+    "sgdtype": "implicit",
+    "data_type": "classification"
+  },
+  "results": {
+    "train": {
+      "average_loss": [],
+      "average_accuracy": []
+    },
+    "test": {
+      "average_loss": [],
+      "average_accuracy": []
+    },
+    "average_loss_intra_epoch": [],
+    "average_accuracy_intra_epoch": [],
+    "runtime": 4.538524866104126
+  }
+}

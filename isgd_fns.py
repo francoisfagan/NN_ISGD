@@ -19,12 +19,8 @@ Details of how to edit are given in the IsgdTemplateFunction and IsgdTemplate cl
 import torch
 import torch.nn as nn
 import math
-import numpy as np
 from torch.autograd.function import once_differentiable
-from functools import reduce
 from utils import Hp
-import cubic_root_closest_to_0
-import cube_solver
 
 
 # Utility functions
@@ -109,34 +105,69 @@ def calc_weigh_bias_grad(weight, mu, lr, a, d, input, z_norm, bias):
     return grad_weight, grad_bias
 
 
-def real_root_closest_to_zero(coeff):
+def cubic_solution(coeff):
     """
     Given a list of polynomial coefficients,
-    return the real root that is closest to zero
+    return the real root that is closest to zero.
+
+    Based on the code of the cubic root solver of
+        Shril Kumar [(shril.iitdhn@gmail.com),(github.com/shril)] &
+        Devojoyti Halder [(devjyoti.itachi@gmail.com),(github.com/devojoyti)]
+    available:
+        https://github.com/shril/CubicEquationSolver
 
     Args:
         coeff:  List of polynomial coefficients
 
     Returns:
-        root_closest_to_zero:   Root that is closest to zero
+        Real root closest to zero
 
     """
-    # Calculate all (complex) roots
-    # Could use np.roots(coeff)
-    # However cube_solver.solve(coeff) is faster and more accurate
-    roots = cube_solver.solve(coeff)
+    a, b, c, d = coeff  # [b x m] for a, b, c, d
 
-    # Extract real roots
-    # Note cannot use root.imag == 0 since numpy sometimes has a tiny imaginary component for real roots
-    # See: https://stackoverflow.com/questions/28081247/print-real-roots-only-in-numpy
-    real_roots = (root.real for root in roots if abs(root.imag) < 1e-10)
+    # Helper functions
+    f = ((3.0 * c / a) - ((b ** 2.0) / (a ** 2.0))) / 3.0  # [b x m]
+    g = (((2.0 * (b ** 3.0)) / (a ** 3.0)) - ((9.0 * b * c) / (a ** 2.0)) + (27.0 * d / a)) / 27.0  # [b x m]
+    h = ((g ** 2.0) / 4.0 + (f ** 3.0) / 27.0)  # [b x m]
 
-    # Extract the real root that is closest to zero
-    root = reduce((lambda x, y: x if (abs(x) < abs(y)) else y), real_roots)
+    # Calculate conditions for number of roots
+    c1 = ((f == 0) * (g == 0) * (h == 0))  # All 3 Roots are Real and Equal
+    c2 = (1 - c1) * (h <= 0)  # All 3 roots are Real
+    # c3 = (1 - c1) * (h > 0)  # One Real Root and two Complex Roots
 
-    # Change from double to float
-    # Otherwise the tensor operations are not consistent
-    root = root.astype('float32')
+    # The final condition c3 is by far the most common and so we make it the default value of u
+    # One Real Root and two Complex Roots
+    R = -(g / 2.0) + torch.sqrt(torch.abs(h))  # Helper Temporary Variable
+    S = torch.abs(R) ** (1 / 3.0) * torch.sign(R)
+    T = -(g / 2.0) - torch.sqrt(torch.abs(h))
+    U = (torch.abs(T) ** (1 / 3.0)) * torch.sign(T)  # Helper Temporary Variable
+    root = (S + U) - (b / (3.0 * a))
+
+    # All 3 Roots are Real and Equal
+    if torch.sum(c1) > 0:
+        y = d[c1] / (1.0 * a[c1])
+        root[c1] = - torch.abs(y) ** (1 / 3.0) * torch.sign(y)
+
+    # All 3 roots are Real
+    # The code below assumes that the minimum real root is unique (which seems to be the case)
+    if torch.sum(c2) > 0:
+        i = torch.sqrt(((g[c2] ** 2.0) / 4.0) + torch.abs(h[c2]))  # Helper Temporary Variable
+        j = i ** (1 / 3.0)  # Helper Temporary Variable
+        k = torch.acos(-(g[c2] / (2 * i)))  # Helper Temporary Variable
+        L = j * -1  # Helper Temporary Variable
+        M = torch.cos(k / 3.0)  # Helper Temporary Variable
+        N = math.sqrt(3) * torch.sin(k / 3.0)  # Helper Temporary Variable
+        P = (b[c2] / (3.0 * a[c2])) * -1  # Helper Temporary Variable
+
+        root_1 = 2 * j * torch.cos(k / 3.0) + P
+        root_2 = L * (M + N) + P
+        root_3 = L * (M - N) + P
+
+        roots = torch.stack((root_1, root_2, root_3))
+        root_abs, _ = torch.min(torch.abs(roots), 0)
+        root[c2] = torch.sum((roots == root_abs).float() * root_abs
+                             + (roots == -root_abs).float() * -root_abs,
+                             0)
 
     return root
 
@@ -340,40 +371,34 @@ class IsgdReluFunction(torch.autograd.Function):
         # If implicit do the implicit SGD update, else do the explicit SGD update
         if sgd_type == 'implicit':
 
+            # Calculate input gradient
+            # We do this first as we will want to initialize u = grad_output_masked
+            ge0 = (output > 0).float()  # [b x m]
+            grad_output_masked = ge0 * grad_output  # [b x m]
+            grad_input = grad_output_masked.mm(weight)  # [b x n]
+
             # ISGD constants
             s = torch.sign(grad_output)  # [b x m]
             z_norm_squared = torch.norm(input, p=2, dim=1) ** 2 + 1.0  # [b]
             c = logit / (1.0 + lr * mu)  # [b x m]
 
-            # Calculate conditions for u
+            # Initialize u to be the ESGD relu solution
+            # (see ESGD section for more details on the code)
+            # This way only a few values might need to be changed
+            u = grad_output_masked / (1.0 + lr * mu)  # [b x m]
+
+            # Calculate conditions for u not covered by ESGD
             threshold = lr * torch.mul(z_norm_squared, grad_output.t()).t() / (1.0 + lr * mu)  # [b x m]
-            cond0 = (s == 0).float()  # [b x m]
-            cond1 = ((s == +1) * (c <= 0)).float()  # [b x m]
-            cond2 = ((s == +1) * (c > 0) * (c <= threshold)).float()  # [b x m]
-            cond3 = ((s == +1) * (c > threshold)).float()  # [b x m]
-            cond4 = ((s == -1) * (c <= threshold / 2.0)).float()  # [b x m]
-            cond5 = ((s == -1) * (c > threshold / 2.0)).float()  # [b x m]
+            c2 = (s == +1) * (c > 0) * (c <= threshold)  # [b x m]
+            c5 = (s == -1) * (c > threshold / 2.0) * (c <= 0)  # [b x m]
 
-            # Check that exactly one condition satisfied for each node
-            cond_sum = (cond0 + cond1 + cond2 + cond3 + cond4 + cond5)  # [b x m]
-            if torch.mean((cond_sum == 1).float()) != 1.0:
-                assert torch.mean((cond_sum == 1).float()) == 1.0, 'No implicit update condition was satisfied'
-
-            # Calculate u
-            u = (0.0 * (cond0 + cond1 + cond4)
-                 + torch.div(c.t(), z_norm_squared).t() / lr * cond2
-                 + grad_output / (1.0 + lr * mu) * (cond3 + cond5)
-                 )  # [b x m]
-
-            # u might contain Nan values
-            # The operation below sets all Nans to zero,
-            # which is the appropriate behaviour for ISGD
-            u[u != u] = 0
-
-            # Calculate input gradient
-            ge0 = (output > 0).float()  # [b x m]
-            grad_output_masked = ge0 * grad_output  # [b x m]
-            grad_input = grad_output_masked.mm(weight)  # [b x n]
+            # # Update u according to those conditions
+            # if torch.sum(c2) > 0:
+            #     # u[c2] = c[c2] / z_norm_squared_mat[c2] / lr
+            #     u = torch.where(c2, torch.div(c.t(), z_norm_squared).t() / lr, u)
+            # if torch.sum(c5) > 0:
+            #     # u[c5] = grad_output[c5] / (1.0 + lr * mu)
+            #     u = torch.where(c5, grad_output / (1.0 + lr * mu), u)
 
             # Calculate grad_weight, grad_bias
             grad_weight = weight * mu / (1.0 + lr * mu) + u.t().mm(input)  # [m x n]
@@ -462,17 +487,19 @@ class IsgdArctanFunction(torch.autograd.Function):
             a1 = (1 + c ** 2)  # [b x m]
             a0 = (- b)  # [b x m]
 
-            # Coefficients as one big numpy matrix
-            coeff = torch.stack((a3, a2, a1, a0)).cpu().numpy()  # [4 x b x m]
+            # # Coefficients as one big numpy matrix
+            # coeff = torch.stack((a3, a2, a1, a0)).cpu().numpy()  # [4 x b x m]
+            #
+            # # Calculate roots of cubic that are real and closest to zero
+            # # Note that this is currently very slow!
+            # # This is because np.apply_along_axis implements a python "for loop" and is not optimized
+            # # There doesn't seem to be a simple way of improving this
+            # # Perhaps in the future Cython could be used to speed up this computation
+            # # roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
+            # roots = cubic_root_closest_to_0.get_roots(coeff)
+            # u = torch.from_numpy(roots).to(Hp.device)  # [b x m]
 
-            # Calculate roots of cubic that are real and closest to zero
-            # Note that this is currently very slow!
-            # This is because np.apply_along_axis implements a python "for loop" and is not optimized
-            # There doesn't seem to be a simple way of improving this
-            # Perhaps in the future Cython could be used to speed up this computation
-            # roots = np.apply_along_axis(real_root_closest_to_zero, 0, coeff)  # [b x m] # Real root closest to zero
-            roots = cubic_root_closest_to_0.get_roots(coeff)
-            u = torch.from_numpy(roots).to(Hp.device)  # [b x m]
+            u = cubic_solution([a3, a2, a1, a0])
 
             # Calculate input gradient
             grad_output_scaled = grad_output / (1 + logit ** 2)  # [b x m]
